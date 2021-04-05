@@ -4,7 +4,7 @@ import { Table, Badge } from "react-bootstrap";
 
 import { Panel } from "./Panel";
 
-const orderBySeverity = (a: any, b: any) => {
+const orderBySeverity = (a: ZapReportSiteAlert, b: ZapReportSiteAlert) => {
   // high criticity first
   const order = parseInt(b.riskcode) - parseInt(a.riskcode);
   if (order === 0) {
@@ -14,7 +14,7 @@ const orderBySeverity = (a: any, b: any) => {
   return order;
 };
 
-const OwaspBadge = (row: any) => {
+const OwaspBadge = (row: ZapReportSiteAlert) => {
   const severity = row.riskcode;
   const variant =
     severity === "0"
@@ -33,11 +33,11 @@ const OwaspBadge = (row: any) => {
   );
 };
 
-type OwaspProps = { data: any; url: string };
+type OwaspProps = { data: ZapReport; url: string };
 
 export const Owasp: React.FC<OwaspProps> = ({ data, url }) => {
   const alerts =
-    data && data.site && data.site.flatMap((site: any) => site.alerts) || [];
+    data && data.site && data.site.flatMap((site) => site.alerts) || [];
   alerts.sort(orderBySeverity);
   return (
     (alerts.length && (
@@ -56,7 +56,7 @@ export const Owasp: React.FC<OwaspProps> = ({ data, url }) => {
             </tr>
           </thead>
           <tbody>
-            {alerts.map((alert: any, i: number) => {
+            {alerts.map((alert, i: number) => {
               return (
                 <tr key={alert.name + i}>
                   <td className="text-center">

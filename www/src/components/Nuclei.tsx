@@ -4,20 +4,19 @@ import { Table, Badge } from "react-bootstrap";
 
 import { Panel } from "./Panel";
 
-type NucleiProps = { data: any };
 
-const NucleiBadge = (row: any) => {
+const NucleiBadge = (row: NucleiReportEntry) => {
   const severity = (row.info && row.info.severity) || "critical";
   const variant =
     severity === "critical"
       ? "danger"
       : severity === "high"
-      ? "danger"
-      : severity === "medium"
-      ? "warning"
-      : severity === "low"
-      ? "info"
-      : "success";
+        ? "danger"
+        : severity === "medium"
+          ? "warning"
+          : severity === "low"
+            ? "info"
+            : "success";
   return (
     <Badge className="w-100" variant={variant}>
       {severity}
@@ -27,12 +26,13 @@ const NucleiBadge = (row: any) => {
 
 const nucleiSeverities = "info,low,medium,high,critical".split(",");
 
-const nucleiOrder = (a: any, b: any) => {
-  return (
-    nucleiSeverities.indexOf(a.info.severity) -
-    nucleiSeverities.indexOf(b.info.severity)
-  );
-};
+const nucleiOrder = (a: NucleiReportEntry, b: NucleiReportEntry) => (
+  nucleiSeverities.indexOf(a.info.severity) -
+  nucleiSeverities.indexOf(b.info.severity)
+);
+
+
+type NucleiProps = { data: NucleiReport };
 
 export const Nuclei: React.FC<NucleiProps> = ({ data }) => {
   const rows = data;
@@ -53,7 +53,7 @@ export const Nuclei: React.FC<NucleiProps> = ({ data }) => {
             </tr>
           </thead>
           <tbody>
-            {rows.map((failure: any, i: number) => {
+            {rows.map((failure: NucleiReportEntry, i: number) => {
               return (
                 <tr key={failure.templateID + i}>
                   <td>

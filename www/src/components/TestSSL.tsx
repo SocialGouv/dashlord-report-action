@@ -16,22 +16,21 @@ const sortByKey = (key: string) => (a: any, b: any) => {
   return 0;
 };
 
-//const grades = ["A+", "A", "B", "C", "D", "E", "F"]
-
 const severities = ["INFO", "OK", "LOW", "MEDIUM", "HIGH", "CRITICAL"];
 const getSeverityValue = (severity: string) => severities.indexOf(severity);
 
-type SSLProps = { data: any; url: string };
+type SSLProps = { data: SslTestReport; url: string };
 
 export const TestSSL: React.FC<SSLProps> = ({ data, url }) => {
+  const gradeEntry = data.find((entry) => entry.id === "overall_grade")
   const grade =
-    data && data.find((entry: any) => entry.id === "overall_grade") && data.find((entry: any) => entry.id === "overall_grade").finding;
-  const results = data.map((row: any) => ({
-    ...row,
-    severity_value: getSeverityValue(row.severity),
+    data && gradeEntry && gradeEntry.finding;
+  const results = data.map((entry) => ({
+    ...entry,
+    severity_value: getSeverityValue(entry.severity), // add property for sort
   }));
   results.sort(sortByKey("severity_value")).reverse();
-  const capReasons = data.filter((entry: any) => entry.id.indexOf('grade_cap_reason_') === 0).reverse();
+  const capReasons = data.filter((entry) => entry.id.indexOf('grade_cap_reason_') === 0).reverse();
   return grade && (
     <Panel title="SSL" info="Informations collectées via testssl.sh" url={url}>
       <Row>

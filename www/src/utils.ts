@@ -1,4 +1,4 @@
-import dashlordConfig from "./config.json";
+const dashlordConfig: DashlordConfig  = require("./config.json");
 
 export const smallUrl = (url: string) =>
   url

@@ -14,7 +14,7 @@ import { TestSSL } from "./TestSSL";
 import { Trackers } from "./Trackers";
 import { Wappalyzer } from "./Wappalyzer";
 
-type UrlDetailProps = { url: string; report: any };
+type UrlDetailProps = { url: string; report: UrlReport };
 
 export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
   const updateDate = report.lhr && report.lhr.fetchTime;

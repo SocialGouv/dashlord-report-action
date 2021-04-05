@@ -5,13 +5,6 @@ import { Row, Col, Card } from "react-bootstrap";
 import { Gauge } from "./Gauge";
 import { Panel } from "./Panel";
 
-type Category = {
-  score: number;
-  [any: string]: any;
-};
-
-type LightHouseProps = { data: any, url: string };
-
 const toTime = (ms: number) => {
   let minutes = 0,
     seconds = 0;
@@ -49,25 +42,27 @@ const toSize = (bytes: number) => {
   return `${kb}.${(rest / 100).toFixed()}Kb`;
 };
 
-export const LightHouse: React.FC<LightHouseProps> = ({ data, url }) => {
+type LighthouseProps = { data: LighthouseReport, url: string };
+
+export const LightHouse: React.FC<LighthouseProps> = ({ data, url }) => {
 
   if (!data.audits.metrics.details) {
     return null
   }
-  const highlights = {
-    "First contentful Paint": toTime(
+  const highlights = { 
+     "First contentful Paint":  data.audits.metrics.details && data.audits.metrics.details.items && toTime(
       data.audits.metrics.details.items[0].firstContentfulPaint
     ),
-    "Time to interactive": toTime(
+    "Time to interactive":  data.audits.metrics.details && data.audits.metrics.details.items && toTime(
       data.audits.metrics.details.items[0].interactive
     ),
-    "Total requests": data.audits.diagnostics.details.items[0].numRequests,
-    "Total weight": toSize(
+    "Total requests": data.audits.diagnostics.details && data.audits.diagnostics.details.items && data.audits.diagnostics.details.items[0].numRequests,
+    "Total weight":  data.audits.diagnostics.details && data.audits.diagnostics.details.items && toSize(
       data.audits.diagnostics.details.items[0].totalByteWeight
     ),
     // "Max server Latency": toTime(
     //   data.audits.diagnostics.details.items[0].maxServerLatency
-    // ),
+  //   ),
   } as object;
 
   const order = ["accessibility", "performance", "seo", "best-practices"];
@@ -79,9 +74,9 @@ export const LightHouse: React.FC<LightHouseProps> = ({ data, url }) => {
       url={url}
     >
       <Row>
-        {order.map((key: any, i: number) => {
-          const category = data.categories[key] as Category;
-          return (
+        {order.map((key , i: number) => {
+          const category = data.categories[key as LighthouseReportCategoryKey];
+          return category.score && (
             <Col
               key={category.title + i}
               xs={12}
@@ -108,7 +103,7 @@ export const LightHouse: React.FC<LightHouseProps> = ({ data, url }) => {
                 </Card.Body>
               </Card>
             </Col>
-          );
+          )||null;
         })}
       </Row>
       <Row >
