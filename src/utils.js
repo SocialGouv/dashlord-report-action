@@ -31,6 +31,16 @@ const toHostname = (url) =>
 const readFile = (filePath) => fs.readFileSync(filePath).toString();
 
 /**
+ * Write text file
+ *
+ * @param {string} filePath The full path to file
+ * @param {string} content Text content
+ *
+ * @returns {void}
+ */
+const writeFile = (filePath, content) => fs.writeFileSync(filePath, content);
+
+/**
  * Get list of urls from a text file
  *
  *
@@ -57,4 +67,4 @@ const getUrls = () => {
     return [];
   }
 };
-module.exports = { toHostname, getUrls };
+module.exports = { readFile, writeFile, toHostname, getUrls };
