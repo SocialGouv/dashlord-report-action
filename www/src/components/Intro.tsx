@@ -146,6 +146,25 @@ export const Intro: React.FC = () => {
         </Button>
       </Panel>}
 
+      {isToolEnabled("updownio") && <Panel title="Updown.io">
+        Évalue les temps de réponse de son serveur
+        <br />
+        <br />
+        <li>Disponibilité du site web avec calcul régulier de l'APDEX</li>
+        <li>Validité des certificats TLS</li>
+        <br />
+        <Button variant="dark" href="https://updown.io/">
+          Site officiel
+        </Button>
+        <Button
+          style={{ marginLeft: 5 }}
+          variant="dark"
+          href="https://updown.uservoice.com/knowledgebase/articles/915588-what-is-apdex"
+        >
+          APDEX
+        </Button>
+      </Panel>}
+
       {isToolEnabled("nuclei") && <Panel title="Nucléi">
         Détecte plus de 700 erreurs de configuration courantes sur les
         applications webs.

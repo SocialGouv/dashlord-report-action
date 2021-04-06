@@ -10,6 +10,7 @@ type DashlordTool =
   | "nuclei"
   | "testssl"
   | "thirdparties"
+  | "updownio"
   | "wappalyzer"
   | "zap";
 
