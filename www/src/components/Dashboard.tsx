@@ -237,13 +237,13 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
                 </Link>
               </td>
               {isToolEnabled('lighthouse') && <td className="text-center">
-                <LightHouseBadge report={report} category="accessibility" />
+                <LightHouseBadge report={urlReport} category="accessibility" />
               </td>}
               {isToolEnabled('lighthouse') && <td className="text-center">
-                <LightHouseBadge report={report} category="performance" />
+                <LightHouseBadge report={urlReport} category="performance" />
               </td>}
               {isToolEnabled('lighthouse') && <td className="text-center">
-                <LightHouseBadge report={report} category="seo" />
+                <LightHouseBadge report={urlReport} category="seo" />
               </td>}
               {isToolEnabled('testssl') && <td className="text-center">
                 <SSLBadge report={urlReport} />
