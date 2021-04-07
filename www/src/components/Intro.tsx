@@ -5,14 +5,18 @@ import { AlertTriangle, Info } from "react-feather";
 
 import { Link } from "react-router-dom";
 
+import { isToolEnabled } from "../utils";
+import dashlordConfig from "../config.json"
+
 import { Panel } from "./Panel";
+
 
 export const Intro: React.FC = () => {
   return (
     <div>
       <br />
       <Jumbotron style={{ padding: "2em" }}>
-        <h1>DashLord</h1>
+        <h1>{dashlordConfig.title || "DashLord"}</h1>
         <br />
         Le tableau de bord aggrège les données issues de plusieurs
         outils qui évaluent chaque URL indépendamment.
@@ -39,7 +43,7 @@ export const Intro: React.FC = () => {
         </Link>
       </Jumbotron>
 
-      <Panel title="Google Lighthouse">
+      {isToolEnabled("lighthouse") && <Panel title="Google Lighthouse">
         Permet un audit automatique de page web :
         <br />
         <br />
@@ -75,10 +79,9 @@ export const Intro: React.FC = () => {
         >
           Site officiel
         </Button>
-      </Panel>
-      <br />
+      </Panel>}
 
-      <Panel title="OWASP Zed Attack Proxy">
+      {isToolEnabled("zap") && <Panel title="OWASP Zed Attack Proxy">
         Scan de vulnérabilités passif "baseline" qui permet de détecter des
         risques de sécurité.
         <br />
@@ -97,10 +100,9 @@ export const Intro: React.FC = () => {
         >
           Site officiel
         </Button>
-      </Panel>
-      <br />
+      </Panel>}
 
-      <Panel title="testssl.sh">
+      {isToolEnabled("testssl") && <Panel title="testssl.sh">
         Évalue le niveau de confiance d'un certificat SSL
         <br />
         <br />
@@ -122,10 +124,9 @@ export const Intro: React.FC = () => {
         <Button variant="dark" href="https://github.com/drwetter/testssl.sh">
           Code source
         </Button>
-      </Panel>
-      <br />
+      </Panel>}
 
-      <Panel title="Mozilla HTTP observatory">
+      {isToolEnabled("http") && <Panel title="Mozilla HTTP observatory">
         Évalue le niveau de qualité/sécurité de la page web et de son serveur
         <br />
         <br />
@@ -143,10 +144,9 @@ export const Intro: React.FC = () => {
         >
           Méthodologie
         </Button>
-      </Panel>
-      <br />
+      </Panel>}
 
-      <Panel title="Nucléi">
+      {isToolEnabled("nuclei") && <Panel title="Nucléi">
         Détecte plus de 700 erreurs de configuration courantes sur les
         applications webs.
         <br />
@@ -157,10 +157,9 @@ export const Intro: React.FC = () => {
         <Button variant="dark" href="https://nuclei.projectdiscovery.io/">
           Site officiel
         </Button>
-      </Panel>
-      <br />
+      </Panel>}
 
-      <Panel title="Third-parties">
+      {isToolEnabled("thirdparties") && <Panel title="Third-parties">
         Liste tous les scripts externes chargés par une URL et qui peuvent avoir
         un impact sur :
         <br />
@@ -180,10 +179,9 @@ export const Intro: React.FC = () => {
         >
           Code source
         </Button>
-      </Panel>
-      <br />
+      </Panel>}
 
-      <Panel title="GeoIP2">
+      {isToolEnabled("thirdparties") && <Panel title="GeoIP2">
         Géolocalise tous les serveurs contactés lors de l'ouverture d'une URL.
         <br />
         <br />
@@ -192,10 +190,9 @@ export const Intro: React.FC = () => {
         <Button variant="dark" href="https://www.maxmind.com/en/geoip-demo">
           Site officiel
         </Button>
-      </Panel>
-      <br />
+      </Panel>}
 
-      <Panel title="Wappalyzer">
+      {isToolEnabled("wappalyzer") && <Panel title="Wappalyzer">
         Wappalyzer reconnait +1500 technologies web, Javascript, CMS, outillage...
         <br />
         <br />
@@ -206,7 +203,8 @@ export const Intro: React.FC = () => {
         <Button variant="dark" href="https://www.wappalyzer.com/">
           Site officiel
         </Button>
-      </Panel>
+      </Panel>}
+
     </div>
   );
 };

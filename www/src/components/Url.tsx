@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Clock } from "react-feather";
 import { Jumbotron, Badge } from "react-bootstrap";
 
+import { isToolEnabled } from "../utils"
 import { HTTP } from "./HTTP";
 import { LightHouse } from "./LightHouse";
 import { Nuclei } from "./Nuclei";
@@ -48,7 +49,7 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
           )}
         </p>
       </Jumbotron>
-      {(report.lhr && (
+      {(isToolEnabled("lighthouse") && report.lhr && (
         <React.Fragment>
           <LightHouse
             data={report.lhr}
@@ -60,7 +61,7 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
         </React.Fragment>
       )) ||
         null}
-      {(report.testssl && (
+      {(isToolEnabled("testssl") && report.testssl && (
         <React.Fragment>
           <TestSSL
             data={report.testssl}
@@ -72,28 +73,28 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
         </React.Fragment>
       )) ||
         null}
-      {(report.http && (
+      {(isToolEnabled("http") && report.http && (
         <React.Fragment>
           <HTTP data={report.http} />
           <br />
         </React.Fragment>
       )) ||
         null}
-      {(report.nuclei && (
+      {(isToolEnabled("nuclei") && report.nuclei && (
         <React.Fragment>
           <Nuclei data={report.nuclei} />
           <br />
         </React.Fragment>
       )) ||
         null}
-      {(report.thirdparties && (
+      {(isToolEnabled("thirdparties") && report.thirdparties && (
         <React.Fragment>
           <Trackers data={report.thirdparties} />
           <br />
         </React.Fragment>
       )) ||
         null}
-      {(report.zap && (
+      {(isToolEnabled("zap") && report.zap && (
         <React.Fragment>
           <Owasp
             data={report.zap}
@@ -105,7 +106,7 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
         </React.Fragment>
       )) ||
         null}
-      {(report.wappalyzer && (
+      {(isToolEnabled("wappalyzer") && report.wappalyzer && (
         <React.Fragment>
           <Wappalyzer data={report.wappalyzer} />
           <br />

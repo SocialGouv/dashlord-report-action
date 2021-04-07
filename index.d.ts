@@ -4,8 +4,18 @@ type UrlConfig = {
   tags?: string[];
 };
 
+type DashlordTool =
+  | "http"
+  | "lighthouse"
+  | "nuclei"
+  | "testssl"
+  | "thirdparties"
+  | "wappalyzer"
+  | "zap";
+
 type DashlordConfig = {
   title: string;
+  tools?: DashlordTool[];
   urls: UrlConfig[];
 };
 

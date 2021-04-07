@@ -1,3 +1,5 @@
+import dashlordConfig from "./config.json";
+
 export const smallUrl = (url: string) =>
   url
     .toLowerCase()
@@ -17,4 +19,17 @@ export const sortByKey = (key: string) => (a: any, b: any) => {
     return -1;
   }
   return 0;
+};
+
+/**
+ *
+ * @param {DashlordTool} name file name to export to public website
+ *
+ * @returns {void}
+ */
+export const isToolEnabled = (name: string) => {
+  // @ts-ignore
+  const hasTools = dashlordConfig.tools && dashlordConfig.tools.length;
+  // @ts-ignore
+  return !hasTools || dashlordConfig.tools.includes(name);
 };

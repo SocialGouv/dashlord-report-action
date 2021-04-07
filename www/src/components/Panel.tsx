@@ -8,10 +8,11 @@ type PanelProps = {
   children: any;
   info?: string;
   url?: string;
+  style?: object;
 };
 
-export const Panel: React.FC<PanelProps> = ({ title, children, info, url }) => (
-  <Card>
+export const Panel: React.FC<PanelProps> = ({ title, children, info, url, style }) => (
+  <Card style={{ marginBottom: 20, ...style }}>
     <Card.Title style={{ background: "#000091", color: "white", padding: 10 }}>
       {title}
       {info && (

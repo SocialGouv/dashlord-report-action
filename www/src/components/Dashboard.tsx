@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import Tooltip from "rc-tooltip";
 
 import { Grade } from "./Grade";
-import { sortByKey, smallUrl } from "../utils";
+import { sortByKey, smallUrl, isToolEnabled } from "../utils";
 
 import "rc-tooltip/assets/bootstrap.css";
 
@@ -90,96 +90,145 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = ({ title, info }) => (
   </th>
 );
 
+type BadgeProps = { report: any };
+type LightHouseBadgeProps = BadgeProps & { category: string };
+
+const LightHouseBadge: React.FC<LightHouseBadgeProps> = ({ report, category }) => {
+  const lhrCategories = report.lhr && report.lhr.categories;
+  if (!lhrCategories) {
+    return <IconUnknown />
+  }
+  const value =
+    lhrCategories && lhrCategories[category] && (lhrCategories[category].score as number);
+  return <Grade
+    small
+    grade={scoreToGrade(1 - value)}
+    label={(value * 100).toFixed() + " %"}
+  />
+}
+
+const SSLBadge: React.FC<BadgeProps> = ({ report }) => {
+  const value =
+    report.testssl && report.testssl.find((entry: any) => entry.id === "overall_grade") && report.testssl.find((entry: any) => entry.id === "overall_grade").finding;
+  if (!value) {
+    return <IconUnknown />
+  }
+  return <Grade
+    small
+    grade={value}
+  />
+}
+
+const HTTPBadge: React.FC<BadgeProps> = ({ report }) => {
+  const value = report.http && report.http.grade;
+  if (!value) {
+    return <IconUnknown />
+  }
+  return <Grade
+    small
+    grade={value}
+  />
+}
+
+const ZapBadge: React.FC<BadgeProps> = ({ report }) => {
+  const owaspAlerts =
+    (report.zap &&
+      report.zap.site &&
+      report.zap.site.flatMap((site: any) =>
+        site.alerts.filter((a: any) => a.riskcode !== "0")
+      )) ||
+    [];
+  const owaspCount = report.zap && owaspAlerts.length;
+  const owaspGrade = getOwaspGrade(owaspAlerts);
+
+  if (!owaspGrade) {
+    return <IconUnknown />
+  }
+  return <Grade small grade={owaspGrade} label={owaspCount} />
+}
+
+const ThirdPartiesTrackersBadge: React.FC<BadgeProps> = ({ report }) => {
+  if (!report.thirdparties) {
+    return <IconUnknown />
+  }
+  const trackersCount =
+    (report.thirdparties &&
+      report.thirdparties.trackers &&
+      report.thirdparties.trackers.length) ||
+    0;
+  const trackersGrade = getGradeTrackers(trackersCount);
+  return <Grade small grade={trackersGrade} label={trackersCount} />
+}
+
+const ThirdPartiesCookiesBadge: React.FC<BadgeProps> = ({ report }) => {
+  if (!report.thirdparties) {
+    return <IconUnknown />
+  }
+  const cookiesCount =
+    (report.thirdparties &&
+      report.thirdparties.cookies &&
+      report.thirdparties.cookies.length) ||
+    0;
+  const cookiesGrade = getGradeCookies(cookiesCount);
+  return <Grade small grade={cookiesGrade} label={cookiesCount} />
+}
+
+const NucleiBadge: React.FC<BadgeProps> = ({ report }) => {
+  if (!report.nuclei) {
+    return <IconUnknown />
+  }
+
+  // NUCLEI
+  const nucleiCount = report.nuclei && report.nuclei.length;
+  const nucleiGrade = report.nuclei && getNucleiGrade(report.nuclei);
+
+  return <Grade small grade={nucleiGrade} label={nucleiCount} />
+}
+
+
+
 export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
   const sortedReport = report.sort(sortByKey("url"));
+
   return (
     <Table striped bordered hover>
       <thead >
         <tr >
           <th className="sticky-top" style={{ background: "var(--white)", top: 30 }}>url</th>
-          <ColumnHeader
+          {isToolEnabled('lighthouse') && <ColumnHeader
             title="Accessibilité"
             info="Bonnes pratiques en matière d'accessibilité web"
-          />
-          <ColumnHeader
+          />}
+          {isToolEnabled('lighthouse') && <ColumnHeader
             title="Performance"
             info="Performances de chargement des pages web"
-          />
-          <ColumnHeader
+          />}
+          {isToolEnabled('lighthouse') && <ColumnHeader
             title="SEO"
             info="Bonnes pratiques en matière de référencement naturel"
-          />
-          <ColumnHeader
+          />}
+          {isToolEnabled('testssl') && <ColumnHeader
             title="SSL"
             info="Niveau de sécurité du certificat SSL"
-          />
-          <ColumnHeader
+          />}
+          {isToolEnabled('http') && <ColumnHeader
             title="HTTP"
             info="Bonnes pratiques de configuration HTTP"
-          />
-          <ColumnHeader
+          />}
+          {isToolEnabled('zap') && <ColumnHeader
             title="OWASP"
             info="Bonnes pratiques de sécurité OWASP"
-          />
-          <ColumnHeader
+          />}
+          {isToolEnabled('thirdparties') && <ColumnHeader
             title="Trackers"
             info="Nombre de scripts externes présents"
-          />
-          <ColumnHeader title="Cookies" info="Nombre de cookies présents" />
-          <ColumnHeader title="Nuclei" info="Erreurs de configuration" />
+          />}
+          {isToolEnabled('thirdparties') && <ColumnHeader title="Cookies" info="Nombre de cookies présents" />}
+          {isToolEnabled('nuclei') && <ColumnHeader title="Nuclei" info="Erreurs de configuration" />}
         </tr>
       </thead>
       <tbody>
         {sortedReport.map((urlReport: any) => {
-          // compute values
-
-          // LightHouse
-          const lhrCategories = urlReport.lhr && urlReport.lhr.categories;
-          const a11y =
-            lhrCategories && (lhrCategories.accessibility.score as number);
-          const webPerf =
-            lhrCategories && (lhrCategories.performance.score as number);
-          const seo = lhrCategories && (lhrCategories.seo.score as number);
-
-          // SSL
-          const ssl =
-            urlReport.testssl && urlReport.testssl.find((entry: any) => entry.id === "overall_grade") && urlReport.testssl.find((entry: any) => entry.id === "overall_grade").finding;
-
-          // HTTP
-          const http = urlReport.http && urlReport.http.grade;
-
-          // OWASP
-          const owaspAlerts =
-            (urlReport.zap &&
-              urlReport.zap.site &&
-              urlReport.zap.site.flatMap((site: any) =>
-                site.alerts.filter((a: any) => a.riskcode !== "0")
-              )) ||
-            [];
-          const owaspCount = urlReport.zap && owaspAlerts.length;
-          const owaspGrade = getOwaspGrade(owaspAlerts);
-
-          // TRACKERS
-          const trackersCount =
-            (urlReport.thirdparties &&
-              urlReport.thirdparties.trackers &&
-              urlReport.thirdparties.trackers.length) ||
-            0;
-          const trackersGrade = getGradeTrackers(trackersCount);
-
-          // COOKIES
-          const cookiesCount =
-            (urlReport.thirdparties &&
-              urlReport.thirdparties.cookies &&
-              urlReport.thirdparties.cookies.length) ||
-            0;
-          const cookiesGrade = getGradeCookies(cookiesCount);
-
-          // NUCLEI
-          const nucleiCount = urlReport.nuclei && urlReport.nuclei.length;
-          const nucleiGrade =
-            urlReport.nuclei && getNucleiGrade(urlReport.nuclei);
-
           return (
             <tr key={urlReport.url}>
               <td>
@@ -187,71 +236,33 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
                   <Search size={16} />&nbsp;{smallUrl(urlReport.url)}
                 </Link>
               </td>
-              <td className="text-center">
-                {lhrCategories ? (
-                  <Grade
-                    small
-                    grade={scoreToGrade(1 - a11y)}
-                    label={(a11y * 100).toFixed() + " %"}
-                  />
-                ) : (
-                  <IconUnknown />
-                )}
-              </td>
-              <td className="text-center">
-                {lhrCategories ? (
-                  <Grade
-                    small
-                    grade={scoreToGrade(1 - webPerf)}
-                    label={(webPerf * 100).toFixed() + " %"}
-                  />
-                ) : (
-                  <IconUnknown />
-                )}
-              </td>
-              <td className="text-center">
-                {lhrCategories ? (
-                  <Grade
-                    small
-                    grade={scoreToGrade(1 - seo)}
-                    label={(seo * 100).toFixed() + " %"}
-                  />
-                ) : (
-                  <IconUnknown />
-                )}
-              </td>
-              <td className="text-center">
-                {ssl ? <Grade small grade={ssl} /> : <IconUnknown />}
-              </td>
-              <td className="text-center">
-                {http ? <Grade small grade={http} /> : <IconUnknown />}
-              </td>
-              <td className="text-center">
-                {owaspCount ? (
-                  <Grade small grade={owaspGrade} label={owaspCount} />
-                ) : (
-                  <IconUnknown />
-                )}
-              </td>
-              <td className="text-center">
-                {urlReport.thirdparties ? (
-                  <Grade small grade={trackersGrade} label={trackersCount} />
-                ) : (
-                  <IconUnknown />
-                )}
-              </td>
-              <td className="text-center">
-                {urlReport.thirdparties ? (
-                  <Grade small grade={cookiesGrade} label={cookiesCount} />
-                ) : (
-                  <IconUnknown />
-                )}
-              </td>
-              <td className="text-center">
-                {urlReport.nuclei ? (<Grade small grade={nucleiGrade} label={nucleiCount} />) : (
-                  <IconUnknown />
-                )}
-              </td>
+              {isToolEnabled('lighthouse') && <td className="text-center">
+                <LightHouseBadge report={urlReport} category="accessibility" />
+              </td>}
+              {isToolEnabled('lighthouse') && <td className="text-center">
+                <LightHouseBadge report={urlReport} category="performance" />
+              </td>}
+              {isToolEnabled('lighthouse') && <td className="text-center">
+                <LightHouseBadge report={urlReport} category="seo" />
+              </td>}
+              {isToolEnabled('testssl') && <td className="text-center">
+                <SSLBadge report={urlReport} />
+              </td>}
+              {isToolEnabled('http') && <td className="text-center">
+                <HTTPBadge report={urlReport} />
+              </td>}
+              {isToolEnabled('zap') && <td className="text-center">
+                <ZapBadge report={urlReport} />
+              </td>}
+              {isToolEnabled('thirdparties') && <td className="text-center">
+                <ThirdPartiesTrackersBadge report={urlReport} />
+              </td>}
+              {isToolEnabled('thirdparties') && <td className="text-center">
+                <ThirdPartiesCookiesBadge report={urlReport} />
+              </td>}
+              {isToolEnabled('nuclei') && <td className="text-center">
+                <NucleiBadge report={urlReport} />
+              </td>}
             </tr>
           );
         })}
