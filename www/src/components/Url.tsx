@@ -17,7 +17,10 @@ import { Wappalyzer } from "./Wappalyzer";
 type UrlDetailProps = { url: string; report: UrlReport };
 
 export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
-  const updateDate = report.lhr && report.lhr.fetchTime;
+  const updateDate = report && report.lhr && report.lhr.fetchTime;
+  if (!report) {
+    return <div>No data available for {url}</div>
+  }
   return (
     <div>
       <Jumbotron

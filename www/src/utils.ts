@@ -1,12 +1,11 @@
-const dashlordConfig: DashlordConfig  = require("./config.json");
 
-export const smallUrl = (url: string) =>
+export const smallUrl = (url: string): string =>
   url
     .toLowerCase()
     .replace(/^https?:\/\//, "")
     .replace(/\/$/, "");
 
-export const getHostName = (url: string) =>
+export const getHostName = (url: string): string =>
   url
     .replace(/^https?:\/\//, "")
     .replace(/\/$/, "")
@@ -21,15 +20,9 @@ export const sortByKey = (key: string) => (a: any, b: any) => {
   return 0;
 };
 
-/**
- *
- * @param {DashlordTool} name file name to export to public website
- *
- * @returns {void}
- */
-export const isToolEnabled = (name: string) => {
-  // @ts-ignore
+
+export const isToolEnabled = (name: DashlordTool): boolean => {
+  const dashlordConfig: DashlordConfig  = require("./config.json");
   const hasTools = dashlordConfig.tools && dashlordConfig.tools.length;
-  // @ts-ignore
-  return !hasTools || dashlordConfig.tools.includes(name);
+  return !hasTools || !!(dashlordConfig.tools && dashlordConfig.tools.includes(name));
 };

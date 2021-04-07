@@ -213,7 +213,7 @@ const UpDownIoBadge: React.FC<BadgeProps> = ({ report }) => {
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
-  const sortedReport = report.sort(sortByKey("url"));
+  const sortedReport = report && report.sort(sortByKey("url")) || [];
 
   return (
     <Table striped bordered hover>
