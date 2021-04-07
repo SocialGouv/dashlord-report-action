@@ -9,6 +9,7 @@ import { Grade } from "./Grade";
 import { sortByKey, smallUrl, isToolEnabled } from "../utils";
 
 import "rc-tooltip/assets/bootstrap.css";
+import { UpdownIo } from "./UpdownIo";
 
 type DashboardProps = { report: any };
 
@@ -68,6 +69,10 @@ const getOwaspGrade = (owaspAlerts: any) => {
         : maxSeverity > 0
           ? "B"
           : "A";
+};
+
+const getGradeUpdownio = (uptime: number) => {
+  return uptime > 0.95 ? "F" : uptime > 0.98 ? "C" : uptime > 0.99 ? "B" : "A";
 };
 
 type ColumnHeaderProps = {
@@ -185,7 +190,18 @@ const NucleiBadge: React.FC<BadgeProps> = ({ report }) => {
   return <Grade small grade={nucleiGrade} label={nucleiCount} />
 }
 
-
+const UpDownIoBadge: React.FC<BadgeProps> = ({ report }) => {
+  if (!report.updownio) {
+    return <IconUnknown />
+  }
+  const updownio = report.updownio && report.updownio.uptime;
+  const updownioGrade = getGradeUpdownio(updownio);
+  return <Grade
+    small
+    grade={updownioGrade}
+    label={(updownio * 100).toFixed() + " %"}
+  />
+}
 
 export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
   const sortedReport = report.sort(sortByKey("url"));
@@ -213,7 +229,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
           />}
           {isToolEnabled('http') && <ColumnHeader
             title="HTTP"
-            info="Bonnes pratiques de configuration HTTP"
+            info="Bonnes pratiques de configuration HTTP" />}
+          {isToolEnabled('updownio') && <ColumnHeader
+            title="Updown.io"
+            info="Temps de réponse"
           />}
           {isToolEnabled('zap') && <ColumnHeader
             title="OWASP"
@@ -251,6 +270,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
               {isToolEnabled('http') && <td className="text-center">
                 <HTTPBadge report={urlReport} />
               </td>}
+              {isToolEnabled('updownio') && <td className="text-center">
+                <UpDownIoBadge report={urlReport} />
+              </td>}
               {isToolEnabled('zap') && <td className="text-center">
                 <ZapBadge report={urlReport} />
               </td>}
@@ -266,7 +288,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
             </tr>
           );
         })}
-      </tbody>
-    </Table>
+      </tbody >
+    </Table >
   );
 };
