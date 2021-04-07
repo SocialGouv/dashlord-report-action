@@ -315,6 +315,62 @@ exports[`Should render empty Dashboard 1`] = `
             }
           }
         >
+          Updown.io
+          <br />
+          <svg
+            fill="none"
+            height={16}
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            style={
+              Object {
+                "cursor": "pointer",
+              }
+            }
+            viewBox="0 0 24 24"
+            width={16}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="16"
+              y2="12"
+            />
+            <line
+              x1="12"
+              x2="12.01"
+              y1="8"
+              y2="8"
+            />
+          </svg>
+        </span>
+      </th>
+      <th
+        className="text-center sticky-top"
+        style={
+          Object {
+            "background": "var(--white)",
+            "top": 30,
+          }
+        }
+      >
+        <span
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          style={
+            Object {
+              "fontSize": "0.9em",
+            }
+          }
+        >
           OWASP
           <br />
           <svg
@@ -843,6 +899,62 @@ Array [
               }
             }
           >
+            Updown.io
+            <br />
+            <svg
+              fill="none"
+              height={16}
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              style={
+                Object {
+                  "cursor": "pointer",
+                }
+              }
+              viewBox="0 0 24 24"
+              width={16}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+              />
+              <line
+                x1="12"
+                x2="12"
+                y1="16"
+                y2="12"
+              />
+              <line
+                x1="12"
+                x2="12.01"
+                y1="8"
+                y2="8"
+              />
+            </svg>
+          </span>
+        </th>
+        <th
+          className="text-center sticky-top"
+          style={
+            Object {
+              "background": "var(--white)",
+              "top": 30,
+            }
+          }
+        >
+          <span
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            style={
+              Object {
+                "fontSize": "0.9em",
+              }
+            }
+          >
             OWASP
             <br />
             <svg
@@ -1163,6 +1275,33 @@ Array [
         <td
           className="text-center"
         >
+          <svg
+            fill="none"
+            height={20}
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width={20}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+            />
+            <line
+              x1="4.93"
+              x2="19.07"
+              y1="4.93"
+              y2="19.07"
+            />
+          </svg>
+        </td>
+        <td
+          className="text-center"
+        >
           <span
             className="badge badge-warning"
             style={
@@ -1328,6 +1467,33 @@ Array [
           >
             F
           </span>
+        </td>
+        <td
+          className="text-center"
+        >
+          <svg
+            fill="none"
+            height={20}
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width={20}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+            />
+            <line
+              x1="4.93"
+              x2="19.07"
+              y1="4.93"
+              y2="19.07"
+            />
+          </svg>
         </td>
         <td
           className="text-center"
@@ -1501,6 +1667,33 @@ Array [
         <td
           className="text-center"
         >
+          <svg
+            fill="none"
+            height={20}
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width={20}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+            />
+            <line
+              x1="4.93"
+              x2="19.07"
+              y1="4.93"
+              y2="19.07"
+            />
+          </svg>
+        </td>
+        <td
+          className="text-center"
+        >
           <span
             className="badge badge-warning"
             style={
@@ -1666,6 +1859,33 @@ Array [
           >
             B
           </span>
+        </td>
+        <td
+          className="text-center"
+        >
+          <svg
+            fill="none"
+            height={20}
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width={20}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="10"
+            />
+            <line
+              x1="4.93"
+              x2="19.07"
+              y1="4.93"
+              y2="19.07"
+            />
+          </svg>
         </td>
         <td
           className="text-center"
