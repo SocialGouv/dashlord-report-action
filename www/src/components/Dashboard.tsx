@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Alert, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 import { Slash, Info, Search } from "react-feather";
 import { Link } from "react-router-dom";
 import Tooltip from "rc-tooltip";
@@ -11,7 +11,7 @@ import { sortByKey, smallUrl, isToolEnabled } from "../utils";
 import "rc-tooltip/assets/bootstrap.css";
 import { UpdownIo } from "./UpdownIo";
 
-type DashboardProps = { report: any };
+type DashboardProps = { report: DashLordReport };
 
 const remap = (value: number, x1: number, y1: number, x2: number, y2: number) =>
   ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
@@ -37,42 +37,42 @@ const getGradeCookies = (count: number) => {
   return count > 10
     ? "F"
     : count > 5
-      ? "E"
-      : count > 2
-        ? "C"
-        : count > 0
-          ? "B"
-          : "A";
+    ? "E"
+    : count > 2
+    ? "C"
+    : count > 0
+    ? "B"
+    : "A";
 };
 
-const getNucleiGrade = (events: any) => {
+const getNucleiGrade = (events: NucleiReportEntry[]) => {
   return events.filter(
-    (n: any) => n.info.severity === "critical" || n.info.severity === "high"
+    (n) => n.info.severity === "critical" || n.info.severity === "high"
   ).length
     ? "F"
     : events.length
-      ? "B"
-      : "A";
+    ? "B"
+    : "A";
 };
 
-const getOwaspGrade = (owaspAlerts: any) => {
+const getOwaspGrade = (owaspAlerts: ZapReportSiteAlert[]) => {
   const maxSeverity = Math.max(
-    ...owaspAlerts.map((o: any) => parseInt(o.riskcode) || 0)
+    ...owaspAlerts.map((o) => parseInt(o.riskcode) || 0)
   );
 
   return maxSeverity > 3
     ? "F"
     : maxSeverity > 2
-      ? "D"
-      : maxSeverity > 1
-        ? "C"
-        : maxSeverity > 0
-          ? "B"
-          : "A";
+    ? "D"
+    : maxSeverity > 1
+    ? "C"
+    : maxSeverity > 0
+    ? "B"
+    : "A";
 };
 
 const getGradeUpdownio = (uptime: number) => {
-  return uptime > 0.95 ? "F" : uptime > 0.98 ? "C" : uptime > 0.99 ? "B" : "A";
+  return uptime > 0.99 ? "A" : uptime > 0.98 ? "B" : uptime > 0.97 ? "C" : uptime > 0.96 ? "D": uptime > 0.95 ? "E": "F"
 };
 
 type ColumnHeaderProps = {
@@ -81,80 +81,89 @@ type ColumnHeaderProps = {
 };
 
 const ColumnHeader: React.FC<ColumnHeaderProps> = ({ title, info }) => (
-  <th className="text-center sticky-top" style={{ background: "var(--white)", top: 30 }}>
+  <th
+    className="text-center sticky-top"
+    style={{ background: "var(--white)", top: 30 }}
+  >
     <Tooltip
       placement="bottom"
       trigger={["hover"]}
       overlay={<span>{info}</span>}
     >
-      <span style={{ fontSize: '0.9em' }}>
-        {title}<br />
-        <Info size={16} style={{ cursor: 'pointer' }} />
+      <span style={{ fontSize: "0.9em" }}>
+        {title}
+        <br />
+        <Info size={16} style={{ cursor: "pointer" }} />
       </span>
     </Tooltip>
   </th>
 );
 
-type BadgeProps = { report: any };
-type LightHouseBadgeProps = BadgeProps & { category: string };
+type BadgeProps = { report: UrlReport };
+type LightHouseBadgeProps = BadgeProps & {
+  category: LighthouseReportCategoryKey;
+};
 
-const LightHouseBadge: React.FC<LightHouseBadgeProps> = ({ report, category }) => {
+const LightHouseBadge: React.FC<LightHouseBadgeProps> = ({
+  report,
+  category,
+}) => {
   const lhrCategories = report.lhr && report.lhr.categories;
   if (!lhrCategories) {
-    return <IconUnknown />
+    return <IconUnknown />;
   }
   const value =
-    lhrCategories && lhrCategories[category] && (lhrCategories[category].score as number);
-  return <Grade
-    small
-    grade={scoreToGrade(1 - value)}
-    label={(value * 100).toFixed() + " %"}
-  />
-}
+    lhrCategories &&
+    lhrCategories[category] &&
+    (lhrCategories[category].score as number);
+  return (
+    <Grade
+      small
+      grade={scoreToGrade(1 - value)}
+      label={(value * 100).toFixed() + " %"}
+    />
+  );
+};
 
 const SSLBadge: React.FC<BadgeProps> = ({ report }) => {
-  const value =
-    report.testssl && report.testssl.find((entry: any) => entry.id === "overall_grade") && report.testssl.find((entry: any) => entry.id === "overall_grade").finding;
+  const overallGrade =
+    report.testssl &&
+    report.testssl.find((entry) => entry.id === "overall_grade");
+  const value = overallGrade && overallGrade.finding;
   if (!value) {
-    return <IconUnknown />
+    return <IconUnknown />;
   }
-  return <Grade
-    small
-    grade={value}
-  />
-}
+  return <Grade small grade={value} />;
+};
 
 const HTTPBadge: React.FC<BadgeProps> = ({ report }) => {
   const value = report.http && report.http.grade;
   if (!value) {
-    return <IconUnknown />
+    return <IconUnknown />;
   }
-  return <Grade
-    small
-    grade={value}
-  />
-}
+  return <Grade small grade={value} />;
+};
 
 const ZapBadge: React.FC<BadgeProps> = ({ report }) => {
   const owaspAlerts =
     (report.zap &&
       report.zap.site &&
-      report.zap.site.flatMap((site: any) =>
-        site.alerts.filter((a: any) => a.riskcode !== "0")
+      report.zap.site.flatMap((site) =>
+        site.alerts.filter((a) => a.riskcode !== "0")
       )) ||
     [];
   const owaspCount = report.zap && owaspAlerts.length;
   const owaspGrade = getOwaspGrade(owaspAlerts);
 
   if (!owaspGrade) {
-    return <IconUnknown />
+    return <IconUnknown />;
   }
-  return <Grade small grade={owaspGrade} label={owaspCount} />
-}
+  return <Grade small grade={owaspGrade} label={owaspCount} />;
+};
 
 const ThirdPartiesTrackersBadge: React.FC<BadgeProps> = ({ report }) => {
   if (!report.thirdparties) {
-    return <IconUnknown />
+    return <IconUnknown />;
   }
   const trackersCount =
     (report.thirdparties &&
@@ -162,12 +171,12 @@ const ThirdPartiesTrackersBadge: React.FC<BadgeProps> = ({ report }) => {
       report.thirdparties.trackers.length) ||
     0;
   const trackersGrade = getGradeTrackers(trackersCount);
-  return <Grade small grade={trackersGrade} label={trackersCount} />
-}
+  return <Grade small grade={trackersGrade} label={trackersCount} />;
+};
 
 const ThirdPartiesCookiesBadge: React.FC<BadgeProps> = ({ report }) => {
   if (!report.thirdparties) {
-    return <IconUnknown />
+    return <IconUnknown />;
   }
   const cookiesCount =
     (report.thirdparties &&
@@ -175,12 +184,12 @@ const ThirdPartiesCookiesBadge: React.FC<BadgeProps> = ({ report }) => {
       report.thirdparties.cookies.length) ||
     0;
   const cookiesGrade = getGradeCookies(cookiesCount);
-  return <Grade small grade={cookiesGrade} label={cookiesCount} />
-}
+  return <Grade small grade={cookiesGrade} label={cookiesCount} />;
+};
 
 const NucleiBadge: React.FC<BadgeProps> = ({ report }) => {
   if (!report.nuclei) {
-    return <IconUnknown />
+    return <IconUnknown />;
   }
 
   // NUCLEI
@@ -204,7 +213,7 @@ const UpDownIoBadge: React.FC<BadgeProps> = ({ report }) => {
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
-  const sortedReport = report.sort(sortByKey("url"));
+  const sortedReport = report && report.sort(sortByKey("url")) || [];
 
   return (
     <Table striped bordered hover>
@@ -247,12 +256,13 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
         </tr>
       </thead>
       <tbody>
-        {sortedReport.map((urlReport: any) => {
+        {sortedReport.map((urlReport) => {
           return (
             <tr key={urlReport.url}>
               <td>
                 <Link to={`/url/${encodeURIComponent(urlReport.url)}`}>
-                  <Search size={16} />&nbsp;{smallUrl(urlReport.url)}
+                  <Search size={16} />
+                  &nbsp;{smallUrl(urlReport.url)}
                 </Link>
               </td>
               {isToolEnabled('lighthouse') && <td className="text-center">

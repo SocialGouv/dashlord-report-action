@@ -6,6 +6,9 @@
       "actu",
       "fr"
     ],
+    "updownio": {
+      "uptime": 0.98
+    },
     "http": {
       "url": "https://www.lemonde.fr",
       "algorithm_version": 2,

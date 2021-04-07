@@ -5,7 +5,7 @@ import { Table } from "react-bootstrap";
 import { Panel } from "./Panel";
 
 
-type WappalyzerProps = { data: any };
+type WappalyzerProps = { data: WappalyzerReport };
 
 export const Wappalyzer: React.FC<WappalyzerProps> = ({ data }) => {
     return (
@@ -19,7 +19,7 @@ export const Wappalyzer: React.FC<WappalyzerProps> = ({ data }) => {
                         <tr>
                             <th style={{ width: 250 }}>
                                 name
-              </th>
+                            </th>
                             <th>categories</th>
                             <th>website</th>
                         </tr>

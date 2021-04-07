@@ -6,9 +6,9 @@ import Flags from "country-flag-icons/react/3x2";
 import { smallUrl } from "../utils";
 import { Panel } from "./Panel";
 
-type TrackersProps = { data: any };
+type TrackersProps = { data: ThirdPartiesReport };
 
-type CookiesTableProps = { cookies: any[] };
+type CookiesTableProps = { cookies: ThirdPartiesReportCookies };
 
 const CookiesTable: React.FC<CookiesTableProps> = ({ cookies }) =>
   (cookies && cookies.length && (
@@ -27,8 +27,8 @@ const CookiesTable: React.FC<CookiesTableProps> = ({ cookies }) =>
         </tr>
       </thead>
       <tbody>
-        {cookies.map((cookie: any, i: number) => (
-          <tr key={cookie.templateID + "" + i}>
+        {cookies.map((cookie, i: number) => (
+          <tr key={cookie.name + "" + i}>
             <td>{cookie.name}</td>
             <td>{cookie.domain}</td>
             <td className="text-center">{cookie.httpOnly ? "✔️" : "❌"}</td>
@@ -44,7 +44,7 @@ const smallLinkify = (url: string) => (
   <a href={url}>{smallUrl(url).substring(0, 25) + "..."}</a>
 );
 
-type TrackersTableProps = { trackers: any[] };
+type TrackersTableProps = { trackers: ThirdPartiesReportTrackers };
 
 const TrackersTable: React.FC<TrackersTableProps> = ({ trackers }) =>
   (trackers && trackers.length && (
@@ -62,7 +62,7 @@ const TrackersTable: React.FC<TrackersTableProps> = ({ trackers }) =>
         </tr>
       </thead>
       <tbody>
-        {trackers.map((tracker: any, i: number) => {
+        {trackers.map((tracker, i: number) => {
           return (
             <tr key={tracker.url + i}>
               <td>{tracker.type}</td>
@@ -76,7 +76,7 @@ const TrackersTable: React.FC<TrackersTableProps> = ({ trackers }) =>
   )) ||
   null;
 
-type EndPointsTableProps = { endpoints: any[] };
+type EndPointsTableProps = { endpoints: ThirdPartiesReportEndpoints };
 
 const EndPointsTable: React.FC<EndPointsTableProps> = ({ endpoints }) =>
   (endpoints && endpoints.length && (
@@ -91,7 +91,7 @@ const EndPointsTable: React.FC<EndPointsTableProps> = ({ endpoints }) =>
         </tr>
       </thead>
       <tbody>
-        {endpoints.map((endpoint: any, i: number) => {
+        {endpoints.map((endpoint, i: number) => {
           const Flag =
             (endpoint.geoip &&
               endpoint.geoip.country &&
@@ -100,7 +100,7 @@ const EndPointsTable: React.FC<EndPointsTableProps> = ({ endpoints }) =>
           return (
             <tr key={endpoint.hostname + "-" + endpoint.ip}>
               <td className="text-center">
-                {Flag && (
+                {Flag && endpoint.geoip && endpoint.geoip.country && (
                   <Flag
                     style={{ width: 60 }}
                     title={endpoint.geoip.country.names.fr}

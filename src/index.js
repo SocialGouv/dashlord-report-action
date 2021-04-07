@@ -27,9 +27,9 @@ const requireJson = (jsonPath) => {
 /**
  * Minify zap JSON data
  *
- * @param {ZapResult} result ZAP JSON content
+ * @param {ZapReport} result ZAP JSON content
  *
- * @returns {ZapResult} minified JSON content
+ * @returns {ZapReport} minified JSON content
  */
 const zapCleanup = (result) =>
   result && {
@@ -50,10 +50,10 @@ const zapCleanup = (result) =>
 /**
  * Minify nuclei JSON data
  *
- * @param {NucleiResult} result nuclei JSON content
+ * @param {NucleiReport} result nuclei JSON content
  * @param {string} url extract only for this url
  *
- * @returns {NucleiResult} minified JSON content
+ * @returns {NucleiReport} minified JSON content
  */
 const nucleiCleanup = (result, url) =>
   result &&
@@ -64,9 +64,9 @@ const nucleiCleanup = (result, url) =>
 /**
  * Minify Lighthouse JSON data
  *
- * @param {LighthouseResult} result Lighthouse JSON content
+ * @param {LighthouseReport} result Lighthouse JSON content
  *
- * @returns {LighthouseResult|null} minified JSON content
+ * @returns {LighthouseReport|null} minified JSON content
  */
 const lhrCleanup = (result) => {
   if (!result) {
@@ -81,12 +81,12 @@ const lhrCleanup = (result) => {
     audits,
   } = result;
 
-  /** @type {LighthouseResultCategories} */
+  /** @type {LighthouseReportCategories} */
   // @ts-ignore
   const newCategories = Object.keys(categories).reduce(
     (
       a,
-      /** @type {LighthouseResultCategoryKey} */
+      /** @type {LighthouseReportCategoryKey} */
       key
     ) => ({
       ...a,
@@ -111,6 +111,11 @@ const cleanups = {
   lhr: lhrCleanup,
 };
 
+/**
+ * Minify Lighthouse JSON data
+ *
+ * @returns {DashLordReport} Full DashLoard report as JSON
+ */
 const generateReport = () => {
   const urls = getUrls()
     .map((url) => {
@@ -126,6 +131,7 @@ const generateReport = () => {
         }
         const latestFilesPath = path.join(urlPath, lastScan);
         const latestFiles = fs.readdirSync(latestFilesPath);
+        /** @type {UrlReport} */
         const urlData = {
           ...url,
           http: requireJson(path.join(latestFilesPath, "http.json")),
@@ -209,7 +215,8 @@ const generateReport = () => {
         return null;
       }
     })
-    .filter(Boolean);
+    .filter((x) => x !== null);
+  /** @ts-expect-error #TODO #WTH */
   return urls;
 };
 

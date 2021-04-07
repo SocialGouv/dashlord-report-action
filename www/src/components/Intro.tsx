@@ -6,10 +6,10 @@ import { AlertTriangle, Info } from "react-feather";
 import { Link } from "react-router-dom";
 
 import { isToolEnabled } from "../utils";
-import dashlordConfig from "../config.json"
 
 import { Panel } from "./Panel";
 
+const dashlordConfig: DashlordConfig  = require("../config.json");
 
 export const Intro: React.FC = () => {
   return (

@@ -6,9 +6,9 @@ import { smallUrl } from "../utils";
 import { Panel } from "./Panel";
 import { Grade } from "./Grade";
 
-type HTTPProps = { data: any };
+type HTTPProps = { data: HttpReport };
 
-const HttpRowBadge = (row: any) => {
+const HttpRowBadge = (row: HttpTestReport) => {
   const severity = Math.abs(row.score_modifier);
   const variant =
     severity > 50
@@ -73,6 +73,6 @@ export const HTTP: React.FC<HTTPProps> = ({ data }) => {
           </tbody>
         </Table>
       </Panel>
-    )
+    )||null
   );
 };
