@@ -72,7 +72,7 @@ const getOwaspGrade = (owaspAlerts: ZapReportSiteAlert[]) => {
 };
 
 const getGradeUpdownio = (uptime: number) => {
-  return uptime > 0.95 ? "F" : uptime > 0.98 ? "C" : uptime > 0.99 ? "B" : "A";
+  return uptime > 0.99 ? "A" : uptime > 0.98 ? "B" : uptime > 0.97 ? "C" : uptime > 0.96 ? "D": uptime > 0.95 ? "E": "F"
 };
 
 type ColumnHeaderProps = {
