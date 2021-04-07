@@ -229,15 +229,14 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
           />}
           {isToolEnabled('http') && <ColumnHeader
             title="HTTP"
-            info="Bonnes pratiques de configuration HTTP"
+            info="Bonnes pratiques de configuration HTTP" />}
+          {isToolEnabled('updownio') && <ColumnHeader
+            title="Updown.io"
+            info="Temps de réponse"
           />}
           {isToolEnabled('zap') && <ColumnHeader
             title="OWASP"
             info="Bonnes pratiques de sécurité OWASP"
-          />}
-          {isToolEnabled('updownio') && <ColumnHeader
-            title="Updown.io"
-            info="Temps de réponse"
           />}
           {isToolEnabled('thirdparties') && <ColumnHeader
             title="Trackers"
@@ -286,7 +285,6 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
               {isToolEnabled('nuclei') && <td className="text-center">
                 <NucleiBadge report={urlReport} />
               </td>}
-
             </tr>
           );
         })}
