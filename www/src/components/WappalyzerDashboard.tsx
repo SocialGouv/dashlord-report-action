@@ -19,7 +19,6 @@ import { Panel } from "./Panel";
 type UsageChartProps = { data: any };
 
 const UsageChart: React.FC<UsageChartProps> = ({ data }) => {
-  console.log("data", data);
   return (
       <BarChart
         width={300}
