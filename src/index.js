@@ -187,7 +187,7 @@ const generateReport = () => {
 
         // copy dashlord config YAML as JSON for the report
         writeFile(
-          path.join(DASHLORD_REPO_PATH, "www", "src", "config.json"),
+          path.join("www", "src", "config.json"),
           JSON.stringify(dashlordConfig)
         );
 
