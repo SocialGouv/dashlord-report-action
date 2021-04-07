@@ -19,5 +19,5 @@ jobs:
         run: |
           cd www
           yarn
-          yarn test
+           SKIP_PREFLIGHT_CHECK=true yarn test
         
