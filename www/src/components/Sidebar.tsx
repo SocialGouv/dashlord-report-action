@@ -68,6 +68,28 @@ export const Sidebar: React.FC<SidebarProps> = ({ report }) => {
         </React.Fragment> || null}
 
         <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Rapports</span>
+          </h6>
+          <ul className="nav flex-column">
+              <li
+                className="nav-item"
+                style={{
+                  whiteSpace: "pre",
+                }}
+              >
+                <NavLink
+                  className="nav-link"
+                  to={`/wappalyzer`}
+                  activeClassName="active"
+                  exact={true}
+                >
+                  <BarChart size={16} style={{ marginTop: -5, marginRight: 5 }} />
+                  Technologies
+                </NavLink>
+              </li>
+          </ul>
+
+        <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
           <span>Urls</span>
         </h6>
 

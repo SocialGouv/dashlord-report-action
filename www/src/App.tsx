@@ -16,6 +16,7 @@ import { Url } from "./components/Url";
 import { Intro } from "./components/Intro";
 import { ScrollToTop } from  "./components/ScrollToTop";
 import { About } from "./components/About";
+import { WappalyzerDashboard } from "./components/WappalyzerDashboard";
 
 const report: DashLordReport = require("./report.json");
 
@@ -96,6 +97,9 @@ const App = () => {
                 </Route>
                 <Route path="/tag/:tag">
                   <TagRoute report={report} />
+                </Route>
+                <Route path="/wappalyzer">
+                  <WappalyzerDashboard report={report} />
                 </Route>
                 <Route path="/about">
                   <About />
