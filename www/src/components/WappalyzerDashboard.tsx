@@ -9,7 +9,7 @@ import {
   Legend,
 } from "recharts";
 
-import { Jumbotron, Row, CardColumns } from "react-bootstrap";
+import { Jumbotron, CardColumns } from "react-bootstrap";
 import uniq from "lodash.uniq";
 
 import { Link } from "react-router-dom";

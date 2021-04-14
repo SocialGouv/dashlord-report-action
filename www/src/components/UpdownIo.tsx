@@ -4,9 +4,10 @@ import { Row, Col, Alert, Card } from "react-bootstrap";
 import { Panel } from "./Panel";
 import { Gauge } from "./Gauge";
 
-type UpdownIoProps = { data: any, url: any };
+type UpDownIoProps = { data: UpDownReport, url: string };
 
-export const UpdownIo: React.FC<UpdownIoProps> = ({ data, url }) => {
+
+export const UpdownIo: React.FC<UpDownIoProps> = ({ data, url }) => {
   const urlUpdownio =
     (data && `https://updown.io/${data.token}`) ||
     null;
@@ -50,7 +51,7 @@ export const UpdownIo: React.FC<UpdownIoProps> = ({ data, url }) => {
             md={6}
             lg={3}
             className="text-center mb-3">
-            <Card>
+            { data.ssl && <Card>
               <Card.Body>
                 <Card.Title>Certificat TLS {data.ssl.valid ? 'valide' : 'expiré'}</Card.Title>
                 <Card.Title
@@ -59,7 +60,7 @@ export const UpdownIo: React.FC<UpdownIoProps> = ({ data, url }) => {
                   expire le {new Date(data.ssl.expires_at).toLocaleDateString()}
                 </Card.Title>
               </Card.Body>
-            </Card>
+            </Card>}
           </Col>
         </Row>
       </Panel>

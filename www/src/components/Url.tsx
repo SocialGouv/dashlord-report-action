@@ -13,6 +13,7 @@ import { Owasp } from "./Owasp";
 import { TestSSL } from "./TestSSL";
 import { Trackers } from "./Trackers";
 import { Wappalyzer } from "./Wappalyzer";
+import { UpdownIo } from "./UpdownIo";
 
 type UrlDetailProps = { url: string; report: UrlReport };
 
@@ -59,6 +60,16 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
             url={`${process.env.PUBLIC_URL}/report/${window.btoa(
               url
             )}/lhr.html`}
+          />
+          <br />
+        </React.Fragment>
+      )) ||
+        null}
+      {(isToolEnabled("updownio") && report.updownio && (
+        <React.Fragment>
+          <UpdownIo
+            data={report.updownio}
+            url={url}
           />
           <br />
         </React.Fragment>

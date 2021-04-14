@@ -102,7 +102,7 @@ Array [
           </svg>
           Mise à jour il y a :
            
-          3 jours
+          10 jours
         </span>
       </p>
     </div>
@@ -439,6 +439,49 @@ Array [
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <div
+      className="card"
+      style={
+        Object {
+          "marginBottom": 20,
+        }
+      }
+    >
+      <div
+        className="card-title h5"
+        style={
+          Object {
+            "background": "#000091",
+            "color": "white",
+            "padding": 10,
+          }
+        }
+      >
+        Temps de réponse
+        <span
+          style={
+            Object {
+              "fontSize": "0.6em",
+              "fontWeight": "normal",
+              "marginLeft": 10,
+            }
+          }
+        >
+          Informations collectées par updown.io
+        </span>
+      </div>
+      <div
+        className="card-body"
+      >
+        <div
+          className="fade alert alert-success show"
+          role="alert"
+        >
+          Aucune donnée updown.io associée
         </div>
       </div>
     </div>
@@ -2213,7 +2256,7 @@ Array [
           </svg>
           Mise à jour il y a :
            
-          3 jours
+          10 jours
         </span>
       </p>
     </div>
