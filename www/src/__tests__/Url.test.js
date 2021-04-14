@@ -6,6 +6,9 @@ jest.mock('../components/Gauge', () => ({ Gauge: () => <div>io</div>}));
 
 import { Url } from "../components/Url";
 
+jest.useFakeTimers("modern");
+jest.setSystemTime(new Date("2021-04-06").getTime());
+
 const report = require("../report.json").find(r => r.url==="https://www.lemonde.fr")
 
 it("Should render empty Url", () => {
