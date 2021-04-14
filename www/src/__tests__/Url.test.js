@@ -18,7 +18,7 @@ it("Should render empty Url", () => {
 });
 
 it("Should render full Url", () => {
-  const props = { report };
+  const props = { report, url: "https://www.lemonde.fr" };
   const tree = renderer
     .create(
       <MemoryRouter>
