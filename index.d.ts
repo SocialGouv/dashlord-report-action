@@ -210,7 +210,13 @@ type WappalyzerReport = {
 }
 
 type UpDownReport = {
-  uptime: number
+  token: string,
+  url: string,
+  uptime:number,
+  ssl?: {
+    valid: boolean,
+    expires_at: string
+  }
 }
 
 type UrlReport = UrlConfig & {

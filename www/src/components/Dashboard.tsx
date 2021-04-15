@@ -9,7 +9,6 @@ import { Grade } from "./Grade";
 import { sortByKey, smallUrl, isToolEnabled } from "../utils";
 
 import "rc-tooltip/assets/bootstrap.css";
-import { UpdownIo } from "./UpdownIo";
 
 type DashboardProps = { report: DashLordReport };
 

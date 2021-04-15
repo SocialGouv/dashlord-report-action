@@ -7,6 +7,8 @@
       "fr"
     ],
     "updownio": {
+      "token": "abc",
+      "url": "https://www.lemonde.fr",
       "uptime": 0.98
     },
     "http": {

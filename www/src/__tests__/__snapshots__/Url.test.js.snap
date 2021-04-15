@@ -22,9 +22,12 @@ Array [
     >
       <h4>
         <a
+          href="https://www.lemonde.fr"
           rel="noreferrer noopener"
           target="_blank"
-        />
+        >
+          https://www.lemonde.fr
+        </a>
       </h4>
       <p>
         <a
@@ -102,7 +105,7 @@ Array [
           </svg>
           Mise à jour il y a :
            
-          3 jours
+          1 jour
         </span>
       </p>
     </div>
@@ -137,7 +140,7 @@ Array [
           Informations collectées par l'outil Google LightHouse
         </span>
         <a
-          href="/report/dW5kZWZpbmVk/lhr.html"
+          href="/report/aHR0cHM6Ly93d3cubGVtb25kZS5mcg==/lhr.html"
           rel="noreferrer noopener"
           style={
             Object {
@@ -461,6 +464,117 @@ Array [
           }
         }
       >
+        Temps de réponse
+        <span
+          style={
+            Object {
+              "fontSize": "0.6em",
+              "fontWeight": "normal",
+              "marginLeft": 10,
+            }
+          }
+        >
+          Informations collectées par updown.io
+        </span>
+        <a
+          href="https://updown.io/abc"
+          rel="noreferrer noopener"
+          style={
+            Object {
+              "color": "white",
+              "float": "right",
+            }
+          }
+          target="_blank"
+        >
+          <svg
+            fill="none"
+            height={24}
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+            />
+            <polyline
+              points="15 3 21 3 21 9"
+            />
+            <line
+              x1="10"
+              x2="21"
+              y1="14"
+              y2="3"
+            />
+          </svg>
+        </a>
+      </div>
+      <div
+        className="card-body"
+      >
+        <div
+          className="row"
+        >
+          <div
+            className="text-center mb-3 col-lg-3 col-md-6 col-12"
+          >
+            <div
+              className="card"
+            >
+              <div>
+                io
+              </div>
+              <div
+                className="card-body"
+              >
+                <div
+                  className="card-title h5"
+                >
+                  Taux de disponibilité sur un mois glissant
+                </div>
+                <div
+                  className="card-title h5"
+                  style={
+                    Object {
+                      "fontSize": "2rem",
+                      "fontWeight": "bold",
+                    }
+                  }
+                >
+                  0.98%
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            className="text-center mb-3 col-lg-3 col-md-6 col-12"
+          />
+        </div>
+      </div>
+    </div>
+    <br />
+    <div
+      className="card"
+      style={
+        Object {
+          "marginBottom": 20,
+        }
+      }
+    >
+      <div
+        className="card-title h5"
+        style={
+          Object {
+            "background": "#000091",
+            "color": "white",
+            "padding": 10,
+          }
+        }
+      >
         SSL
         <span
           style={
@@ -474,7 +588,7 @@ Array [
           Informations collectées via testssl.sh
         </span>
         <a
-          href="/report/dW5kZWZpbmVk/testssl.html"
+          href="/report/aHR0cHM6Ly93d3cubGVtb25kZS5mcg==/testssl.html"
           rel="noreferrer noopener"
           style={
             Object {
@@ -1517,7 +1631,7 @@ Array [
           Scan de vulnérabiliés OWASP baseline
         </span>
         <a
-          href="/report/dW5kZWZpbmVk/zap.html"
+          href="/report/aHR0cHM6Ly93d3cubGVtb25kZS5mcg==/zap.html"
           rel="noreferrer noopener"
           style={
             Object {
@@ -2213,7 +2327,7 @@ Array [
           </svg>
           Mise à jour il y a :
            
-          3 jours
+          1 jour
         </span>
       </p>
     </div>
