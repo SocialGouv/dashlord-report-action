@@ -207,7 +207,7 @@ const UpDownIoBadge: React.FC<BadgeProps> = ({ report }) => {
   return <Grade
     small
     grade={updownioGrade}
-    label={(updownio * 100).toFixed() + " %"}
+    label={(updownio).toFixed() + " %"}
   />
 }
 
