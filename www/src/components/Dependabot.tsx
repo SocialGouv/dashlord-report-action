@@ -67,7 +67,7 @@ export const Dependabot: React.FC<DependabotProps> = ({ data, url }) => {
                   </td>
                   <td>{node.securityVulnerability.package.name}</td>
                   <td>{node.securityVulnerability.advisory.references.map((reference, i: number) => {
-                    return (<p><a key={getLastUrlSegment(reference.url) + i} href={reference.url}>{getLastUrlSegment(reference.url)}</a><br /></p>);
+                    return (<p key={getLastUrlSegment(reference.url) + i} ><a href={reference.url}>{getLastUrlSegment(reference.url)}</a><br /></p>);
                   })}</td>
                 </tr>
               );
