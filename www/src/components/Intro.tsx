@@ -81,6 +81,24 @@ export const Intro: React.FC = () => {
         </Button>
       </Panel>}
 
+      {isToolEnabled("dependabot") && <Panel title="Dependabot">
+        Recense les vulnérabilités de ton code
+        <br />
+        <br />
+        <li>Scan des vulnérabilités sur le dépôt Github du code</li>
+        <br />
+        <Button variant="dark" href="https://dependabot.com/">
+          Site officiel
+        </Button>
+        <Button
+          style={{ marginLeft: 5 }}
+          variant="dark"
+          href="https://docs.github.com/en/code-security/supply-chain-security/about-alerts-for-vulnerable-dependencies"
+        >
+          Security scans
+        </Button>
+      </Panel>}
+
       {isToolEnabled("zap") && <Panel title="OWASP Zed Attack Proxy">
         Scan de vulnérabilités passif "baseline" qui permet de détecter des
         risques de sécurité.

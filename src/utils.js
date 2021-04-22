@@ -67,4 +67,5 @@ const getUrls = () => {
     return [];
   }
 };
+
 module.exports = { readFile, writeFile, toHostname, getUrls };

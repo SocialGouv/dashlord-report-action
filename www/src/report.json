@@ -11,6 +11,244 @@
       "url": "https://www.lemonde.fr",
       "uptime": 0.98
     },
+    "dependabot": {
+      "url": "https://www.lemonde.fr",
+      "repositories": [
+        {
+          "repository": {
+            "url": "https://github.com/lemonde/site-ui",
+            "vulnerabilityAlerts": {
+              "totalCount": 1,
+              "nodes": [
+                {
+                  "dismissedAt": null,
+                  "createdAt": "2021-03-20T19:17:10Z",
+                  "securityVulnerability": {
+                    "severity": "HIGH",
+                    "package": {
+                      "name": "is-svg"
+                    },
+                    "advisory": {
+                      "identifiers": [
+                        {
+                          "type": "GHSA",
+                          "value": "GHSA-7r28-3m3f-r2pr"
+                        },
+                        {
+                          "type": "CVE",
+                          "value": "CVE-2021-28092"
+                        }
+                      ],
+                      "references": [
+                        {
+                          "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-28092"
+                        },
+                        {
+                          "url": "https://github.com/advisories/GHSA-7r28-3m3f-r2pr"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "repository": {
+            "url": "https://github.com/lemonde/site-api",
+            "vulnerabilityAlerts": {
+              "totalCount": 6,
+              "nodes": [
+                {
+                  "dismissedAt": null,
+                  "createdAt": "2021-03-20T23:35:59Z",
+                  "securityVulnerability": {
+                    "severity": "HIGH",
+                    "package": {
+                      "name": "is-svg"
+                    },
+                    "advisory": {
+                      "identifiers": [
+                        {
+                          "type": "GHSA",
+                          "value": "GHSA-7r28-3m3f-r2pr"
+                        },
+                        {
+                          "type": "CVE",
+                          "value": "CVE-2021-28092"
+                        }
+                      ],
+                      "references": [
+                        {
+                          "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-28092"
+                        },
+                        {
+                          "url": "https://github.com/advisories/GHSA-7r28-3m3f-r2pr"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "dismissedAt": null,
+                  "createdAt": "2021-03-30T16:07:33Z",
+                  "securityVulnerability": {
+                    "severity": "MODERATE",
+                    "package": {
+                      "name": "node-notifier"
+                    },
+                    "advisory": {
+                      "identifiers": [
+                        {
+                          "type": "GHSA",
+                          "value": "GHSA-5fw9-fq32-wv5p"
+                        },
+                        {
+                          "type": "CVE",
+                          "value": "CVE-2020-7789"
+                        }
+                      ],
+                      "references": [
+                        {
+                          "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-7789"
+                        },
+                        {
+                          "url": "https://github.com/advisories/GHSA-5fw9-fq32-wv5p"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "dismissedAt": null,
+                  "createdAt": "2021-03-30T16:07:33Z",
+                  "securityVulnerability": {
+                    "severity": "HIGH",
+                    "package": {
+                      "name": "pug"
+                    },
+                    "advisory": {
+                      "identifiers": [
+                        {
+                          "type": "GHSA",
+                          "value": "GHSA-p493-635q-r6gr"
+                        },
+                        {
+                          "type": "CVE",
+                          "value": "CVE-2021-21353"
+                        }
+                      ],
+                      "references": [
+                        {
+                          "url": "https://github.com/pugjs/pug/security/advisories/GHSA-p493-635q-r6gr"
+                        },
+                        {
+                          "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-21353"
+                        },
+                        {
+                          "url": "https://github.com/advisories/GHSA-p493-635q-r6gr"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "dismissedAt": null,
+                  "createdAt": "2021-03-30T16:07:33Z",
+                  "securityVulnerability": {
+                    "severity": "HIGH",
+                    "package": {
+                      "name": "is-svg"
+                    },
+                    "advisory": {
+                      "identifiers": [
+                        {
+                          "type": "GHSA",
+                          "value": "GHSA-7r28-3m3f-r2pr"
+                        },
+                        {
+                          "type": "CVE",
+                          "value": "CVE-2021-28092"
+                        }
+                      ],
+                      "references": [
+                        {
+                          "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-28092"
+                        },
+                        {
+                          "url": "https://github.com/advisories/GHSA-7r28-3m3f-r2pr"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "dismissedAt": null,
+                  "createdAt": "2021-04-20T00:37:06Z",
+                  "securityVulnerability": {
+                    "severity": "HIGH",
+                    "package": {
+                      "name": "ssri"
+                    },
+                    "advisory": {
+                      "identifiers": [
+                        {
+                          "type": "GHSA",
+                          "value": "GHSA-vx3p-948g-6vhq"
+                        },
+                        {
+                          "type": "CVE",
+                          "value": "CVE-2021-27290"
+                        }
+                      ],
+                      "references": [
+                        {
+                          "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-27290"
+                        },
+                        {
+                          "url": "https://github.com/advisories/GHSA-vx3p-948g-6vhq"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "dismissedAt": null,
+                  "createdAt": "2021-04-20T10:03:42Z",
+                  "securityVulnerability": {
+                    "severity": "HIGH",
+                    "package": {
+                      "name": "ssri"
+                    },
+                    "advisory": {
+                      "identifiers": [
+                        {
+                          "type": "GHSA",
+                          "value": "GHSA-vx3p-948g-6vhq"
+                        },
+                        {
+                          "type": "CVE",
+                          "value": "CVE-2021-27290"
+                        }
+                      ],
+                      "references": [
+                        {
+                          "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-27290"
+                        },
+                        {
+                          "url": "https://github.com/advisories/GHSA-vx3p-948g-6vhq"
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
     "http": {
       "url": "https://www.lemonde.fr",
       "algorithm_version": 2,
