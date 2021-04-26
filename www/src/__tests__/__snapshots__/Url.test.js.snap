@@ -464,6 +464,435 @@ Array [
           }
         }
       >
+        Dependabot
+        <span
+          style={
+            Object {
+              "fontSize": "0.6em",
+              "fontWeight": "normal",
+              "marginLeft": 10,
+            }
+          }
+        >
+          Scan des vulnérabiliés du dépôt Github https://github.com/lemonde/site-ui
+        </span>
+        <a
+          href="https://github.com/lemonde/site-ui"
+          rel="noreferrer noopener"
+          style={
+            Object {
+              "color": "white",
+              "float": "right",
+            }
+          }
+          target="_blank"
+        >
+          <svg
+            fill="none"
+            height={24}
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+            />
+            <polyline
+              points="15 3 21 3 21 9"
+            />
+            <line
+              x1="10"
+              x2="21"
+              y1="14"
+              y2="3"
+            />
+          </svg>
+        </a>
+      </div>
+      <div
+        className="card-body"
+      >
+        <table
+          className="table table-striped table-bordered table-hover"
+        >
+          <thead>
+            <tr>
+              <th
+                className="text-center"
+                style={
+                  Object {
+                    "width": 100,
+                  }
+                }
+              >
+                Sévérité
+              </th>
+              <th>
+                Dépendance vulnérable
+              </th>
+              <th>
+                Vulnérabilités
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td
+                className="text-center"
+              >
+                <span
+                  className="w-100 badge badge-danger"
+                >
+                  HIGH
+                </span>
+              </td>
+              <td>
+                is-svg
+              </td>
+              <td>
+                <p>
+                  <a
+                    href="https://nvd.nist.gov/vuln/detail/CVE-2021-28092"
+                  >
+                    CVE-2021-28092
+                  </a>
+                  <br />
+                </p>
+                <p>
+                  <a
+                    href="https://github.com/advisories/GHSA-7r28-3m3f-r2pr"
+                  >
+                    GHSA-7r28-3m3f-r2pr
+                  </a>
+                  <br />
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div
+      className="card"
+      style={
+        Object {
+          "marginBottom": 20,
+        }
+      }
+    >
+      <div
+        className="card-title h5"
+        style={
+          Object {
+            "background": "#000091",
+            "color": "white",
+            "padding": 10,
+          }
+        }
+      >
+        Dependabot
+        <span
+          style={
+            Object {
+              "fontSize": "0.6em",
+              "fontWeight": "normal",
+              "marginLeft": 10,
+            }
+          }
+        >
+          Scan des vulnérabiliés du dépôt Github https://github.com/lemonde/site-api
+        </span>
+        <a
+          href="https://github.com/lemonde/site-api"
+          rel="noreferrer noopener"
+          style={
+            Object {
+              "color": "white",
+              "float": "right",
+            }
+          }
+          target="_blank"
+        >
+          <svg
+            fill="none"
+            height={24}
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            viewBox="0 0 24 24"
+            width={24}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+            />
+            <polyline
+              points="15 3 21 3 21 9"
+            />
+            <line
+              x1="10"
+              x2="21"
+              y1="14"
+              y2="3"
+            />
+          </svg>
+        </a>
+      </div>
+      <div
+        className="card-body"
+      >
+        <table
+          className="table table-striped table-bordered table-hover"
+        >
+          <thead>
+            <tr>
+              <th
+                className="text-center"
+                style={
+                  Object {
+                    "width": 100,
+                  }
+                }
+              >
+                Sévérité
+              </th>
+              <th>
+                Dépendance vulnérable
+              </th>
+              <th>
+                Vulnérabilités
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td
+                className="text-center"
+              >
+                <span
+                  className="w-100 badge badge-danger"
+                >
+                  HIGH
+                </span>
+              </td>
+              <td>
+                is-svg
+              </td>
+              <td>
+                <p>
+                  <a
+                    href="https://nvd.nist.gov/vuln/detail/CVE-2021-28092"
+                  >
+                    CVE-2021-28092
+                  </a>
+                  <br />
+                </p>
+                <p>
+                  <a
+                    href="https://github.com/advisories/GHSA-7r28-3m3f-r2pr"
+                  >
+                    GHSA-7r28-3m3f-r2pr
+                  </a>
+                  <br />
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td
+                className="text-center"
+              >
+                <span
+                  className="w-100 badge badge-danger"
+                >
+                  HIGH
+                </span>
+              </td>
+              <td>
+                pug
+              </td>
+              <td>
+                <p>
+                  <a
+                    href="https://github.com/pugjs/pug/security/advisories/GHSA-p493-635q-r6gr"
+                  >
+                    GHSA-p493-635q-r6gr
+                  </a>
+                  <br />
+                </p>
+                <p>
+                  <a
+                    href="https://nvd.nist.gov/vuln/detail/CVE-2021-21353"
+                  >
+                    CVE-2021-21353
+                  </a>
+                  <br />
+                </p>
+                <p>
+                  <a
+                    href="https://github.com/advisories/GHSA-p493-635q-r6gr"
+                  >
+                    GHSA-p493-635q-r6gr
+                  </a>
+                  <br />
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td
+                className="text-center"
+              >
+                <span
+                  className="w-100 badge badge-danger"
+                >
+                  HIGH
+                </span>
+              </td>
+              <td>
+                is-svg
+              </td>
+              <td>
+                <p>
+                  <a
+                    href="https://nvd.nist.gov/vuln/detail/CVE-2021-28092"
+                  >
+                    CVE-2021-28092
+                  </a>
+                  <br />
+                </p>
+                <p>
+                  <a
+                    href="https://github.com/advisories/GHSA-7r28-3m3f-r2pr"
+                  >
+                    GHSA-7r28-3m3f-r2pr
+                  </a>
+                  <br />
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td
+                className="text-center"
+              >
+                <span
+                  className="w-100 badge badge-danger"
+                >
+                  HIGH
+                </span>
+              </td>
+              <td>
+                ssri
+              </td>
+              <td>
+                <p>
+                  <a
+                    href="https://nvd.nist.gov/vuln/detail/CVE-2021-27290"
+                  >
+                    CVE-2021-27290
+                  </a>
+                  <br />
+                </p>
+                <p>
+                  <a
+                    href="https://github.com/advisories/GHSA-vx3p-948g-6vhq"
+                  >
+                    GHSA-vx3p-948g-6vhq
+                  </a>
+                  <br />
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td
+                className="text-center"
+              >
+                <span
+                  className="w-100 badge badge-danger"
+                >
+                  HIGH
+                </span>
+              </td>
+              <td>
+                ssri
+              </td>
+              <td>
+                <p>
+                  <a
+                    href="https://nvd.nist.gov/vuln/detail/CVE-2021-27290"
+                  >
+                    CVE-2021-27290
+                  </a>
+                  <br />
+                </p>
+                <p>
+                  <a
+                    href="https://github.com/advisories/GHSA-vx3p-948g-6vhq"
+                  >
+                    GHSA-vx3p-948g-6vhq
+                  </a>
+                  <br />
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td
+                className="text-center"
+              >
+                <span
+                  className="w-100 badge badge-warning"
+                >
+                  MODERATE
+                </span>
+              </td>
+              <td>
+                node-notifier
+              </td>
+              <td>
+                <p>
+                  <a
+                    href="https://nvd.nist.gov/vuln/detail/CVE-2020-7789"
+                  >
+                    CVE-2020-7789
+                  </a>
+                  <br />
+                </p>
+                <p>
+                  <a
+                    href="https://github.com/advisories/GHSA-5fw9-fq32-wv5p"
+                  >
+                    GHSA-5fw9-fq32-wv5p
+                  </a>
+                  <br />
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <br />
+    <div
+      className="card"
+      style={
+        Object {
+          "marginBottom": 20,
+        }
+      }
+    >
+      <div
+        className="card-title h5"
+        style={
+          Object {
+            "background": "#000091",
+            "color": "white",
+            "padding": 10,
+          }
+        }
+      >
         Temps de réponse
         <span
           style={

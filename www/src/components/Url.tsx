@@ -14,6 +14,7 @@ import { TestSSL } from "./TestSSL";
 import { Trackers } from "./Trackers";
 import { Wappalyzer } from "./Wappalyzer";
 import { UpdownIo } from "./UpdownIo";
+import { Dependabot } from "./Dependabot";
 
 type UrlDetailProps = { url: string; report: UrlReport };
 
@@ -61,6 +62,17 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
               url
             )}/lhr.html`}
           />
+          <br />
+        </React.Fragment>
+      )) ||
+        null}
+      {(isToolEnabled("dependabot") && report.dependabot && (
+        <React.Fragment>
+          {(report.dependabot.repositories.map(repository =>
+          {return <Dependabot key={repository.repository.url}
+            data={repository.repository}
+            url={url}
+          />;}))}
           <br />
         </React.Fragment>
       )) ||

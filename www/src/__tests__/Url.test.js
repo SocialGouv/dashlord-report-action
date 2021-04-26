@@ -1,11 +1,9 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
 import { MemoryRouter } from "react-router-dom";
-
-jest.mock('../components/Gauge', () => ({ Gauge: () => <div>io</div>}));
-
 import { Url } from "../components/Url";
 
+jest.mock('../components/Gauge', () => ({ Gauge: () => <div>io</div>}));
 jest.useFakeTimers("modern");
 jest.setSystemTime(new Date("2021-04-06").getTime());
 

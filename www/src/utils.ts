@@ -11,6 +11,9 @@ export const getHostName = (url: string): string =>
     .replace(/\/$/, "")
     .replace(/^([^/]+)\/.+$/, "$1");
 
+export const getLastUrlSegment = (url: string): string =>
+  url.substring(url.lastIndexOf("/") + 1);
+
 export const sortByKey = (key: string) => (a: any, b: any) => {
   if (a[key] > b[key]) {
     return 1;
@@ -19,7 +22,6 @@ export const sortByKey = (key: string) => (a: any, b: any) => {
   }
   return 0;
 };
-
 
 export const isToolEnabled = (name: DashlordTool): boolean => {
   const dashlordConfig: DashlordConfig  = require("./config.json");

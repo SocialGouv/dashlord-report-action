@@ -74,6 +74,16 @@ const getGradeUpdownio = (uptime: number) => {
   return uptime > 0.99 ? "A" : uptime > 0.98 ? "B" : uptime > 0.97 ? "C" : uptime > 0.96 ? "D": uptime > 0.95 ? "E": "F"
 };
 
+const getDependabotNodeGrade = (nodes: DependabotNode[]) => {
+  return nodes.filter(
+    (a) => a.securityVulnerability.severity === "CRITICAL" || a.securityVulnerability.severity === "HIGH"
+  ).length
+    ? "F"
+    : nodes.length
+    ? "B"
+    : "A";
+};
+
 type ColumnHeaderProps = {
   title: string;
   info: string;
@@ -198,6 +208,29 @@ const NucleiBadge: React.FC<BadgeProps> = ({ report }) => {
   return <Grade small grade={nucleiGrade} label={nucleiCount} />
 }
 
+const DependabotBadge: React.FC<BadgeProps> = ({ report }) => {
+  if (!report.dependabot) {
+    return <IconUnknown />;
+  }
+
+  // dependabot
+  const dependabotCount = report.dependabot && report.dependabot.repositories.map(repo => repo.repository.vulnerabilityAlerts.totalCount).reduce((prev, curr) => prev + curr, 0);
+  const maxGrade = (a: "F" | "B" | "A", b: "F" | "B" | "A") => {
+    const grades = new Map();
+    grades.set("F", 3);
+    grades.set("B", 2);
+    grades.set("A", 1);
+    const orders = new Map();
+    orders.set(3, "F");
+    orders.set(2, "B");
+    orders.set(1, "A");
+    return orders.get(Math.max(grades.get(a),grades.get(b)));
+  };
+  const dependabotGrade = report.dependabot && report.dependabot.repositories.map(repo => getDependabotNodeGrade(repo.repository.vulnerabilityAlerts.nodes)).reduce(maxGrade);
+
+  return <Grade small grade={dependabotGrade} label={dependabotCount} />
+}
+
 const UpDownIoBadge: React.FC<BadgeProps> = ({ report }) => {
   if (!report.updownio) {
     return <IconUnknown />
@@ -242,6 +275,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
             title="Updown.io"
             info="Temps de réponse"
           />}
+          {isToolEnabled('dependabot') && <ColumnHeader
+            title="Vulnérabilités"
+            info="Dependabot security scan"
+          />}
           {isToolEnabled('zap') && <ColumnHeader
             title="OWASP"
             info="Bonnes pratiques de sécurité OWASP"
@@ -281,6 +318,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
               </td>}
               {isToolEnabled('updownio') && <td className="text-center">
                 <UpDownIoBadge report={urlReport} />
+              </td>}
+              {isToolEnabled('dependabot') && <td className="text-center">
+                <DependabotBadge report={urlReport} />
               </td>}
               {isToolEnabled('zap') && <td className="text-center">
                 <ZapBadge report={urlReport} />

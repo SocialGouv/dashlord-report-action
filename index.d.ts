@@ -3,8 +3,9 @@ type UrlConfig = {
   category?: string;
   title?: string;
   tags?: string[];
+  repositories?: string[];
 };
- 
+
 type DashlordTool =
   | "http"
   | "lighthouse"
@@ -13,6 +14,7 @@ type DashlordTool =
   | "thirdparties"
   | "updownio"
   | "wappalyzer"
+  | "dependabot"
   | "zap";
 
 type DashlordConfig = {
@@ -20,13 +22,6 @@ type DashlordConfig = {
   tools?: DashlordTool[];
   urls: UrlConfig[];
 } 
-
-type UrlConfig = {
-  url: string;
-  category?: string;
-  title?: string;
-  tags?: string[];
-};
 
 type LighthouseReportCategory = {
   title: string;
@@ -131,6 +126,55 @@ type NucleiReportEntry = {
 
 type NucleiReport = NucleiReportEntry[];
 
+type DependabotPackage ={
+  name: string
+};
+
+type DependabotVulnerabilityAlerts = {
+  totalCount: number,
+  nodes: DependabotNode[]
+};
+
+type DependabotAdvisoryIdentifier = {
+  type: string,
+  value: string
+};
+
+type DependabotAdvisoryReference = {
+  url: string
+};
+
+type DependabotAdvisory = {
+  references: DependabotAdvisoryReference[],
+  identifiers: DependabotAdvisoryIdentifier[]
+};
+
+type DependabotSecurityVulnerability = {
+  severity: string,
+  package: DependabotPackage,
+  advisory: DependabotAdvisory
+};
+
+type DependabotNode = {
+  createdAt: string,
+  dismissedAt?: string,
+  securityVulnerability: DependabotSecurityVulnerability
+};
+
+type DependabotRepositoryVulnerabilities = {
+  url: string,
+  vulnerabilityAlerts: DependabotVulnerabilityAlerts
+};
+
+type DependabotRepository = {
+  repository: DependabotRepositoryVulnerabilities
+};
+
+type DependabotReport = {
+  url: string,
+  repositories: DependabotRepository[]
+};
+
 type ThirdPartyTracker = {
   type: string
   url: string
@@ -227,7 +271,8 @@ type UrlReport = UrlConfig & {
   thirdparties?: ThirdPartiesReport | null;
   zap?: ZapReport | null;
   wappalyzer?: WappalyzerReport | null;
-  updownio?: UpDownReport | null
+  updownio?: UpDownReport | null;
+  dependabot?: DependabotReport | null;
 }
 
 type DashLordReport = UrlReport[]
