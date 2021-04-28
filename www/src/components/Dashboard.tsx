@@ -245,9 +245,7 @@ const DependabotBadge: React.FC<BadgeProps> = ({ report }) => {
   const dependabotGrade =
     report.dependabot &&
     report.dependabot
-      .map((repo) =>
-        getDependabotNodeGrade(repo.vulnerabilityAlerts.nodes)
-      )
+      .map((repo) => getDependabotNodeGrade(repo.vulnerabilityAlerts.nodes))
       .reduce(maxGrade);
 
   return <Grade small grade={dependabotGrade} label={dependabotCount} />;
