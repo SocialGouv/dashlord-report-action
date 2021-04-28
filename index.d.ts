@@ -161,19 +161,12 @@ type DependabotNode = {
   securityVulnerability: DependabotSecurityVulnerability
 };
 
-type DependabotRepositoryVulnerabilities = {
+type DependabotRepository = {
   url: string,
   vulnerabilityAlerts: DependabotVulnerabilityAlerts
 };
 
-type DependabotRepository = {
-  repository: DependabotRepositoryVulnerabilities
-};
-
-type DependabotReport = {
-  url: string,
-  repositories: DependabotRepository[]
-};
+type DependabotReport =  DependabotRepository[]
 
 type ThirdPartyTracker = {
   type: string

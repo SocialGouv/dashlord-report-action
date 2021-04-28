@@ -266,123 +266,6 @@ exports[`Should render full Sidebar 1`] = `
         </a>
       </li>
     </ul>
-    <h6
-      className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-    >
-      <span>
-        Catégories
-      </span>
-    </h6>
-    <ul
-      className="nav flex-column"
-    >
-      <li
-        className="nav-item"
-        style={
-          Object {
-            "whiteSpace": "pre",
-          }
-        }
-      >
-        <a
-          aria-current={null}
-          className="nav-link"
-          href="/category/ecommerce"
-          onClick={[Function]}
-        >
-          <svg
-            fill="none"
-            height={16}
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            style={
-              Object {
-                "marginRight": 5,
-                "marginTop": -5,
-              }
-            }
-            viewBox="0 0 24 24"
-            width={16}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <line
-              x1="12"
-              x2="12"
-              y1="20"
-              y2="10"
-            />
-            <line
-              x1="18"
-              x2="18"
-              y1="20"
-              y2="4"
-            />
-            <line
-              x1="6"
-              x2="6"
-              y1="20"
-              y2="16"
-            />
-          </svg>
-          ecommerce
-        </a>
-      </li>
-      <li
-        className="nav-item"
-        style={
-          Object {
-            "whiteSpace": "pre",
-          }
-        }
-      >
-        <a
-          aria-current={null}
-          className="nav-link"
-          href="/category/presse"
-          onClick={[Function]}
-        >
-          <svg
-            fill="none"
-            height={16}
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            style={
-              Object {
-                "marginRight": 5,
-                "marginTop": -5,
-              }
-            }
-            viewBox="0 0 24 24"
-            width={16}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <line
-              x1="12"
-              x2="12"
-              y1="20"
-              y2="10"
-            />
-            <line
-              x1="18"
-              x2="18"
-              y1="20"
-              y2="4"
-            />
-            <line
-              x1="6"
-              x2="6"
-              y1="20"
-              y2="16"
-            />
-          </svg>
-          presse
-        </a>
-      </li>
-    </ul>
     <div>
       <h6
         className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
@@ -470,7 +353,7 @@ exports[`Should render full Sidebar 1`] = `
         <a
           aria-current={null}
           className="nav-link"
-          href="/url/https://www.amazon.fr"
+          href="/url/https://beta.gouv.fr/"
           onClick={[Function]}
         >
           <svg
@@ -502,7 +385,7 @@ exports[`Should render full Sidebar 1`] = `
               y2="16.65"
             />
           </svg>
-          www.amazon.fr
+          beta.gouv.fr
         </a>
       </li>
       <li
@@ -516,7 +399,7 @@ exports[`Should render full Sidebar 1`] = `
         <a
           aria-current={null}
           className="nav-link"
-          href="/url/https://www.lemonde.fr"
+          href="/url/https://www.fabrique.social.gouv.fr"
           onClick={[Function]}
         >
           <svg
@@ -548,99 +431,7 @@ exports[`Should render full Sidebar 1`] = `
               y2="16.65"
             />
           </svg>
-          www.lemonde.fr
-        </a>
-      </li>
-      <li
-        className="nav-item"
-        style={
-          Object {
-            "whiteSpace": "pre",
-          }
-        }
-      >
-        <a
-          aria-current={null}
-          className="nav-link"
-          href="/url/https://www.liberation.fr"
-          onClick={[Function]}
-        >
-          <svg
-            fill="none"
-            height={16}
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            style={
-              Object {
-                "marginRight": 5,
-                "marginTop": -5,
-              }
-            }
-            viewBox="0 0 24 24"
-            width={16}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="11"
-              cy="11"
-              r="8"
-            />
-            <line
-              x1="21"
-              x2="16.65"
-              y1="21"
-              y2="16.65"
-            />
-          </svg>
-          www.liberation.fr
-        </a>
-      </li>
-      <li
-        className="nav-item"
-        style={
-          Object {
-            "whiteSpace": "pre",
-          }
-        }
-      >
-        <a
-          aria-current={null}
-          className="nav-link"
-          href="/url/https://www.nytimes.com"
-          onClick={[Function]}
-        >
-          <svg
-            fill="none"
-            height={16}
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            style={
-              Object {
-                "marginRight": 5,
-                "marginTop": -5,
-              }
-            }
-            viewBox="0 0 24 24"
-            width={16}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="11"
-              cy="11"
-              r="8"
-            />
-            <line
-              x1="21"
-              x2="16.65"
-              y1="21"
-              y2="16.65"
-            />
-          </svg>
-          www.nytimes.com
+          www.fabrique.social.gouv.fr
         </a>
       </li>
     </ul>
@@ -746,123 +537,6 @@ Array [
         className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
       >
         <span>
-          Catégories
-        </span>
-      </h6>
-      <ul
-        className="nav flex-column"
-      >
-        <li
-          className="nav-item"
-          style={
-            Object {
-              "whiteSpace": "pre",
-            }
-          }
-        >
-          <a
-            aria-current={null}
-            className="nav-link"
-            href="/category/ecommerce"
-            onClick={[Function]}
-          >
-            <svg
-              fill="none"
-              height={16}
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              style={
-                Object {
-                  "marginRight": 5,
-                  "marginTop": -5,
-                }
-              }
-              viewBox="0 0 24 24"
-              width={16}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line
-                x1="12"
-                x2="12"
-                y1="20"
-                y2="10"
-              />
-              <line
-                x1="18"
-                x2="18"
-                y1="20"
-                y2="4"
-              />
-              <line
-                x1="6"
-                x2="6"
-                y1="20"
-                y2="16"
-              />
-            </svg>
-            ecommerce
-          </a>
-        </li>
-        <li
-          className="nav-item"
-          style={
-            Object {
-              "whiteSpace": "pre",
-            }
-          }
-        >
-          <a
-            aria-current={null}
-            className="nav-link"
-            href="/category/presse"
-            onClick={[Function]}
-          >
-            <svg
-              fill="none"
-              height={16}
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              style={
-                Object {
-                  "marginRight": 5,
-                  "marginTop": -5,
-                }
-              }
-              viewBox="0 0 24 24"
-              width={16}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line
-                x1="12"
-                x2="12"
-                y1="20"
-                y2="10"
-              />
-              <line
-                x1="18"
-                x2="18"
-                y1="20"
-                y2="4"
-              />
-              <line
-                x1="6"
-                x2="6"
-                y1="20"
-                y2="16"
-              />
-            </svg>
-            presse
-          </a>
-        </li>
-      </ul>
-      <h6
-        className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-      >
-        <span>
           Urls
         </span>
       </h6>
@@ -880,7 +554,7 @@ Array [
           <a
             aria-current={null}
             className="nav-link"
-            href="/url/https://www.amazon.fr"
+            href="/url/https://beta.gouv.fr/"
             onClick={[Function]}
           >
             <svg
@@ -912,7 +586,7 @@ Array [
                 y2="16.65"
               />
             </svg>
-            www.amazon.fr
+            beta.gouv.fr
           </a>
         </li>
         <li
@@ -926,7 +600,7 @@ Array [
           <a
             aria-current={null}
             className="nav-link"
-            href="/url/https://www.lemonde.fr"
+            href="/url/https://www.fabrique.social.gouv.fr"
             onClick={[Function]}
           >
             <svg
@@ -958,99 +632,7 @@ Array [
                 y2="16.65"
               />
             </svg>
-            www.lemonde.fr
-          </a>
-        </li>
-        <li
-          className="nav-item"
-          style={
-            Object {
-              "whiteSpace": "pre",
-            }
-          }
-        >
-          <a
-            aria-current={null}
-            className="nav-link"
-            href="/url/https://www.liberation.fr"
-            onClick={[Function]}
-          >
-            <svg
-              fill="none"
-              height={16}
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              style={
-                Object {
-                  "marginRight": 5,
-                  "marginTop": -5,
-                }
-              }
-              viewBox="0 0 24 24"
-              width={16}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="11"
-                cy="11"
-                r="8"
-              />
-              <line
-                x1="21"
-                x2="16.65"
-                y1="21"
-                y2="16.65"
-              />
-            </svg>
-            www.liberation.fr
-          </a>
-        </li>
-        <li
-          className="nav-item"
-          style={
-            Object {
-              "whiteSpace": "pre",
-            }
-          }
-        >
-          <a
-            aria-current={null}
-            className="nav-link"
-            href="/url/https://www.nytimes.com"
-            onClick={[Function]}
-          >
-            <svg
-              fill="none"
-              height={16}
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              style={
-                Object {
-                  "marginRight": 5,
-                  "marginTop": -5,
-                }
-              }
-              viewBox="0 0 24 24"
-              width={16}
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="11"
-                cy="11"
-                r="8"
-              />
-              <line
-                x1="21"
-                x2="16.65"
-                y1="21"
-                y2="16.65"
-              />
-            </svg>
-            www.nytimes.com
+            www.fabrique.social.gouv.fr
           </a>
         </li>
       </ul>

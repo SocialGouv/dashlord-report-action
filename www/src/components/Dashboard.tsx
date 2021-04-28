@@ -228,8 +228,8 @@ const DependabotBadge: React.FC<BadgeProps> = ({ report }) => {
   // dependabot
   const dependabotCount =
     report.dependabot &&
-    report.dependabot.repositories
-      .map((repo) => repo.repository.vulnerabilityAlerts.totalCount)
+    report.dependabot
+      .map((repo) => repo.vulnerabilityAlerts.totalCount)
       .reduce((prev, curr) => prev + curr, 0);
   const maxGrade = (a: "F" | "B" | "A", b: "F" | "B" | "A") => {
     const grades = new Map();
@@ -244,9 +244,9 @@ const DependabotBadge: React.FC<BadgeProps> = ({ report }) => {
   };
   const dependabotGrade =
     report.dependabot &&
-    report.dependabot.repositories
+    report.dependabot
       .map((repo) =>
-        getDependabotNodeGrade(repo.repository.vulnerabilityAlerts.nodes)
+        getDependabotNodeGrade(repo.vulnerabilityAlerts.nodes)
       )
       .reduce(maxGrade);
 
