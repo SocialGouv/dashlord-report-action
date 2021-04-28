@@ -71,12 +71,24 @@ const getOwaspGrade = (owaspAlerts: ZapReportSiteAlert[]) => {
 };
 
 const getGradeUpdownio = (uptime: number) => {
-  return uptime > 0.99 ? "A" : uptime > 0.98 ? "B" : uptime > 0.97 ? "C" : uptime > 0.96 ? "D": uptime > 0.95 ? "E": "F"
+  return uptime > 0.99
+    ? "A"
+    : uptime > 0.98
+    ? "B"
+    : uptime > 0.97
+    ? "C"
+    : uptime > 0.96
+    ? "D"
+    : uptime > 0.95
+    ? "E"
+    : "F";
 };
 
 const getDependabotNodeGrade = (nodes: DependabotNode[]) => {
   return nodes.filter(
-    (a) => a.securityVulnerability.severity === "CRITICAL" || a.securityVulnerability.severity === "HIGH"
+    (a) =>
+      a.securityVulnerability.severity === "CRITICAL" ||
+      a.securityVulnerability.severity === "HIGH"
   ).length
     ? "F"
     : nodes.length
@@ -205,8 +217,8 @@ const NucleiBadge: React.FC<BadgeProps> = ({ report }) => {
   const nucleiCount = report.nuclei && report.nuclei.length;
   const nucleiGrade = report.nuclei && getNucleiGrade(report.nuclei);
 
-  return <Grade small grade={nucleiGrade} label={nucleiCount} />
-}
+  return <Grade small grade={nucleiGrade} label={nucleiCount} />;
+};
 
 const DependabotBadge: React.FC<BadgeProps> = ({ report }) => {
   if (!report.dependabot) {
@@ -214,7 +226,11 @@ const DependabotBadge: React.FC<BadgeProps> = ({ report }) => {
   }
 
   // dependabot
-  const dependabotCount = report.dependabot && report.dependabot.repositories.map(repo => repo.repository.vulnerabilityAlerts.totalCount).reduce((prev, curr) => prev + curr, 0);
+  const dependabotCount =
+    report.dependabot &&
+    report.dependabot.repositories
+      .map((repo) => repo.repository.vulnerabilityAlerts.totalCount)
+      .reduce((prev, curr) => prev + curr, 0);
   const maxGrade = (a: "F" | "B" | "A", b: "F" | "B" | "A") => {
     const grades = new Map();
     grades.set("F", 3);
@@ -224,71 +240,100 @@ const DependabotBadge: React.FC<BadgeProps> = ({ report }) => {
     orders.set(3, "F");
     orders.set(2, "B");
     orders.set(1, "A");
-    return orders.get(Math.max(grades.get(a),grades.get(b)));
+    return orders.get(Math.max(grades.get(a), grades.get(b)));
   };
-  const dependabotGrade = report.dependabot && report.dependabot.repositories.map(repo => getDependabotNodeGrade(repo.repository.vulnerabilityAlerts.nodes)).reduce(maxGrade);
+  const dependabotGrade =
+    report.dependabot &&
+    report.dependabot.repositories
+      .map((repo) =>
+        getDependabotNodeGrade(repo.repository.vulnerabilityAlerts.nodes)
+      )
+      .reduce(maxGrade);
 
-  return <Grade small grade={dependabotGrade} label={dependabotCount} />
-}
+  return <Grade small grade={dependabotGrade} label={dependabotCount} />;
+};
 
 const UpDownIoBadge: React.FC<BadgeProps> = ({ report }) => {
   if (!report.updownio) {
-    return <IconUnknown />
+    return <IconUnknown />;
   }
   const updownio = report.updownio && report.updownio.uptime;
   const updownioGrade = getGradeUpdownio(updownio);
-  return <Grade
-    small
-    grade={updownioGrade}
-    label={(updownio).toFixed() + " %"}
-  />
-}
+  return (
+    <Grade small grade={updownioGrade} label={updownio.toFixed() + " %"} />
+  );
+};
 
 export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
-  const sortedReport = report && report.sort(sortByKey("url")) || [];
+  const sortedReport = (report && report.sort(sortByKey("url"))) || [];
 
   return (
     <Table striped bordered hover>
-      <thead >
-        <tr >
-          <th className="sticky-top" style={{ background: "var(--white)", top: 30 }}>url</th>
-          {isToolEnabled('lighthouse') && <ColumnHeader
-            title="Accessibilité"
-            info="Bonnes pratiques en matière d'accessibilité web"
-          />}
-          {isToolEnabled('lighthouse') && <ColumnHeader
-            title="Performance"
-            info="Performances de chargement des pages web"
-          />}
-          {isToolEnabled('lighthouse') && <ColumnHeader
-            title="SEO"
-            info="Bonnes pratiques en matière de référencement naturel"
-          />}
-          {isToolEnabled('testssl') && <ColumnHeader
-            title="SSL"
-            info="Niveau de sécurité du certificat SSL"
-          />}
-          {isToolEnabled('http') && <ColumnHeader
-            title="HTTP"
-            info="Bonnes pratiques de configuration HTTP" />}
-          {isToolEnabled('updownio') && <ColumnHeader
-            title="Updown.io"
-            info="Temps de réponse"
-          />}
-          {isToolEnabled('dependabot') && <ColumnHeader
-            title="Vulnérabilités"
-            info="Dependabot security scan"
-          />}
-          {isToolEnabled('zap') && <ColumnHeader
-            title="OWASP"
-            info="Bonnes pratiques de sécurité OWASP"
-          />}
-          {isToolEnabled('thirdparties') && <ColumnHeader
-            title="Trackers"
-            info="Nombre de scripts externes présents"
-          />}
-          {isToolEnabled('thirdparties') && <ColumnHeader title="Cookies" info="Nombre de cookies présents" />}
-          {isToolEnabled('nuclei') && <ColumnHeader title="Nuclei" info="Erreurs de configuration" />}
+      <thead>
+        <tr>
+          <th
+            className="sticky-top"
+            style={{ background: "var(--white)", top: 30 }}
+          >
+            url
+          </th>
+          {isToolEnabled("lighthouse") && (
+            <ColumnHeader
+              title="Accessibilité"
+              info="Bonnes pratiques en matière d'accessibilité web"
+            />
+          )}
+          {isToolEnabled("lighthouse") && (
+            <ColumnHeader
+              title="Performance"
+              info="Performances de chargement des pages web"
+            />
+          )}
+          {isToolEnabled("lighthouse") && (
+            <ColumnHeader
+              title="SEO"
+              info="Bonnes pratiques en matière de référencement naturel"
+            />
+          )}
+          {isToolEnabled("testssl") && (
+            <ColumnHeader
+              title="SSL"
+              info="Niveau de sécurité du certificat SSL"
+            />
+          )}
+          {isToolEnabled("http") && (
+            <ColumnHeader
+              title="HTTP"
+              info="Bonnes pratiques de configuration HTTP"
+            />
+          )}
+          {isToolEnabled("updownio") && (
+            <ColumnHeader title="Updown.io" info="Temps de réponse" />
+          )}
+          {isToolEnabled("dependabot") && (
+            <ColumnHeader
+              title="Vulnérabilités"
+              info="Dependabot security scan"
+            />
+          )}
+          {isToolEnabled("zap") && (
+            <ColumnHeader
+              title="OWASP"
+              info="Bonnes pratiques de sécurité OWASP"
+            />
+          )}
+          {isToolEnabled("thirdparties") && (
+            <ColumnHeader
+              title="Trackers"
+              info="Nombre de scripts externes présents"
+            />
+          )}
+          {isToolEnabled("thirdparties") && (
+            <ColumnHeader title="Cookies" info="Nombre de cookies présents" />
+          )}
+          {isToolEnabled("nuclei") && (
+            <ColumnHeader title="Nuclei" info="Erreurs de configuration" />
+          )}
         </tr>
       </thead>
       <tbody>
@@ -301,43 +346,68 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
                   &nbsp;{smallUrl(urlReport.url)}
                 </Link>
               </td>
-              {isToolEnabled('lighthouse') && <td className="text-center">
-                <LightHouseBadge report={urlReport} category="accessibility" />
-              </td>}
-              {isToolEnabled('lighthouse') && <td className="text-center">
-                <LightHouseBadge report={urlReport} category="performance" />
-              </td>}
-              {isToolEnabled('lighthouse') && <td className="text-center">
-                <LightHouseBadge report={urlReport} category="seo" />
-              </td>}
-              {isToolEnabled('testssl') && <td className="text-center">
-                <SSLBadge report={urlReport} />
-              </td>}
-              {isToolEnabled('http') && <td className="text-center">
-                <HTTPBadge report={urlReport} />
-              </td>}
-              {isToolEnabled('updownio') && <td className="text-center">
-                <UpDownIoBadge report={urlReport} />
-              </td>}
-              {isToolEnabled('dependabot') && <td className="text-center">
-                <DependabotBadge report={urlReport} />
-              </td>}
-              {isToolEnabled('zap') && <td className="text-center">
-                <ZapBadge report={urlReport} />
-              </td>}
-              {isToolEnabled('thirdparties') && <td className="text-center">
-                <ThirdPartiesTrackersBadge report={urlReport} />
-              </td>}
-              {isToolEnabled('thirdparties') && <td className="text-center">
-                <ThirdPartiesCookiesBadge report={urlReport} />
-              </td>}
-              {isToolEnabled('nuclei') && <td className="text-center">
-                <NucleiBadge report={urlReport} />
-              </td>}
+              {isToolEnabled("lighthouse") && (
+                <td className="text-center">
+                  <LightHouseBadge
+                    report={urlReport}
+                    category="accessibility"
+                  />
+                </td>
+              )}
+              {isToolEnabled("lighthouse") && (
+                <td className="text-center">
+                  <LightHouseBadge report={urlReport} category="performance" />
+                </td>
+              )}
+              {isToolEnabled("lighthouse") && (
+                <td className="text-center">
+                  <LightHouseBadge report={urlReport} category="seo" />
+                </td>
+              )}
+              {isToolEnabled("testssl") && (
+                <td className="text-center">
+                  <SSLBadge report={urlReport} />
+                </td>
+              )}
+              {isToolEnabled("http") && (
+                <td className="text-center">
+                  <HTTPBadge report={urlReport} />
+                </td>
+              )}
+              {isToolEnabled("updownio") && (
+                <td className="text-center">
+                  <UpDownIoBadge report={urlReport} />
+                </td>
+              )}
+              {isToolEnabled("dependabot") && (
+                <td className="text-center">
+                  <DependabotBadge report={urlReport} />
+                </td>
+              )}
+              {isToolEnabled("zap") && (
+                <td className="text-center">
+                  <ZapBadge report={urlReport} />
+                </td>
+              )}
+              {isToolEnabled("thirdparties") && (
+                <td className="text-center">
+                  <ThirdPartiesTrackersBadge report={urlReport} />
+                </td>
+              )}
+              {isToolEnabled("thirdparties") && (
+                <td className="text-center">
+                  <ThirdPartiesCookiesBadge report={urlReport} />
+                </td>
+              )}
+              {isToolEnabled("nuclei") && (
+                <td className="text-center">
+                  <NucleiBadge report={urlReport} />
+                </td>
+              )}
             </tr>
           );
         })}
-      </tbody >
-    </Table >
+      </tbody>
+    </Table>
   );
 };
