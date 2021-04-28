@@ -7,6 +7,7 @@ import Tooltip from "rc-tooltip";
 
 import { Grade } from "./Grade";
 import { sortByKey, smallUrl, isToolEnabled } from "../utils";
+import { getPerformanceScore } from "../lib/lighthouse/getPerformanceScore";
 
 import "rc-tooltip/assets/bootstrap.css";
 
@@ -130,9 +131,12 @@ const LightHouseBadge: React.FC<LightHouseBadgeProps> = ({
   category,
 }) => {
   const lhrCategories = report.lhr && report.lhr.categories;
-  if (!lhrCategories) {
+  if (!report.lhr || !lhrCategories) {
     return <IconUnknown />;
   }
+  // use custom scoring
+  lhrCategories["performance"].score = getPerformanceScore(report.lhr);
+  
   const value =
     lhrCategories &&
     lhrCategories[category] &&

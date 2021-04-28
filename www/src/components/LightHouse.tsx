@@ -4,6 +4,7 @@ import { Row, Col, Card } from "react-bootstrap";
 
 import { Gauge } from "./Gauge";
 import { Panel } from "./Panel";
+import { getPerformanceScore } from "../lib/lighthouse/getPerformanceScore";
 
 const toTime = (ms: number) => {
   let minutes = 0,
@@ -48,6 +49,7 @@ export const LightHouse: React.FC<LighthouseProps> = ({ data, url }) => {
   if (!data.audits.metrics.details) {
     return null;
   }
+
   const highlights = {
     "First contentful Paint":
       data.audits.metrics.details &&
@@ -71,6 +73,9 @@ export const LightHouse: React.FC<LighthouseProps> = ({ data, url }) => {
   } as object;
 
   const order = ["accessibility", "performance", "seo", "best-practices"];
+
+  // use custom scoring
+  data.categories["performance"].score = getPerformanceScore(data);
 
   return (
     <Panel
