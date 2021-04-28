@@ -1,11 +1,11 @@
 import * as React from "react";
-import { formatDistanceToNow } from 'date-fns'
+import { formatDistanceToNow } from "date-fns";
 import frLocale from "date-fns/locale/fr";
 import { Link } from "react-router-dom";
 import { Clock } from "react-feather";
 import { Jumbotron, Badge } from "react-bootstrap";
 
-import { isToolEnabled } from "../utils"
+import { isToolEnabled } from "../utils";
 import { HTTP } from "./HTTP";
 import { LightHouse } from "./LightHouse";
 import { Nuclei } from "./Nuclei";
@@ -21,7 +21,7 @@ type UrlDetailProps = { url: string; report: UrlReport };
 export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
   const updateDate = report && report.lhr && report.lhr.fetchTime;
   if (!report) {
-    return <div>No data available for {url}</div>
+    return <div>No data available for {url}</div>;
   }
   return (
     <div>
@@ -34,17 +34,21 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
           </a>
         </h4>
         <p>
-          {report.category && <Link to={`/category/${report.category}`}>
-            <Badge style={{ marginRight: 5 }} variant="success">
-              {report.category}
-            </Badge>
-          </Link>}
-          {report.tags && report.tags.map((tag: string) => (
-            <Link key={tag} to={`/tag/${tag}`}><Badge style={{ marginRight: 5 }} variant="info">
-              {tag}
-            </Badge>
+          {report.category && (
+            <Link to={`/category/${report.category}`}>
+              <Badge style={{ marginRight: 5 }} variant="success">
+                {report.category}
+              </Badge>
             </Link>
-          ))}
+          )}
+          {report.tags &&
+            report.tags.map((tag: string) => (
+              <Link key={tag} to={`/tag/${tag}`}>
+                <Badge style={{ marginRight: 5 }} variant="info">
+                  {tag}
+                </Badge>
+              </Link>
+            ))}
           {updateDate && (
             <span title={updateDate}>
               <Clock size={12} style={{ marginRight: 5 }} />
@@ -68,21 +72,18 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
         null}
       {(isToolEnabled("dependabot") && report.dependabot && (
         <React.Fragment>
-          {(report.dependabot.repositories.map(repository =>
-          {return <Dependabot key={repository.repository.url}
-            data={repository.repository}
-            url={url}
-          />;}))}
+          {report.dependabot.map((repository) => {
+            return (
+              <Dependabot key={repository.url} data={repository} url={url} />
+            );
+          })}
           <br />
         </React.Fragment>
       )) ||
         null}
       {(isToolEnabled("updownio") && report.updownio && (
         <React.Fragment>
-          <UpdownIo
-            data={report.updownio}
-            url={url}
-          />
+          <UpdownIo data={report.updownio} url={url} />
           <br />
         </React.Fragment>
       )) ||

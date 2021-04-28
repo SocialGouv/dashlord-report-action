@@ -12,7 +12,10 @@ const orderBySeverity = (a: DependabotNode, b: DependabotNode) => {
   severities.set("HIGH", 2);
   severities.set("MODERATE", 1);
   severities.set("LOW", 0);
-  return severities.get(b.securityVulnerability.severity) - severities.get(a.securityVulnerability.severity);
+  return (
+    severities.get(b.securityVulnerability.severity) -
+    severities.get(a.securityVulnerability.severity)
+  );
 };
 
 const DependabotBadge = (node: DependabotNode) => {
@@ -21,12 +24,12 @@ const DependabotBadge = (node: DependabotNode) => {
     severity === "LOW"
       ? "info"
       : severity === "MODERATE"
-        ? "warning"
-        : severity === "HIGH"
-          ? "danger"
-          : severity === "CRITICAL"
-            ? "danger"
-            : "info";
+      ? "warning"
+      : severity === "HIGH"
+      ? "danger"
+      : severity === "CRITICAL"
+      ? "danger"
+      : "info";
   return (
     <Badge className="w-100" variant={variant}>
       {severity}
@@ -34,12 +37,14 @@ const DependabotBadge = (node: DependabotNode) => {
   );
 };
 
-type DependabotProps = { data: DependabotRepositoryVulnerabilities; url: string };
+type DependabotProps = { data: DependabotRepository; url: string };
 
 export const Dependabot: React.FC<DependabotProps> = ({ data, url }) => {
   console.log("data=" + JSON.stringify(data));
   const nodes =
-    data && data.vulnerabilityAlerts.totalCount > 0 ? data.vulnerabilityAlerts.nodes : [];
+    data && data.vulnerabilityAlerts.totalCount > 0
+      ? data.vulnerabilityAlerts.nodes
+      : [];
   data.vulnerabilityAlerts.nodes.sort(orderBySeverity);
   return (
     (data.vulnerabilityAlerts.totalCount > 0 && (
@@ -66,9 +71,20 @@ export const Dependabot: React.FC<DependabotProps> = ({ data, url }) => {
                     <DependabotBadge {...node} />
                   </td>
                   <td>{node.securityVulnerability.package.name}</td>
-                  <td>{node.securityVulnerability.advisory.references.map((reference, i: number) => {
-                    return (<p key={getLastUrlSegment(reference.url) + i} ><a href={reference.url}>{getLastUrlSegment(reference.url)}</a><br /></p>);
-                  })}</td>
+                  <td>
+                    {node.securityVulnerability.advisory.references.map(
+                      (reference, i: number) => {
+                        return (
+                          <p key={getLastUrlSegment(reference.url) + i}>
+                            <a target="_blank" href={reference.url}>
+                              {getLastUrlSegment(reference.url)}
+                            </a>
+                            <br />
+                          </p>
+                        );
+                      }
+                    )}
+                  </td>
                 </tr>
               );
             })}
