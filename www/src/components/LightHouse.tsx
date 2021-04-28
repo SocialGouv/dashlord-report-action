@@ -4,6 +4,7 @@ import { Row, Col, Card } from "react-bootstrap";
 
 import { Gauge } from "./Gauge";
 import { Panel } from "./Panel";
+import { getPerformanceScore } from "../lib/lighthouse/getPerformanceScore";
 
 const toTime = (ms: number) => {
   let minutes = 0,
@@ -42,30 +43,39 @@ const toSize = (bytes: number) => {
   return `${kb}.${(rest / 100).toFixed()}Kb`;
 };
 
-type LighthouseProps = { data: LighthouseReport, url: string };
+type LighthouseProps = { data: LighthouseReport; url: string };
 
 export const LightHouse: React.FC<LighthouseProps> = ({ data, url }) => {
-
   if (!data.audits.metrics.details) {
-    return null
+    return null;
   }
-  const highlights = { 
-     "First contentful Paint":  data.audits.metrics.details && data.audits.metrics.details.items && toTime(
-      data.audits.metrics.details.items[0].firstContentfulPaint
-    ),
-    "Time to interactive":  data.audits.metrics.details && data.audits.metrics.details.items && toTime(
-      data.audits.metrics.details.items[0].interactive
-    ),
-    "Total requests": data.audits.diagnostics.details && data.audits.diagnostics.details.items && data.audits.diagnostics.details.items[0].numRequests,
-    "Total weight":  data.audits.diagnostics.details && data.audits.diagnostics.details.items && toSize(
-      data.audits.diagnostics.details.items[0].totalByteWeight
-    ),
+
+  const highlights = {
+    "First contentful Paint":
+      data.audits.metrics.details &&
+      data.audits.metrics.details.items &&
+      toTime(data.audits.metrics.details.items[0].firstContentfulPaint),
+    "Time to interactive":
+      data.audits.metrics.details &&
+      data.audits.metrics.details.items &&
+      toTime(data.audits.metrics.details.items[0].interactive),
+    "Total requests":
+      data.audits.diagnostics.details &&
+      data.audits.diagnostics.details.items &&
+      data.audits.diagnostics.details.items[0].numRequests,
+    "Total weight":
+      data.audits.diagnostics.details &&
+      data.audits.diagnostics.details.items &&
+      toSize(data.audits.diagnostics.details.items[0].totalByteWeight),
     // "Max server Latency": toTime(
     //   data.audits.diagnostics.details.items[0].maxServerLatency
-  //   ),
+    //   ),
   } as object;
 
   const order = ["accessibility", "performance", "seo", "best-practices"];
+
+  // use custom scoring
+  data.categories["performance"].score = getPerformanceScore(data);
 
   return (
     <Panel
@@ -74,42 +84,45 @@ export const LightHouse: React.FC<LighthouseProps> = ({ data, url }) => {
       url={url}
     >
       <Row>
-        {order.map((key , i: number) => {
+        {order.map((key, i: number) => {
           const category = data.categories[key as LighthouseReportCategoryKey];
-          return category.score && (
-            <Col
-              key={category.title + i}
-              xs={12}
-              md={6}
-              lg={3}
-              className="text-center mb-3"
-            >
-              <Card>
-                <Gauge
-                  width={100}
-                  height={60}
-                  value={category.score * 100}
-                  minValue={0}
-                  maxValue={100}
-                  animationSpeed={32}
-                />
-                <Card.Body>
-                  <Card.Title>{category.title}</Card.Title>
-                  <Card.Title
-                    style={{ fontSize: "2rem", fontWeight: "bold" }}
-                  >
-                    {(category.score * 100).toFixed() + "%"}
-                  </Card.Title>
-                </Card.Body>
-              </Card>
-            </Col>
-          )||null;
+          return (
+            (category.score && (
+              <Col
+                key={category.title + i}
+                xs={12}
+                md={6}
+                lg={3}
+                className="text-center mb-3"
+              >
+                <Card>
+                  <Gauge
+                    width={100}
+                    height={60}
+                    value={category.score * 100}
+                    minValue={0}
+                    maxValue={100}
+                    animationSpeed={32}
+                  />
+                  <Card.Body>
+                    <Card.Title>{category.title}</Card.Title>
+                    <Card.Title
+                      style={{ fontSize: "2rem", fontWeight: "bold" }}
+                    >
+                      {(category.score * 100).toFixed() + "%"}
+                    </Card.Title>
+                  </Card.Body>
+                </Card>
+              </Col>
+            )) ||
+            null
+          );
         })}
       </Row>
-      <Row >
+      <Row>
         {Object.keys(highlights).map((label) => {
           return (
-            <Col xs={3} key={label}>
+            <Col xs={12} md={6} lg={3} key={label} className="text-center mb-3">
               <Card className="text-center">
                 <Card.Body>
                   <Card.Title style={{ fontSize: "0.9rem" }}>

@@ -1336,7 +1336,7 @@ Array [
               }
             }
           >
-            96 %
+            93 %
           </span>
         </td>
         <td
@@ -1551,7 +1551,7 @@ Array [
           className="text-center"
         >
           <span
-            className="badge badge-info"
+            className="badge badge-danger"
             style={
               Object {
                 "fontSize": "1.1em",
@@ -1559,7 +1559,7 @@ Array [
               }
             }
           >
-            76 %
+            29 %
           </span>
         </td>
         <td
