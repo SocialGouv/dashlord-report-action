@@ -40,7 +40,6 @@ const DependabotBadge = (node: DependabotNode) => {
 type DependabotProps = { data: DependabotRepository; url: string };
 
 export const Dependabot: React.FC<DependabotProps> = ({ data, url }) => {
-  console.log("data=" + JSON.stringify(data));
   const nodes =
     data && data.vulnerabilityAlerts.totalCount > 0
       ? data.vulnerabilityAlerts.nodes
@@ -51,7 +50,19 @@ export const Dependabot: React.FC<DependabotProps> = ({ data, url }) => {
       <Panel
         title="Dependabot"
         url={data.url}
-        info={"Scan des vulnérabiliés du dépôt Github " + data.url}
+        info={
+          <span>
+            Scan des vulnérabiliés du dépôt Github{" "}
+            <a
+              style={{ color: "white" }}
+              href={data.url}
+              target="_blank"
+              rel="noopener noreferer"
+            >
+              {data.url}
+            </a>
+          </span>
+        }
       >
         <Table striped bordered hover>
           <thead>

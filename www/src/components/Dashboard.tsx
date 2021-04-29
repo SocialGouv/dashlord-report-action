@@ -136,7 +136,7 @@ const LightHouseBadge: React.FC<LightHouseBadgeProps> = ({
   }
   // use custom scoring
   lhrCategories["performance"].score = getPerformanceScore(report.lhr);
-  
+
   const value =
     lhrCategories &&
     lhrCategories[category] &&
@@ -233,6 +233,7 @@ const DependabotBadge: React.FC<BadgeProps> = ({ report }) => {
   const dependabotCount =
     report.dependabot &&
     report.dependabot
+      .filter(Boolean)
       .map((repo) => repo.vulnerabilityAlerts.totalCount)
       .reduce((prev, curr) => prev + curr, 0);
   const maxGrade = (a: "F" | "B" | "A", b: "F" | "B" | "A") => {
@@ -246,12 +247,17 @@ const DependabotBadge: React.FC<BadgeProps> = ({ report }) => {
     orders.set(1, "A");
     return orders.get(Math.max(grades.get(a), grades.get(b)));
   };
-  const dependabotGrade =
+  const grades =
     report.dependabot &&
     report.dependabot
-      .map((repo) => getDependabotNodeGrade(repo.vulnerabilityAlerts.nodes))
-      .reduce(maxGrade);
+      .filter(Boolean)
+      .map((repo) => getDependabotNodeGrade(repo.vulnerabilityAlerts.nodes));
 
+  if (!grades.length) {
+    return <IconUnknown />;
+  }
+
+  const dependabotGrade = grades.reduce(maxGrade);
   return <Grade small grade={dependabotGrade} label={dependabotCount} />;
 };
 

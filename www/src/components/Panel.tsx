@@ -6,7 +6,7 @@ import { ExternalLink } from "react-feather";
 type PanelProps = {
   title: string;
   children: React.ReactNode;
-  info?: string;
+  info?: string | React.ReactNode;
   url?: string;
   style?: object;
   className?:string;
