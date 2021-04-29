@@ -429,7 +429,22 @@ Array [
             }
           }
         >
-          Scan des vulnérabiliés du dépôt Github https://github.com/SocialGouv/www
+          <span>
+            Scan des vulnérabiliés du dépôt Github
+             
+            <a
+              href="https://github.com/SocialGouv/www"
+              rel="noopener noreferer"
+              style={
+                Object {
+                  "color": "white",
+                }
+              }
+              target="_blank"
+            >
+              https://github.com/SocialGouv/www
+            </a>
+          </span>
         </span>
         <a
           href="https://github.com/SocialGouv/www"

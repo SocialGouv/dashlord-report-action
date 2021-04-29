@@ -26,7 +26,7 @@ export const Grade: React.FC<GradeProps> = ({ grade, label, small }) => {
       variant={variant}
       style={{ minWidth: 60, fontSize: small ? "1.1em" : "2em" }}
     >
-      {label || grade}
+      {label !== undefined ? label : grade}
     </Badge>
   );
 };
