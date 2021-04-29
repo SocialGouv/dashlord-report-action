@@ -31,13 +31,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ report }) => {
               Accueil
             </NavLink>
             <NavLink
-              to="/dashboard"
+              to="/intro"
               className="nav-link"
               activeClassName="active"
               exact={true}
             >
               <BarChart size={16} style={{ marginTop: -5, marginRight: 5 }} />
-              Tableau de bord
+              Introduction
             </NavLink>
           </li>
         </ul>

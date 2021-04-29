@@ -50,7 +50,7 @@ exports[`Should render empty Sidebar 1`] = `
         <a
           aria-current={null}
           className="nav-link"
-          href="/dashboard"
+          href="/intro"
           onClick={[Function]}
         >
           <svg
@@ -89,7 +89,7 @@ exports[`Should render empty Sidebar 1`] = `
               y2="16"
             />
           </svg>
-          Tableau de bord
+          Introduction
         </a>
       </li>
     </ul>
@@ -223,7 +223,7 @@ exports[`Should render full Sidebar 1`] = `
         <a
           aria-current={null}
           className="nav-link"
-          href="/dashboard"
+          href="/intro"
           onClick={[Function]}
         >
           <svg
@@ -262,7 +262,7 @@ exports[`Should render full Sidebar 1`] = `
               y2="16"
             />
           </svg>
-          Tableau de bord
+          Introduction
         </a>
       </li>
     </ul>
@@ -490,7 +490,7 @@ Array [
           <a
             aria-current={null}
             className="nav-link"
-            href="/dashboard"
+            href="/intro"
             onClick={[Function]}
           >
             <svg
@@ -529,7 +529,7 @@ Array [
                 y2="16"
               />
             </svg>
-            Tableau de bord
+            Introduction
           </a>
         </li>
       </ul>

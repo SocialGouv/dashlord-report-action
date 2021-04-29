@@ -101,11 +101,14 @@ const App = () => {
                 <Route path="/wappalyzer">
                   <WappalyzerDashboard report={report} />
                 </Route>
+                <Route path="/intro">
+                  <Intro />
+                </Route>
                 <Route path="/about">
                   <About />
                 </Route>
                 <Route path="/">
-                  <Intro />
+                  <Dashboard report={report} />
                 </Route>
               </Switch>
             </main>
