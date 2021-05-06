@@ -27,8 +27,6 @@ exports[`Should render empty Dashboard 1`] = `
         }
       >
         <span
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
           style={
             Object {
               "fontSize": "0.9em",
@@ -40,6 +38,8 @@ exports[`Should render empty Dashboard 1`] = `
           <svg
             fill="none"
             height={16}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -72,6 +72,42 @@ exports[`Should render empty Dashboard 1`] = `
             />
           </svg>
         </span>
+        <svg
+          fill="none"
+          height={16}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          style={
+            Object {
+              "cursor": "pointer",
+              "marginLeft": 5,
+              "stroke": "var(--danger)",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={16}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+          />
+          <line
+            x1="12"
+            x2="12"
+            y1="9"
+            y2="13"
+          />
+          <line
+            x1="12"
+            x2="12.01"
+            y1="17"
+            y2="17"
+          />
+        </svg>
       </th>
       <th
         className="text-center sticky-top"
@@ -83,8 +119,6 @@ exports[`Should render empty Dashboard 1`] = `
         }
       >
         <span
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
           style={
             Object {
               "fontSize": "0.9em",
@@ -96,6 +130,8 @@ exports[`Should render empty Dashboard 1`] = `
           <svg
             fill="none"
             height={16}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -139,8 +175,6 @@ exports[`Should render empty Dashboard 1`] = `
         }
       >
         <span
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
           style={
             Object {
               "fontSize": "0.9em",
@@ -152,6 +186,8 @@ exports[`Should render empty Dashboard 1`] = `
           <svg
             fill="none"
             height={16}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -195,8 +231,6 @@ exports[`Should render empty Dashboard 1`] = `
         }
       >
         <span
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
           style={
             Object {
               "fontSize": "0.9em",
@@ -208,6 +242,8 @@ exports[`Should render empty Dashboard 1`] = `
           <svg
             fill="none"
             height={16}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -251,8 +287,6 @@ exports[`Should render empty Dashboard 1`] = `
         }
       >
         <span
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
           style={
             Object {
               "fontSize": "0.9em",
@@ -264,6 +298,8 @@ exports[`Should render empty Dashboard 1`] = `
           <svg
             fill="none"
             height={16}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -307,19 +343,19 @@ exports[`Should render empty Dashboard 1`] = `
         }
       >
         <span
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
           style={
             Object {
               "fontSize": "0.9em",
             }
           }
         >
-          Updown.io
+          Disponibilité
           <br />
           <svg
             fill="none"
             height={16}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -363,8 +399,6 @@ exports[`Should render empty Dashboard 1`] = `
         }
       >
         <span
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
           style={
             Object {
               "fontSize": "0.9em",
@@ -376,6 +410,8 @@ exports[`Should render empty Dashboard 1`] = `
           <svg
             fill="none"
             height={16}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -419,8 +455,6 @@ exports[`Should render empty Dashboard 1`] = `
         }
       >
         <span
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
           style={
             Object {
               "fontSize": "0.9em",
@@ -432,6 +466,8 @@ exports[`Should render empty Dashboard 1`] = `
           <svg
             fill="none"
             height={16}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -475,8 +511,6 @@ exports[`Should render empty Dashboard 1`] = `
         }
       >
         <span
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
           style={
             Object {
               "fontSize": "0.9em",
@@ -488,6 +522,8 @@ exports[`Should render empty Dashboard 1`] = `
           <svg
             fill="none"
             height={16}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -520,6 +556,42 @@ exports[`Should render empty Dashboard 1`] = `
             />
           </svg>
         </span>
+        <svg
+          fill="none"
+          height={16}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          style={
+            Object {
+              "cursor": "pointer",
+              "marginLeft": 5,
+              "stroke": "var(--danger)",
+            }
+          }
+          viewBox="0 0 24 24"
+          width={16}
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+          />
+          <line
+            x1="12"
+            x2="12"
+            y1="9"
+            y2="13"
+          />
+          <line
+            x1="12"
+            x2="12.01"
+            y1="17"
+            y2="17"
+          />
+        </svg>
       </th>
       <th
         className="text-center sticky-top"
@@ -531,8 +603,6 @@ exports[`Should render empty Dashboard 1`] = `
         }
       >
         <span
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
           style={
             Object {
               "fontSize": "0.9em",
@@ -544,6 +614,8 @@ exports[`Should render empty Dashboard 1`] = `
           <svg
             fill="none"
             height={16}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -587,8 +659,6 @@ exports[`Should render empty Dashboard 1`] = `
         }
       >
         <span
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
           style={
             Object {
               "fontSize": "0.9em",
@@ -600,6 +670,8 @@ exports[`Should render empty Dashboard 1`] = `
           <svg
             fill="none"
             height={16}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
             stroke="currentColor"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -667,8 +739,6 @@ Array [
           }
         >
           <span
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
             style={
               Object {
                 "fontSize": "0.9em",
@@ -680,6 +750,8 @@ Array [
             <svg
               fill="none"
               height={16}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -712,6 +784,42 @@ Array [
               />
             </svg>
           </span>
+          <svg
+            fill="none"
+            height={16}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            style={
+              Object {
+                "cursor": "pointer",
+                "marginLeft": 5,
+                "stroke": "var(--danger)",
+              }
+            }
+            viewBox="0 0 24 24"
+            width={16}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="9"
+              y2="13"
+            />
+            <line
+              x1="12"
+              x2="12.01"
+              y1="17"
+              y2="17"
+            />
+          </svg>
         </th>
         <th
           className="text-center sticky-top"
@@ -723,8 +831,6 @@ Array [
           }
         >
           <span
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
             style={
               Object {
                 "fontSize": "0.9em",
@@ -736,6 +842,8 @@ Array [
             <svg
               fill="none"
               height={16}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -779,8 +887,6 @@ Array [
           }
         >
           <span
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
             style={
               Object {
                 "fontSize": "0.9em",
@@ -792,6 +898,8 @@ Array [
             <svg
               fill="none"
               height={16}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -835,8 +943,6 @@ Array [
           }
         >
           <span
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
             style={
               Object {
                 "fontSize": "0.9em",
@@ -848,6 +954,8 @@ Array [
             <svg
               fill="none"
               height={16}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -891,8 +999,6 @@ Array [
           }
         >
           <span
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
             style={
               Object {
                 "fontSize": "0.9em",
@@ -904,6 +1010,8 @@ Array [
             <svg
               fill="none"
               height={16}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -947,19 +1055,19 @@ Array [
           }
         >
           <span
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
             style={
               Object {
                 "fontSize": "0.9em",
               }
             }
           >
-            Updown.io
+            Disponibilité
             <br />
             <svg
               fill="none"
               height={16}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -1003,8 +1111,6 @@ Array [
           }
         >
           <span
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
             style={
               Object {
                 "fontSize": "0.9em",
@@ -1016,6 +1122,8 @@ Array [
             <svg
               fill="none"
               height={16}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -1059,8 +1167,6 @@ Array [
           }
         >
           <span
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
             style={
               Object {
                 "fontSize": "0.9em",
@@ -1072,6 +1178,8 @@ Array [
             <svg
               fill="none"
               height={16}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -1115,8 +1223,6 @@ Array [
           }
         >
           <span
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
             style={
               Object {
                 "fontSize": "0.9em",
@@ -1128,6 +1234,8 @@ Array [
             <svg
               fill="none"
               height={16}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -1160,6 +1268,42 @@ Array [
               />
             </svg>
           </span>
+          <svg
+            fill="none"
+            height={16}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            style={
+              Object {
+                "cursor": "pointer",
+                "marginLeft": 5,
+                "stroke": "var(--danger)",
+              }
+            }
+            viewBox="0 0 24 24"
+            width={16}
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+            />
+            <line
+              x1="12"
+              x2="12"
+              y1="9"
+              y2="13"
+            />
+            <line
+              x1="12"
+              x2="12.01"
+              y1="17"
+              y2="17"
+            />
+          </svg>
         </th>
         <th
           className="text-center sticky-top"
@@ -1171,8 +1315,6 @@ Array [
           }
         >
           <span
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
             style={
               Object {
                 "fontSize": "0.9em",
@@ -1184,6 +1326,8 @@ Array [
             <svg
               fill="none"
               height={16}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -1227,8 +1371,6 @@ Array [
           }
         >
           <span
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
             style={
               Object {
                 "fontSize": "0.9em",
@@ -1240,6 +1382,8 @@ Array [
             <svg
               fill="none"
               height={16}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -1610,29 +1754,17 @@ Array [
         <td
           className="text-center"
         >
-          <svg
-            fill="none"
-            height={20}
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            viewBox="0 0 24 24"
-            width={20}
-            xmlns="http://www.w3.org/2000/svg"
+          <span
+            className="badge badge-success"
+            style={
+              Object {
+                "fontSize": "1.1em",
+                "minWidth": 60,
+              }
+            }
           >
-            <circle
-              cx="12"
-              cy="12"
-              r="10"
-            />
-            <line
-              x1="4.93"
-              x2="19.07"
-              y1="4.93"
-              y2="19.07"
-            />
-          </svg>
+            100 %
+          </span>
         </td>
         <td
           className="text-center"
@@ -1744,8 +1876,6 @@ Array [
           }
         >
           <span
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
             style={
               Object {
                 "fontSize": "0.9em",
@@ -1757,6 +1887,8 @@ Array [
             <svg
               fill="none"
               height={16}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -1800,8 +1932,6 @@ Array [
           }
         >
           <span
-            onMouseEnter={[Function]}
-            onMouseLeave={[Function]}
             style={
               Object {
                 "fontSize": "0.9em",
@@ -1813,6 +1943,8 @@ Array [
             <svg
               fill="none"
               height={16}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
               stroke="currentColor"
               strokeLinecap="round"
               strokeLinejoin="round"

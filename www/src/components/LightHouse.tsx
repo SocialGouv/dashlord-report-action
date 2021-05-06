@@ -1,10 +1,11 @@
 import * as React from "react";
 
 import { Row, Col, Card } from "react-bootstrap";
-
+import { AlertTriangle } from "react-feather";
 import { Gauge } from "./Gauge";
 import { Panel } from "./Panel";
 import { getPerformanceScore } from "../lib/lighthouse/getPerformanceScore";
+import { AccessibilityWarnings } from "../lib/lighthouse/AccessibilityWarnings";
 
 const toTime = (ms: number) => {
   let minutes = 0,
@@ -84,6 +85,9 @@ export const LightHouse: React.FC<LighthouseProps> = ({ data, url }) => {
       url={url}
     >
       <Row>
+        <Col xs={12}>
+          <AccessibilityWarnings style={{ marginBottom: 20 }} />
+        </Col>
         {order.map((key, i: number) => {
           const category = data.categories[key as LighthouseReportCategoryKey];
           return (

@@ -1,13 +1,14 @@
 import * as React from "react";
 
 import { Table } from "react-bootstrap";
-import { Slash, Info, Search } from "react-feather";
+import { Slash, Info, Search, AlertTriangle } from "react-feather";
 import { Link } from "react-router-dom";
 import Tooltip from "rc-tooltip";
 
 import { Grade } from "./Grade";
 import { sortByKey, smallUrl, isToolEnabled } from "../utils";
 import { getPerformanceScore } from "../lib/lighthouse/getPerformanceScore";
+import { AccessibilityWarnings } from "../lib/lighthouse/AccessibilityWarnings";
 
 import "rc-tooltip/assets/bootstrap.css";
 
@@ -100,24 +101,46 @@ const getDependabotNodeGrade = (nodes: DependabotNode[]) => {
 type ColumnHeaderProps = {
   title: string;
   info: string;
+  warning?: React.ReactNode;
 };
 
-const ColumnHeader: React.FC<ColumnHeaderProps> = ({ title, info }) => (
+const ColumnHeader: React.FC<ColumnHeaderProps> = ({
+  title,
+  info,
+  warning,
+}) => (
   <th
     className="text-center sticky-top"
     style={{ background: "var(--white)", top: 30 }}
   >
-    <Tooltip
-      placement="bottom"
-      trigger={["hover"]}
-      overlay={<span>{info}</span>}
-    >
-      <span style={{ fontSize: "0.9em" }}>
-        {title}
-        <br />
+    <span style={{ fontSize: "0.9em" }}>
+      {title}
+      <br />
+      <Tooltip
+        placement="bottom"
+        trigger={["hover"]}
+        overlay={<div style={{ maxWidth: 300 }}>{info}</div>}
+      >
         <Info size={16} style={{ cursor: "pointer" }} />
-      </span>
-    </Tooltip>
+      </Tooltip>
+    </span>
+
+    {warning && (
+      <Tooltip
+        placement="bottom"
+        trigger={["hover"]}
+        overlay={<div style={{ maxWidth: 300 }}>{warning}</div>}
+      >
+        <AlertTriangle
+          size={16}
+          style={{
+            stroke: "var(--danger)",
+            marginLeft: 5,
+            cursor: "pointer",
+          }}
+        />
+      </Tooltip>
+    )}
   </th>
 );
 
@@ -288,52 +311,62 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
           {isToolEnabled("lighthouse") && (
             <ColumnHeader
               title="Accessibilité"
-              info="Bonnes pratiques en matière d'accessibilité web"
+              info="Bonnes pratiques en matière d'accessibilité web (LightHouse)"
+              warning={<AccessibilityWarnings />}
             />
           )}
           {isToolEnabled("lighthouse") && (
             <ColumnHeader
               title="Performance"
-              info="Performances de chargement des pages web"
+              info="Performances de chargement des pages web (LightHouse)"
             />
           )}
           {isToolEnabled("lighthouse") && (
             <ColumnHeader
               title="SEO"
-              info="Bonnes pratiques en matière de référencement naturel"
+              info="Bonnes pratiques en matière de référencement naturel (LightHouse)"
             />
           )}
           {isToolEnabled("testssl") && (
             <ColumnHeader
               title="SSL"
-              info="Niveau de sécurité du certificat SSL"
+              info="Niveau de confiance du certificat SSL (testssl.sh)"
             />
           )}
           {isToolEnabled("http") && (
             <ColumnHeader
               title="HTTP"
-              info="Bonnes pratiques de configuration HTTP"
+              info="Bonnes pratiques de configuration HTTP (Mozilla observatory)"
             />
           )}
           {isToolEnabled("updownio") && (
-            <ColumnHeader title="Updown.io" info="Temps de réponse" />
+            <ColumnHeader
+              title="Disponibilité"
+              info="Disponibilité du service (updown.io)"
+            />
           )}
           {isToolEnabled("dependabot") && (
             <ColumnHeader
               title="Vulnérabilités"
-              info="Dependabot security scan"
+              info="Vulnérabilités applicatives detectées dans les codes sources (dependabot)"
             />
           )}
           {isToolEnabled("zap") && (
             <ColumnHeader
               title="OWASP"
-              info="Bonnes pratiques de sécurité OWASP"
+              info="Bonnes pratiques de sécurité OWASP (Zap baseline)"
             />
           )}
           {isToolEnabled("thirdparties") && (
             <ColumnHeader
               title="Trackers"
               info="Nombre de scripts externes présents"
+              warning={
+                <div>
+                  Certains scripts externes légitimes peuvent être considérés
+                  comme trackers.
+                </div>
+              }
             />
           )}
           {isToolEnabled("thirdparties") && (

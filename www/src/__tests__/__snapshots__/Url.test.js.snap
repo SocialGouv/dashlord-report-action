@@ -138,6 +138,26 @@ Array [
           className="row"
         >
           <div
+            className="col-12"
+          >
+            <div
+              style={
+                Object {
+                  "marginBottom": 20,
+                }
+              }
+            >
+              Moins de 25% des critères d'accessibilité peuvent être testés automatiquement, 
+              <strong>
+                une expertise manuelle est requise
+              </strong>
+              .
+              <br />
+              <br />
+              Ce score ne représente pas le score RGA mais une partie des bonnes pratiques de base à appliquer.
+            </div>
+          </div>
+          <div
             className="text-center mb-3 col-lg-3 col-md-6 col-12"
           >
             <div
@@ -666,6 +686,49 @@ Array [
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+    <br />
+    <div
+      className="card"
+      style={
+        Object {
+          "marginBottom": 20,
+        }
+      }
+    >
+      <div
+        className="card-title h5"
+        style={
+          Object {
+            "background": "#000091",
+            "color": "white",
+            "padding": 10,
+          }
+        }
+      >
+        Temps de réponse
+        <span
+          style={
+            Object {
+              "fontSize": "0.6em",
+              "fontWeight": "normal",
+              "marginLeft": 10,
+            }
+          }
+        >
+          Informations collectées par updown.io
+        </span>
+      </div>
+      <div
+        className="card-body"
+      >
+        <div
+          className="fade alert alert-success show"
+          role="alert"
+        >
+          Aucune donnée updown.io associée
+        </div>
       </div>
     </div>
     <br />
