@@ -49,7 +49,7 @@ export const Dependabot: React.FC<DependabotProps> = ({ data, url }) => {
     (data.vulnerabilityAlerts.totalCount > 0 && (
       <Panel
         title="Dependabot"
-        url={data.url}
+        url={data.url + '/security/dependabot'}
         info={
           <span>
             Scan des vulnérabiliés du dépôt Github{" "}
@@ -57,7 +57,7 @@ export const Dependabot: React.FC<DependabotProps> = ({ data, url }) => {
               style={{ color: "white" }}
               href={data.url}
               target="_blank"
-              rel="noopener noreferer"
+              rel="noopener noreferrer"
             >
               {data.url}
             </a>
@@ -87,7 +87,7 @@ export const Dependabot: React.FC<DependabotProps> = ({ data, url }) => {
                       (reference, i: number) => {
                         return (
                           <p key={getLastUrlSegment(reference.url) + i}>
-                            <a target="_blank" href={reference.url}>
+                            <a target="_blank" href={reference.url} rel="noopener noreferrer">
                               {getLastUrlSegment(reference.url)}
                             </a>
                             <br />
