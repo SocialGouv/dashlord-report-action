@@ -10,7 +10,7 @@ export const AccessibilityWarnings = ({ style }: AccessibilityWarningProps) => (
     automatiquement, <strong>une expertise manuelle est requise</strong>.
     <br />
     <br />
-    Ce score ne représente pas le score RGA mais une partie des bonnes pratiques
-    de base à appliquer.
+    Ce score ne représente pas le score RGAA mais une partie des bonnes
+    pratiques de base à appliquer.
   </div>
 );
