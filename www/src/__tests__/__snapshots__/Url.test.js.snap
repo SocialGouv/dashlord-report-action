@@ -30,8 +30,68 @@ Array [
         </a>
       </h4>
       <p>
+        <a
+          href="/category/fabrique"
+          onClick={[Function]}
+        >
+          <span
+            className="badge badge-success"
+            style={
+              Object {
+                "marginRight": 5,
+              }
+            }
+          >
+            fabrique
+          </span>
+        </a>
+        <a
+          href="/tag/social"
+          onClick={[Function]}
+        >
+          <span
+            className="badge badge-info"
+            style={
+              Object {
+                "marginRight": 5,
+              }
+            }
+          >
+            social
+          </span>
+        </a>
+        <a
+          href="/tag/sante"
+          onClick={[Function]}
+        >
+          <span
+            className="badge badge-info"
+            style={
+              Object {
+                "marginRight": 5,
+              }
+            }
+          >
+            sante
+          </span>
+        </a>
+        <a
+          href="/tag/travail"
+          onClick={[Function]}
+        >
+          <span
+            className="badge badge-info"
+            style={
+              Object {
+                "marginRight": 5,
+              }
+            }
+          >
+            travail
+          </span>
+        </a>
         <span
-          title="2021-04-28T21:29:15.244Z"
+          title="2021-04-30T07:30:39.491Z"
         >
           <svg
             fill="none"
@@ -60,7 +120,7 @@ Array [
           </svg>
           Mise à jour il y a :
            
-          23 jours
+          24 jours
         </span>
       </p>
     </div>
@@ -214,7 +274,7 @@ Array [
                     }
                   }
                 >
-                  29%
+                  26%
                 </div>
               </div>
             </div>
@@ -313,7 +373,7 @@ Array [
                     }
                   }
                 >
-                  1.5s
+                  1.7s
                 </div>
               </div>
             </div>
@@ -346,7 +406,7 @@ Array [
                     }
                   }
                 >
-                  2.6s
+                  2.2s
                 </div>
               </div>
             </div>
@@ -720,7 +780,7 @@ Array [
           Informations collectées par updown.io
         </span>
         <a
-          href="https://updown.io/5o23"
+          href="https://updown.io/rt57"
           rel="noreferrer noopener"
           style={
             Object {
@@ -819,7 +879,7 @@ Array [
                 >
                   expire le
                    
-                  13/07/2021
+                  21/06/2021
                 </div>
               </div>
             </div>
@@ -1167,13 +1227,13 @@ Array [
                 </span>
               </td>
               <td>
-                tech-detect
+                waf-detect
               </td>
               <td>
-                Wappalyzer Technology Detection
+                WAF Detection
               </td>
               <td>
-                nginx
+                nginxgeneric
               </td>
             </tr>
             <tr>
@@ -1185,13 +1245,13 @@ Array [
                 </span>
               </td>
               <td>
-                waf-detect
+                tech-detect
               </td>
               <td>
-                WAF Detection
+                Wappalyzer Technology Detection
               </td>
               <td>
-                nginxgeneric
+                nginx
               </td>
             </tr>
           </tbody>
@@ -1891,8 +1951,68 @@ Array [
         />
       </h4>
       <p>
+        <a
+          href="/category/fabrique"
+          onClick={[Function]}
+        >
+          <span
+            className="badge badge-success"
+            style={
+              Object {
+                "marginRight": 5,
+              }
+            }
+          >
+            fabrique
+          </span>
+        </a>
+        <a
+          href="/tag/social"
+          onClick={[Function]}
+        >
+          <span
+            className="badge badge-info"
+            style={
+              Object {
+                "marginRight": 5,
+              }
+            }
+          >
+            social
+          </span>
+        </a>
+        <a
+          href="/tag/sante"
+          onClick={[Function]}
+        >
+          <span
+            className="badge badge-info"
+            style={
+              Object {
+                "marginRight": 5,
+              }
+            }
+          >
+            sante
+          </span>
+        </a>
+        <a
+          href="/tag/travail"
+          onClick={[Function]}
+        >
+          <span
+            className="badge badge-info"
+            style={
+              Object {
+                "marginRight": 5,
+              }
+            }
+          >
+            travail
+          </span>
+        </a>
         <span
-          title="2021-04-28T21:29:15.244Z"
+          title="2021-04-30T07:30:39.491Z"
         >
           <svg
             fill="none"
@@ -1921,7 +2041,7 @@ Array [
           </svg>
           Mise à jour il y a :
            
-          23 jours
+          24 jours
         </span>
       </p>
     </div>

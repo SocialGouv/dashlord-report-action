@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import { Row, Col, Card } from "react-bootstrap";
-import { AlertTriangle } from "react-feather";
 import { Gauge } from "./Gauge";
 import { Panel } from "./Panel";
 import { getPerformanceScore } from "../lib/lighthouse/getPerformanceScore";
