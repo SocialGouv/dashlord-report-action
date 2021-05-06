@@ -1,15 +1,18 @@
 import * as React from "react";
-
-import { Table } from "react-bootstrap";
+import { useState, useMemo } from "react";
 import { Slash, Info, Search, AlertTriangle } from "react-feather";
 import { Link } from "react-router-dom";
 import Tooltip from "rc-tooltip";
+import orderBy from "lodash.orderby";
+
+import BaseTable, { AutoResizer, Column, SortOrder } from "react-base-table";
 
 import { Grade } from "./Grade";
-import { sortByKey, smallUrl, isToolEnabled } from "../utils";
+import { smallUrl, isToolEnabled, letterGradeValue } from "../utils";
 import { getPerformanceScore } from "../lib/lighthouse/getPerformanceScore";
 import { AccessibilityWarnings } from "../lib/lighthouse/AccessibilityWarnings";
 
+import "react-base-table/styles.css";
 import "rc-tooltip/assets/bootstrap.css";
 
 type DashboardProps = { report: DashLordReport };
@@ -109,10 +112,7 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = ({
   info,
   warning,
 }) => (
-  <th
-    className="text-center sticky-top"
-    style={{ background: "var(--white)", top: 30 }}
-  >
+  <div style={{ textAlign: "center" }}>
     <span style={{ fontSize: "0.9em" }}>
       {title}
       <br />
@@ -141,7 +141,7 @@ const ColumnHeader: React.FC<ColumnHeaderProps> = ({
         />
       </Tooltip>
     )}
-  </th>
+  </div>
 );
 
 type BadgeProps = { report: UrlReport };
@@ -295,160 +295,351 @@ const UpDownIoBadge: React.FC<BadgeProps> = ({ report }) => {
   );
 };
 
+type SortState = {
+  key: string;
+  order: SortOrder;
+  column: { [column: string]: string };
+};
+
+const defaultSort = {
+  key: "url",
+  order: "asc",
+  column: { dataKey: "url" },
+} as SortState;
+
 export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
-  const sortedReport = (report && report.sort(sortByKey("url"))) || [];
+  const [sortBy, setSortBy] = useState(defaultSort);
+
+  const onColumnSort = (column: any) => {
+    setSortBy(column);
+  };
+
+  const sortedReport = useMemo(() => {
+    const getSortedRows = (rows: any) => {
+      return orderBy(
+        rows,
+        (row) => {
+          if (sortBy.column.dataGetter) {
+            //@ts-expect-error
+            return sortBy.column.dataGetter({ rowData: row });
+          } else if (sortBy.column.key) {
+            return row[sortBy.column.key];
+          }
+        },
+        sortBy.order
+      );
+    };
+
+    return getSortedRows(report);
+  }, [sortBy, report]);
+
+  const defaultColumnProps = {
+    width: 120,
+    sortable: true,
+    align: "center",
+  } as {
+    width: number;
+    sortable: boolean;
+    align: "center" | "left" | "right";
+  };
 
   return (
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th
-            className="sticky-top"
-            style={{ background: "var(--white)", top: 30 }}
+    <div style={{ width: "100%", height: "calc(100vh - 30px)" }}>
+      <AutoResizer>
+        {({ width, height }) => (
+          <BaseTable
+            data={sortedReport}
+            width={width}
+            height={height}
+            sortBy={sortBy}
+            onColumnSort={onColumnSort}
           >
-            url
-          </th>
-          {isToolEnabled("lighthouse") && (
-            <ColumnHeader
-              title="Accessibilité"
-              info="Bonnes pratiques en matière d'accessibilité web (LightHouse)"
-              warning={<AccessibilityWarnings />}
-            />
-          )}
-          {isToolEnabled("lighthouse") && (
-            <ColumnHeader
-              title="Performance"
-              info="Performances de chargement des pages web (LightHouse)"
-            />
-          )}
-          {isToolEnabled("lighthouse") && (
-            <ColumnHeader
-              title="SEO"
-              info="Bonnes pratiques en matière de référencement naturel (LightHouse)"
-            />
-          )}
-          {isToolEnabled("testssl") && (
-            <ColumnHeader
-              title="SSL"
-              info="Niveau de confiance du certificat SSL (testssl.sh)"
-            />
-          )}
-          {isToolEnabled("http") && (
-            <ColumnHeader
-              title="HTTP"
-              info="Bonnes pratiques de configuration HTTP (Mozilla observatory)"
-            />
-          )}
-          {isToolEnabled("updownio") && (
-            <ColumnHeader
-              title="Disponibilité"
-              info="Disponibilité du service (updown.io)"
-            />
-          )}
-          {isToolEnabled("dependabot") && (
-            <ColumnHeader
-              title="Vulnérabilités"
-              info="Vulnérabilités applicatives detectées dans les codes sources (dependabot)"
-            />
-          )}
-          {isToolEnabled("zap") && (
-            <ColumnHeader
-              title="OWASP"
-              info="Bonnes pratiques de sécurité OWASP (Zap baseline)"
-            />
-          )}
-          {isToolEnabled("thirdparties") && (
-            <ColumnHeader
-              title="Trackers"
-              info="Nombre de scripts externes présents"
-              warning={
-                <div>
-                  Certains scripts externes légitimes peuvent être considérés
-                  comme trackers.
-                </div>
-              }
-            />
-          )}
-          {isToolEnabled("thirdparties") && (
-            <ColumnHeader title="Cookies" info="Nombre de cookies présents" />
-          )}
-          {isToolEnabled("nuclei") && (
-            <ColumnHeader title="Nuclei" info="Erreurs de configuration" />
-          )}
-        </tr>
-      </thead>
-      <tbody>
-        {sortedReport.map((urlReport) => {
-          return (
-            <tr key={urlReport.url}>
-              <td>
-                <Link to={`/url/${encodeURIComponent(urlReport.url)}`}>
+            <Column
+              key="url"
+              title="url"
+              sortable={true}
+              width={300}
+              flexGrow={1}
+              cellRenderer={({ rowData }) => (
+                <Link
+                  to={`/url/${encodeURIComponent((rowData as UrlReport).url)}`}
+                >
                   <Search size={16} />
-                  &nbsp;{smallUrl(urlReport.url)}
+                  &nbsp;{smallUrl((rowData as UrlReport).url)}
                 </Link>
-              </td>
-              {isToolEnabled("lighthouse") && (
-                <td className="text-center">
+              )}
+            />
+            {isToolEnabled("lighthouse") && (
+              <Column
+                {...defaultColumnProps}
+                key="accessibility"
+                dataGetter={({ rowData }) => {
+                  const report = rowData as UrlReport;
+                  return (
+                    (report &&
+                      report.lhr &&
+                      report.lhr.categories.accessibility.score) ||
+                    0
+                  );
+                }}
+                headerRenderer={() => (
+                  <ColumnHeader
+                    title="Accessibilité"
+                    info="Bonnes pratiques en matière d'accessibilité web (LightHouse)"
+                    warning={<AccessibilityWarnings />}
+                  />
+                )}
+                cellRenderer={({ rowData }) => (
                   <LightHouseBadge
-                    report={urlReport}
+                    report={rowData as UrlReport}
                     category="accessibility"
                   />
-                </td>
-              )}
-              {isToolEnabled("lighthouse") && (
-                <td className="text-center">
-                  <LightHouseBadge report={urlReport} category="performance" />
-                </td>
-              )}
-              {isToolEnabled("lighthouse") && (
-                <td className="text-center">
-                  <LightHouseBadge report={urlReport} category="seo" />
-                </td>
-              )}
-              {isToolEnabled("testssl") && (
-                <td className="text-center">
-                  <SSLBadge report={urlReport} />
-                </td>
-              )}
-              {isToolEnabled("http") && (
-                <td className="text-center">
-                  <HTTPBadge report={urlReport} />
-                </td>
-              )}
-              {isToolEnabled("updownio") && (
-                <td className="text-center">
-                  <UpDownIoBadge report={urlReport} />
-                </td>
-              )}
-              {isToolEnabled("dependabot") && (
-                <td className="text-center">
-                  <DependabotBadge report={urlReport} />
-                </td>
-              )}
-              {isToolEnabled("zap") && (
-                <td className="text-center">
-                  <ZapBadge report={urlReport} />
-                </td>
-              )}
-              {isToolEnabled("thirdparties") && (
-                <td className="text-center">
-                  <ThirdPartiesTrackersBadge report={urlReport} />
-                </td>
-              )}
-              {isToolEnabled("thirdparties") && (
-                <td className="text-center">
-                  <ThirdPartiesCookiesBadge report={urlReport} />
-                </td>
-              )}
-              {isToolEnabled("nuclei") && (
-                <td className="text-center">
-                  <NucleiBadge report={urlReport} />
-                </td>
-              )}
-            </tr>
-          );
-        })}
-      </tbody>
-    </Table>
+                )}
+              />
+            )}
+
+            {isToolEnabled("lighthouse") && (
+              <Column
+                {...defaultColumnProps}
+                key="performance"
+                dataGetter={({ rowData }) => {
+                  const report = rowData as UrlReport;
+                  return (report.lhr && getPerformanceScore(report.lhr)) || 0;
+                }}
+                headerRenderer={() => (
+                  <ColumnHeader
+                    title="Performance"
+                    info="Performances de chargement des pages web (LightHouse)"
+                  />
+                )}
+                cellRenderer={({ rowData }) => (
+                  <LightHouseBadge
+                    report={rowData as UrlReport}
+                    category="performance"
+                  />
+                )}
+              />
+            )}
+
+            {isToolEnabled("lighthouse") && (
+              <Column
+                {...defaultColumnProps}
+                key="seo"
+                dataGetter={({ rowData }) => {
+                  const report = rowData as UrlReport;
+                  return (
+                    (report && report.lhr && report.lhr.categories.seo.score) ||
+                    0
+                  );
+                }}
+                headerRenderer={() => (
+                  <ColumnHeader
+                    title="SEO"
+                    info="Bonnes pratiques en matière de référencement naturel (LightHouse)"
+                  />
+                )}
+                cellRenderer={({ rowData }) => (
+                  <LightHouseBadge
+                    report={rowData as UrlReport}
+                    category="seo"
+                  />
+                )}
+              />
+            )}
+
+            {isToolEnabled("testssl") && (
+              <Column
+                {...defaultColumnProps}
+                key="ssl"
+                dataGetter={({ rowData }) => {
+                  const report = rowData as UrlReport;
+                  const overallGrade =
+                    report.testssl &&
+                    report.testssl.find(
+                      (entry) => entry.id === "overall_grade"
+                    );
+                  return overallGrade && letterGradeValue(overallGrade.finding);
+                }}
+                headerRenderer={() => (
+                  <ColumnHeader
+                    title="SSL"
+                    info="Niveau de confiance du certificat SSL (testssl.sh)"
+                  />
+                )}
+                cellRenderer={({ rowData }) => (
+                  <SSLBadge report={rowData as UrlReport} />
+                )}
+              />
+            )}
+
+            {isToolEnabled("http") && (
+              <Column
+                {...defaultColumnProps}
+                key="http"
+                dataGetter={({ rowData }) => {
+                  const report = rowData as UrlReport;
+                  return report.http && letterGradeValue(report.http.grade);
+                }}
+                headerRenderer={() => (
+                  <ColumnHeader
+                    title="HTTP"
+                    info="Bonnes pratiques de configuration HTTP (Mozilla observatory)"
+                  />
+                )}
+                cellRenderer={({ rowData }) => (
+                  <HTTPBadge report={rowData as UrlReport} />
+                )}
+              />
+            )}
+
+            {isToolEnabled("updownio") && (
+              <Column
+                {...defaultColumnProps}
+                key="updownio"
+                dataGetter={({ rowData }) => {
+                  const report = rowData as UrlReport;
+                  return report.updownio && report.updownio.uptime;
+                }}
+                headerRenderer={() => (
+                  <ColumnHeader
+                    title="Disponibilité"
+                    info="Disponibilité du service (updown.io)"
+                  />
+                )}
+                cellRenderer={({ rowData }) => (
+                  <UpDownIoBadge report={rowData as UrlReport} />
+                )}
+              />
+            )}
+
+            {isToolEnabled("dependabot") && (
+              <Column
+                {...defaultColumnProps}
+                key="dependabot"
+                dataGetter={({ rowData }) => {
+                  const report = rowData as UrlReport;
+                  const dependabotCount =
+                    report.dependabot &&
+                    report.dependabot
+                      .filter(Boolean)
+                      .map((repo) => repo.vulnerabilityAlerts.totalCount)
+                      .reduce((prev, curr) => prev + curr, 0);
+                  return dependabotCount;
+                }}
+                headerRenderer={() => (
+                  <ColumnHeader
+                    title="Vulnérabilités"
+                    info="Vulnérabilités applicatives detectées dans les codes sources (dependabot)"
+                  />
+                )}
+                cellRenderer={({ rowData }) => (
+                  <DependabotBadge report={rowData as UrlReport} />
+                )}
+              />
+            )}
+
+            {isToolEnabled("zap") && (
+              <Column
+                {...defaultColumnProps}
+                key="zap"
+                dataGetter={({ rowData }) => {
+                  const report = rowData as UrlReport;
+                  const owaspAlerts =
+                    (report.zap &&
+                      report.zap.site &&
+                      report.zap.site.flatMap((site) =>
+                        site.alerts.filter((a) => a.riskcode !== "0")
+                      )) ||
+                    [];
+                  const maxSeverity = Math.max(
+                    ...owaspAlerts.map((o) => parseInt(o.riskcode) || 0)
+                  );
+                  return maxSeverity;
+                }}
+                headerRenderer={() => (
+                  <ColumnHeader
+                    title="OWASP"
+                    info="Bonnes pratiques de sécurité OWASP (Zap baseline)"
+                  />
+                )}
+                cellRenderer={({ rowData }) => (
+                  <ZapBadge report={rowData as UrlReport} />
+                )}
+              />
+            )}
+
+            {isToolEnabled("thirdparties") && (
+              <Column
+                {...defaultColumnProps}
+                key="trackers"
+                dataGetter={({ rowData }) => {
+                  const report = rowData as UrlReport;
+                  return (
+                    report.thirdparties && report.thirdparties.trackers.length
+                  );
+                }}
+                headerRenderer={() => (
+                  <ColumnHeader
+                    title="Trackers"
+                    info="Nombre de scripts externes détectés"
+                    warning={
+                      <div>
+                        Certains scripts externes légitimes peuvent être
+                        considérés comme trackers.
+                      </div>
+                    }
+                  />
+                )}
+                cellRenderer={({ rowData }) => (
+                  <ThirdPartiesTrackersBadge report={rowData as UrlReport} />
+                )}
+              />
+            )}
+
+            {isToolEnabled("thirdparties") && (
+              <Column
+                {...defaultColumnProps}
+                key="cookies"
+                dataGetter={({ rowData }) => {
+                  const report = rowData as UrlReport;
+                  return (
+                    report.thirdparties && report.thirdparties.cookies.length
+                  );
+                }}
+                headerRenderer={() => (
+                  <ColumnHeader
+                    title="Cookies"
+                    info="Nombre de cookies présents"
+                  />
+                )}
+                cellRenderer={({ rowData }) => (
+                  <ThirdPartiesCookiesBadge report={rowData as UrlReport} />
+                )}
+              />
+            )}
+
+            {isToolEnabled("nuclei") && (
+              <Column
+                {...defaultColumnProps}
+                key="nuclei"
+                dataGetter={({ rowData }) => {
+                  const report = rowData as UrlReport;
+                  return report.nuclei && report.nuclei.length;
+                }}
+                headerRenderer={() => (
+                  <ColumnHeader
+                    title="Nucléi"
+                    info="Erreurs de configuration"
+                  />
+                )}
+                cellRenderer={({ rowData }) => (
+                  <NucleiBadge report={rowData as UrlReport} />
+                )}
+              />
+            )}
+          </BaseTable>
+        )}
+      </AutoResizer>
+    </div>
   );
 };
