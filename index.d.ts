@@ -15,6 +15,7 @@ type DashlordTool =
   | "updownio"
   | "wappalyzer"
   | "dependabot"
+  | "codescan"
   | "zap";
 
 type DashlordConfig = {
@@ -166,7 +167,25 @@ type DependabotRepository = {
   vulnerabilityAlerts: DependabotVulnerabilityAlerts
 };
 
-type DependabotReport =  DependabotRepository[]
+type DependabotReport =  DependabotRepository[];
+
+type CodescanRule = {
+  severity: string,
+  name: string,
+  description: string
+};
+
+type CodescanAlert = {
+  html_url: string,
+  rule: CodescanRule
+};
+
+type CodescanRepository = {
+  url: string,
+  alerts: CodescanAlert[]
+};
+
+type CodescanReport =  CodescanRepository[];
 
 type ThirdPartyTracker = {
   type: string
@@ -266,6 +285,7 @@ type UrlReport = UrlConfig & {
   wappalyzer?: WappalyzerReport | null;
   updownio?: UpDownReport | null;
   dependabot?: DependabotReport | null;
+  codescan?: CodescanReport | null;
 }
 
 type DashLordReport = UrlReport[]

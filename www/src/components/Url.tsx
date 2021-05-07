@@ -15,6 +15,7 @@ import { Trackers } from "./Trackers";
 import { Wappalyzer } from "./Wappalyzer";
 import { UpdownIo } from "./UpdownIo";
 import { Dependabot } from "./Dependabot";
+import { Codescan } from "./Codescan";
 
 type UrlDetailProps = { url: string; report: UrlReport };
 
@@ -75,6 +76,17 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
           {report.dependabot.filter(Boolean).map((repository) => {
             return (
               <Dependabot key={repository.url} data={repository} url={url} />
+            );
+          })}
+          <br />
+        </React.Fragment>
+      )) ||
+        null}
+      {(isToolEnabled("codescan") && report.codescan && (
+        <React.Fragment>
+          {report.codescan.filter(Boolean).map((repository) => {
+            return (
+              <Codescan key={repository.url} data={repository} url={url} />
             );
           })}
           <br />

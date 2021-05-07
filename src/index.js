@@ -137,6 +137,7 @@ const generateReport = () => {
           http: requireJson(path.join(latestFilesPath, "http.json")),
           updownio: requireJson(path.join(latestFilesPath, "updownio.json")),
           dependabot: requireJson(path.join(latestFilesPath, "dependabotalerts.json")),
+          codescan: requireJson(path.join(latestFilesPath, "codescanalerts.json")),
           testssl: requireJson(path.join(latestFilesPath, "testssl.json")),
           thirdparties: requireJson(
             path.join(latestFilesPath, "thirdparties.json")

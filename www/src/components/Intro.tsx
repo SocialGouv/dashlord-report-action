@@ -82,10 +82,10 @@ export const Intro: React.FC = () => {
       </Panel>}
 
       {isToolEnabled("dependabot") && <Panel title="Dependabot">
-        Recense les vulnérabilités de ton code
+        Recense les vulnérabilités de tes dépendances dans ton code
         <br />
         <br />
-        <li>Scan des vulnérabilités sur le dépôt Github du code</li>
+        <li>Scan des vulnérabilités de tes dépendances sur le dépôt Github du code</li>
         <br />
         <Button variant="dark" href="https://dependabot.com/">
           Site officiel
@@ -96,6 +96,19 @@ export const Intro: React.FC = () => {
           href="https://docs.github.com/en/code-security/supply-chain-security/about-alerts-for-vulnerable-dependencies"
         >
           Security scans
+        </Button>
+      </Panel>}
+
+      {isToolEnabled("codescan") && <Panel title="Codescan">
+        Recense les potentielles vulnérabilités dans ton code
+        <br />
+        <br />
+        <li>Scan des potentielles vulnérabilités sur le dépôt Github du code</li>
+        <li>Possibilité d'activer autant de scanner souhaité: CodeQL, etc</li>
+        <li>Liste restreinte de langages couverts: C/C++, C#, Go, Java, JavaScript/TypeScript, Python</li>
+        <br />
+        <Button variant="dark" href="https://docs.github.com/en/code-security/secure-coding/about-code-scanning">
+          Documentation
         </Button>
       </Panel>}
 
