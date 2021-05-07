@@ -514,7 +514,7 @@ Array [
              
             <a
               href="https://github.com/SocialGouv/www"
-              rel="noopener noreferer"
+              rel="noopener noreferrer"
               style={
                 Object {
                   "color": "white",
@@ -527,7 +527,7 @@ Array [
           </span>
         </span>
         <a
-          href="https://github.com/SocialGouv/www"
+          href="https://github.com/SocialGouv/www/security/dependabot"
           rel="noreferrer noopener"
           style={
             Object {
@@ -607,6 +607,7 @@ Array [
                 <p>
                   <a
                     href="https://github.com/highlightjs/highlight.js/security/advisories/GHSA-7wwv-vh3v-89cq"
+                    rel="noopener noreferrer"
                     target="_blank"
                   >
                     GHSA-7wwv-vh3v-89cq
@@ -616,6 +617,7 @@ Array [
                 <p>
                   <a
                     href="https://github.com/advisories/GHSA-7wwv-vh3v-89cq"
+                    rel="noopener noreferrer"
                     target="_blank"
                   >
                     GHSA-7wwv-vh3v-89cq
@@ -641,6 +643,7 @@ Array [
                 <p>
                   <a
                     href="https://nvd.nist.gov/vuln/detail/CVE-2020-28498"
+                    rel="noopener noreferrer"
                     target="_blank"
                   >
                     CVE-2020-28498
@@ -650,6 +653,7 @@ Array [
                 <p>
                   <a
                     href="https://github.com/advisories/GHSA-r9p9-mrjm-926w"
+                    rel="noopener noreferrer"
                     target="_blank"
                   >
                     GHSA-r9p9-mrjm-926w
@@ -675,6 +679,7 @@ Array [
                 <p>
                   <a
                     href="https://github.com/highlightjs/highlight.js/security/advisories/GHSA-vfrc-7r7c-w9mx"
+                    rel="noopener noreferrer"
                     target="_blank"
                   >
                     GHSA-vfrc-7r7c-w9mx
@@ -684,6 +689,7 @@ Array [
                 <p>
                   <a
                     href="https://nvd.nist.gov/vuln/detail/CVE-2020-26237"
+                    rel="noopener noreferrer"
                     target="_blank"
                   >
                     CVE-2020-26237
@@ -693,6 +699,7 @@ Array [
                 <p>
                   <a
                     href="https://github.com/advisories/GHSA-vfrc-7r7c-w9mx"
+                    rel="noopener noreferrer"
                     target="_blank"
                   >
                     GHSA-vfrc-7r7c-w9mx
@@ -718,6 +725,7 @@ Array [
                 <p>
                   <a
                     href="https://github.com/node-fetch/node-fetch/security/advisories/GHSA-w7rc-rwvf-8q5r"
+                    rel="noopener noreferrer"
                     target="_blank"
                   >
                     GHSA-w7rc-rwvf-8q5r
@@ -727,6 +735,7 @@ Array [
                 <p>
                   <a
                     href="https://nvd.nist.gov/vuln/detail/CVE-2020-15168"
+                    rel="noopener noreferrer"
                     target="_blank"
                   >
                     CVE-2020-15168
@@ -736,6 +745,7 @@ Array [
                 <p>
                   <a
                     href="https://github.com/advisories/GHSA-w7rc-rwvf-8q5r"
+                    rel="noopener noreferrer"
                     target="_blank"
                   >
                     GHSA-w7rc-rwvf-8q5r
