@@ -40,7 +40,7 @@ export const HTTP: React.FC<HTTPProps> = ({ data }) => {
   failures.sort((a, b) => a.score_modifier - b.score_modifier);
 
   return (
-    url && (
+    (url && (
       <Panel
         title="HTTP"
         info="Informations collectées par le Mozilla HTTP observatory"
@@ -50,29 +50,34 @@ export const HTTP: React.FC<HTTPProps> = ({ data }) => {
           Scan Summary : <Grade small grade={data.grade} />
         </h3>
         <br />
-        <br />
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th style={{ width: 100 }}>impact</th>
-              <th>id</th>
-              <th>description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {failures.map((failure, i) => (
-              <tr key={failure.name + i}>
-                <td>
-                  <HttpRowBadge {...failure} />
-                </td>
-                <td>{failure.name}</td>
-
-                <td>{failure.score_description}</td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        {(failures.length && (
+          <React.Fragment>
+            <br />
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th style={{ width: 100 }}>impact</th>
+                  <th>id</th>
+                  <th>description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {failures.map((failure, i) => (
+                  <tr key={failure.name + i}>
+                    <td>
+                      <HttpRowBadge {...failure} />
+                    </td>
+                    <td>{failure.name}</td>
+                    <td>{failure.score_description}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </React.Fragment>
+        )) ||
+          null}
       </Panel>
-    )||null
+    )) ||
+    null
   );
 };
