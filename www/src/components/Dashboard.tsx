@@ -284,6 +284,54 @@ const DependabotBadge: React.FC<BadgeProps> = ({ report }) => {
   return <Grade small grade={dependabotGrade} label={dependabotCount} />;
 };
 
+const getCodescanAlertGrade = (alerts: CodescanAlert[]) => {
+  return alerts.filter(
+    (a) =>
+      a.rule.severity === "ERROR"
+  ).length
+    ? "F"
+    : alerts.length
+    ? "B"
+    : "A";
+};
+
+const CodescanBadge: React.FC<BadgeProps> = ({ report }) => {
+  if (!report.codescan) {
+    return <IconUnknown />;
+  }
+
+  // codescan
+  const codescanCount =
+    report.codescan &&
+    report.codescan
+      .filter(Boolean)
+      .map((repo) => repo.alerts.length)
+      .reduce((prev, curr) => prev + curr, 0);
+  const maxGrade = (a: "F" | "B" | "A", b: "F" | "B" | "A") => {
+    const grades = new Map();
+    grades.set("F", 3);
+    grades.set("B", 2);
+    grades.set("A", 1);
+    const orders = new Map();
+    orders.set(3, "F");
+    orders.set(2, "B");
+    orders.set(1, "A");
+    return orders.get(Math.max(grades.get(a), grades.get(b)));
+  };
+  const grades =
+    report.codescan &&
+    report.codescan
+      .filter(Boolean)
+      .map((repo) => getCodescanAlertGrade(repo.alerts));
+
+  if (!grades.length) {
+    return <IconUnknown />;
+  }
+
+  const codescanGrade = grades.reduce(maxGrade);
+  return <Grade small grade={codescanGrade} label={codescanCount} />;
+};
+
 const UpDownIoBadge: React.FC<BadgeProps> = ({ report }) => {
   if (!report.updownio) {
     return <IconUnknown />;
@@ -529,11 +577,37 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
                 headerRenderer={() => (
                   <ColumnHeader
                     title="Vulnérabilités"
-                    info="Vulnérabilités applicatives detectées dans les codes sources (dependabot)"
+                    info="Vulnérabilités applicatives detectées dans les dépendances du code (dependabot)"
                   />
                 )}
                 cellRenderer={({ rowData }) => (
                   <DependabotBadge report={rowData as UrlReport} />
+                )}
+              />
+            )}
+
+            {isToolEnabled("codescan") && (
+              <Column
+                {...defaultColumnProps}
+                key="codescan"
+                dataGetter={({ rowData }) => {
+                  const report = rowData as UrlReport;
+                  const codescanCount =
+                    report.codescan &&
+                    report.codescan
+                      .filter(Boolean)
+                      .map((repo) => repo.alerts.length)
+                      .reduce((prev, curr) => prev + curr, 0);
+                  return codescanCount;
+                }}
+                headerRenderer={() => (
+                  <ColumnHeader
+                    title="Vulnérabilités potentielles"
+                    info="Potentielles vulnérabilités detectées dans les codes sources (codescan)"
+                  />
+                )}
+                cellRenderer={({ rowData }) => (
+                  <CodescanBadge report={rowData as UrlReport} />
                 )}
               />
             )}
