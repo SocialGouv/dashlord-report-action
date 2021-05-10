@@ -305,7 +305,7 @@ const CodescanBadge: React.FC<BadgeProps> = ({ report }) => {
     report.codescan &&
     report.codescan
       .filter(Boolean)
-      .map((repo) => repo.alerts.length)
+      .map((repo) => repo ? (repo.alerts ? repo.alerts.length : 0) : 0)
       .reduce((prev, curr) => prev + curr, 0);
   const maxGrade = (a: "F" | "B" | "A", b: "F" | "B" | "A") => {
     const grades = new Map();
@@ -322,7 +322,7 @@ const CodescanBadge: React.FC<BadgeProps> = ({ report }) => {
     report.codescan &&
     report.codescan
       .filter(Boolean)
-      .map((repo) => getCodescanAlertGrade(repo.alerts));
+      .map((repo) => (repo ? (repo.alerts ? getCodescanAlertGrade(repo.alerts) : "A") : "A"));
 
   if (!grades.length) {
     return <IconUnknown />;
@@ -596,7 +596,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
                     report.codescan &&
                     report.codescan
                       .filter(Boolean)
-                      .map((repo) => repo.alerts.length)
+                      .map((repo) => repo ? (repo.alerts ? repo.alerts.length : 0) : 0)
                       .reduce((prev, curr) => prev + curr, 0);
                   return codescanCount;
                 }}
