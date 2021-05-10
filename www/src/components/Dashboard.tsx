@@ -50,32 +50,6 @@ const getGradeCookies = (count: number) => {
     : "A";
 };
 
-const getNucleiGrade = (events: NucleiReportEntry[]) => {
-  return events.filter(
-    (n) => n.info.severity === "critical" || n.info.severity === "high"
-  ).length
-    ? "F"
-    : events.length
-    ? "B"
-    : "A";
-};
-
-const getOwaspGrade = (owaspAlerts: ZapReportSiteAlert[]) => {
-  const maxSeverity = Math.max(
-    ...owaspAlerts.map((o) => parseInt(o.riskcode) || 0)
-  );
-
-  return maxSeverity > 3
-    ? "F"
-    : maxSeverity > 2
-    ? "D"
-    : maxSeverity > 1
-    ? "C"
-    : maxSeverity > 0
-    ? "B"
-    : "A";
-};
-
 const getGradeUpdownio = (uptime: number) => {
   return uptime > 0.99
     ? "A"
@@ -193,23 +167,6 @@ const HTTPBadge: React.FC<BadgeProps> = ({ report }) => {
   return <Grade small grade={value} />;
 };
 
-const ZapBadge: React.FC<BadgeProps> = ({ report }) => {
-  const owaspAlerts =
-    (report.zap &&
-      report.zap.site &&
-      report.zap.site.flatMap((site) =>
-        site.alerts.filter((a) => a.riskcode !== "0")
-      )) ||
-    [];
-  const owaspCount = report.zap && owaspAlerts.length;
-  const owaspGrade = getOwaspGrade(owaspAlerts);
-
-  if (!owaspGrade) {
-    return <IconUnknown />;
-  }
-  return <Grade small grade={owaspGrade} label={owaspCount} />;
-};
-
 const ThirdPartiesTrackersBadge: React.FC<BadgeProps> = ({ report }) => {
   if (!report.thirdparties) {
     return <IconUnknown />;
@@ -234,18 +191,6 @@ const ThirdPartiesCookiesBadge: React.FC<BadgeProps> = ({ report }) => {
     0;
   const cookiesGrade = getGradeCookies(cookiesCount);
   return <Grade small grade={cookiesGrade} label={cookiesCount} />;
-};
-
-const NucleiBadge: React.FC<BadgeProps> = ({ report }) => {
-  if (!report.nuclei) {
-    return <IconUnknown />;
-  }
-
-  // NUCLEI
-  const nucleiCount = report.nuclei && report.nuclei.length;
-  const nucleiGrade = report.nuclei && getNucleiGrade(report.nuclei);
-
-  return <Grade small grade={nucleiGrade} label={nucleiCount} />;
 };
 
 const DependabotBadge: React.FC<BadgeProps> = ({ report }) => {
@@ -635,42 +580,12 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
                 }}
                 headerRenderer={() => (
                   <ColumnHeader
-                    title="Vulnérabilités potentielles"
-                    info="Potentielles vulnérabilités detectées dans les codes sources (codescan)"
+                    title="CodeQL"
+                    info="Potentielles vulnérabilités ou erreurs detectées dans les codes sources (codescan)"
                   />
                 )}
                 cellRenderer={({ rowData }) => (
                   <CodescanBadge report={rowData as UrlReport} />
-                )}
-              />
-            )}
-
-            {isToolEnabled("zap") && (
-              <Column
-                {...defaultColumnProps}
-                key="zap"
-                dataGetter={({ rowData }) => {
-                  const report = rowData as UrlReport;
-                  const owaspAlerts =
-                    (report.zap &&
-                      report.zap.site &&
-                      report.zap.site.flatMap((site) =>
-                        site.alerts.filter((a) => a.riskcode !== "0")
-                      )) ||
-                    [];
-                  const maxSeverity = Math.max(
-                    ...owaspAlerts.map((o) => parseInt(o.riskcode) || 0)
-                  );
-                  return maxSeverity;
-                }}
-                headerRenderer={() => (
-                  <ColumnHeader
-                    title="OWASP"
-                    info="Bonnes pratiques de sécurité OWASP (Zap baseline)"
-                  />
-                )}
-                cellRenderer={({ rowData }) => (
-                  <ZapBadge report={rowData as UrlReport} />
                 )}
               />
             )}
@@ -721,26 +636,6 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
                 )}
                 cellRenderer={({ rowData }) => (
                   <ThirdPartiesCookiesBadge report={rowData as UrlReport} />
-                )}
-              />
-            )}
-
-            {isToolEnabled("nuclei") && (
-              <Column
-                {...defaultColumnProps}
-                key="nuclei"
-                dataGetter={({ rowData }) => {
-                  const report = rowData as UrlReport;
-                  return report.nuclei && report.nuclei.length;
-                }}
-                headerRenderer={() => (
-                  <ColumnHeader
-                    title="Nucléi"
-                    info="Erreurs de configuration"
-                  />
-                )}
-                cellRenderer={({ rowData }) => (
-                  <NucleiBadge report={rowData as UrlReport} />
                 )}
               />
             )}
