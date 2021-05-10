@@ -231,7 +231,7 @@ const DependabotBadge: React.FC<BadgeProps> = ({ report }) => {
 };
 
 const getCodescanAlertGrade = (alerts: CodescanAlert[]) => {
-  return alerts.filter((a) => a.rule.severity === "ERROR").length
+  return alerts.filter((a) => a.rule.severity === "error").length
     ? "F"
     : alerts.length
     ? "B"

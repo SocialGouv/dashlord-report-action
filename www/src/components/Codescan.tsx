@@ -7,10 +7,8 @@ import { Panel } from "./Panel";
 const orderBySeverity = (a: CodescanAlert, b: CodescanAlert) => {
   // high criticity first
   const severities = new Map();
-  severities.set("CRITICAL", 3);
-  severities.set("HIGH", 2);
-  severities.set("MODERATE", 1);
-  severities.set("LOW", 0);
+  severities.set("error", 1);
+  severities.set("warning", 0);
   return (
     severities.get(b.rule.severity) -
     severities.get(a.rule.severity)
@@ -20,13 +18,9 @@ const orderBySeverity = (a: CodescanAlert, b: CodescanAlert) => {
 const CodescanBadge = (alert: CodescanAlert) => {
   const severity = alert.rule.severity;
   const variant =
-    severity === "LOW"
-      ? "info"
-      : severity === "MODERATE"
+      severity === "warning"
       ? "warning"
-      : severity === "HIGH"
-      ? "danger"
-      : severity === "CRITICAL"
+      : severity === "error"
       ? "danger"
       : "info";
   return (
