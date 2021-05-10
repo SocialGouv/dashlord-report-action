@@ -119,13 +119,6 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
         </React.Fragment>
       )) ||
         null}
-      {(isToolEnabled("nuclei") && report.nuclei && (
-        <React.Fragment>
-          <Nuclei data={report.nuclei} />
-          <br />
-        </React.Fragment>
-      )) ||
-        null}
       {(isToolEnabled("thirdparties") && report.thirdparties && (
         <React.Fragment>
           <Trackers data={report.thirdparties} />
@@ -141,6 +134,13 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
               url
             )}/zap.html`}
           />
+          <br />
+        </React.Fragment>
+      )) ||
+        null}
+      {(isToolEnabled("nuclei") && report.nuclei && (
+        <React.Fragment>
+          <Nuclei data={report.nuclei} />
           <br />
         </React.Fragment>
       )) ||

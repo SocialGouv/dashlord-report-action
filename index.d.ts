@@ -273,6 +273,12 @@ type UpDownReport = {
     valid: boolean,
     expires_at: string
   }
+  metrics?:{
+    apdex?:number,
+    timings:{
+      total:number
+    }
+  }
 }
 
 type UrlReport = UrlConfig & {

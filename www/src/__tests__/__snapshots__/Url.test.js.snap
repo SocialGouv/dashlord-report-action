@@ -274,7 +274,7 @@ Array [
                     }
                   }
                 >
-                  26%
+                  50%
                 </div>
               </div>
             </div>
@@ -833,7 +833,7 @@ Array [
           className="row"
         >
           <div
-            className="text-center mb-3 col-md-6 col-12"
+            className="text-center mb-3 col-md-4 col-12"
           >
             <div
               className="card"
@@ -864,25 +864,40 @@ Array [
             </div>
           </div>
           <div
-            className="text-center mb-3 col-md-6 col-12"
+            className="text-center mb-3 col-md-4 col-12"
           >
             <div
               className="card"
             >
               <div
                 className="card-body"
+                style={
+                  Object {
+                    "padding": 5,
+                  }
+                }
               >
                 <div
                   className="card-title h5"
                 >
-                  Certificat TLS 
-                  valide
+                  Certificat TLS
+                   
+                  <span
+                    className="badge badge-success"
+                    style={
+                      Object {
+                        "fontSize": "1.1em",
+                        "minWidth": 60,
+                      }
+                    }
+                  >
+                    valide
+                  </span>
                 </div>
                 <div
-                  className="card-title h5"
                   style={
                     Object {
-                      "fontSize": "2rem",
+                      "fontSize": "1.5rem",
                       "fontWeight": "bold",
                     }
                   }
@@ -1095,10 +1110,10 @@ Array [
                 impact
               </th>
               <th>
-                id
+                description
               </th>
               <th>
-                description
+                documentation
               </th>
             </tr>
           </thead>
@@ -1108,14 +1123,31 @@ Array [
                 <span
                   className="w-100 badge badge-warning"
                 >
-                  25
+                  -25
                 </span>
               </td>
               <td>
-                content-security-policy
+                Content Security Policy (CSP) header not implemented
               </td>
               <td>
-                Content Security Policy (CSP) header not implemented
+                <a
+                  href="https://owasp.org/www-community/controls/Content_Security_Policy"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Doc Content Security Policy
+                </a>
+                . L'extension
+                 
+                <a
+                  href="https://github.com/april/laboratory"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  github.com/april/laboratory
+                </a>
+                 
+                permet de générer la CSP pour votre application.
               </td>
             </tr>
             <tr>
@@ -1123,145 +1155,65 @@ Array [
                 <span
                   className="w-100 badge badge-info"
                 >
-                  20
+                  -20
                 </span>
-              </td>
-              <td>
-                x-frame-options
               </td>
               <td>
                 X-Frame-Options (XFO) header not implemented
               </td>
+              <td>
+                <a
+                  href="https://developer.mozilla.org/fr/docs/Web/HTTP/Headers/X-Frame-Options"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Doc header X-Frame-Options
+                </a>
+                .
+              </td>
             </tr>
             <tr>
               <td>
                 <span
                   className="w-100 badge badge-success"
                 >
-                  10
+                  -10
                 </span>
-              </td>
-              <td>
-                x-xss-protection
               </td>
               <td>
                 X-XSS-Protection header not implemented
               </td>
+              <td>
+                <a
+                  href="https://developer.mozilla.org/fr/docs/Web/HTTP/Headers/X-XSS-Protection"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Doc header X-XSS-Protection
+                </a>
+                .
+              </td>
             </tr>
             <tr>
               <td>
                 <span
                   className="w-100 badge badge-success"
                 >
-                  5
+                  -5
                 </span>
-              </td>
-              <td>
-                x-content-type-options
               </td>
               <td>
                 X-Content-Type-Options header not implemented
               </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <br />
-    <div
-      className="card"
-      style={
-        Object {
-          "marginBottom": 20,
-        }
-      }
-    >
-      <div
-        className="card-title h5"
-        style={
-          Object {
-            "background": "#000091",
-            "color": "white",
-            "padding": 10,
-          }
-        }
-      >
-        Nuclei
-        <span
-          style={
-            Object {
-              "fontSize": "0.6em",
-              "fontWeight": "normal",
-              "marginLeft": 10,
-            }
-          }
-        >
-          Détection d'erreurs de configuration et vulnérabilités
-        </span>
-      </div>
-      <div
-        className="card-body"
-      >
-        <table
-          className="table table-striped table-bordered table-hover"
-        >
-          <thead>
-            <tr>
-              <th
-                style={
-                  Object {
-                    "width": 100,
-                  }
-                }
-              >
-                severity
-              </th>
-              <th>
-                id
-              </th>
-              <th>
-                name
-              </th>
-              <th>
-                matcher
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
               <td>
-                <span
-                  className="w-100 badge badge-success"
+                <a
+                  href="https://developer.mozilla.org/fr/docs/Web/HTTP/Headers/X-Content-Type-Options"
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
-                  info
-                </span>
-              </td>
-              <td>
-                waf-detect
-              </td>
-              <td>
-                WAF Detection
-              </td>
-              <td>
-                nginxgeneric
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <span
-                  className="w-100 badge badge-success"
-                >
-                  info
-                </span>
-              </td>
-              <td>
-                tech-detect
-              </td>
-              <td>
-                Wappalyzer Technology Detection
-              </td>
-              <td>
-                nginx
+                  Doc header X-Content-Type-Options
+                </a>
+                .
               </td>
             </tr>
           </tbody>
@@ -1755,6 +1707,107 @@ Array [
           }
         }
       >
+        Nuclei
+        <span
+          style={
+            Object {
+              "fontSize": "0.6em",
+              "fontWeight": "normal",
+              "marginLeft": 10,
+            }
+          }
+        >
+          Détection d'erreurs de configuration et vulnérabilités
+        </span>
+      </div>
+      <div
+        className="card-body"
+      >
+        <table
+          className="table table-striped table-bordered table-hover"
+        >
+          <thead>
+            <tr>
+              <th
+                style={
+                  Object {
+                    "width": 100,
+                  }
+                }
+              >
+                severity
+              </th>
+              <th>
+                id
+              </th>
+              <th>
+                name
+              </th>
+              <th>
+                matcher
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span
+                  className="w-100 badge badge-success"
+                >
+                  info
+                </span>
+              </td>
+              <td>
+                waf-detect
+              </td>
+              <td>
+                WAF Detection
+              </td>
+              <td>
+                nginxgeneric
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span
+                  className="w-100 badge badge-success"
+                >
+                  info
+                </span>
+              </td>
+              <td>
+                tech-detect
+              </td>
+              <td>
+                Wappalyzer Technology Detection
+              </td>
+              <td>
+                nginx
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <br />
+    <div
+      className="card"
+      style={
+        Object {
+          "marginBottom": 20,
+        }
+      }
+    >
+      <div
+        className="card-title h5"
+        style={
+          Object {
+            "background": "#000091",
+            "color": "white",
+            "padding": 10,
+          }
+        }
+      >
         Wappalyzer
         <span
           style={
@@ -2156,10 +2209,10 @@ Array [
                 impact
               </th>
               <th>
-                id
+                description
               </th>
               <th>
-                description
+                documentation
               </th>
             </tr>
           </thead>
@@ -2169,14 +2222,31 @@ Array [
                 <span
                   className="w-100 badge badge-warning"
                 >
-                  25
+                  -25
                 </span>
               </td>
               <td>
-                content-security-policy
+                Content Security Policy (CSP) header not implemented
               </td>
               <td>
-                Content Security Policy (CSP) header not implemented
+                <a
+                  href="https://owasp.org/www-community/controls/Content_Security_Policy"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Doc Content Security Policy
+                </a>
+                . L'extension
+                 
+                <a
+                  href="https://github.com/april/laboratory"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  github.com/april/laboratory
+                </a>
+                 
+                permet de générer la CSP pour votre application.
               </td>
             </tr>
             <tr>
@@ -2184,44 +2254,65 @@ Array [
                 <span
                   className="w-100 badge badge-info"
                 >
-                  20
+                  -20
                 </span>
-              </td>
-              <td>
-                x-frame-options
               </td>
               <td>
                 X-Frame-Options (XFO) header not implemented
               </td>
+              <td>
+                <a
+                  href="https://developer.mozilla.org/fr/docs/Web/HTTP/Headers/X-Frame-Options"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Doc header X-Frame-Options
+                </a>
+                .
+              </td>
             </tr>
             <tr>
               <td>
                 <span
                   className="w-100 badge badge-success"
                 >
-                  10
+                  -10
                 </span>
-              </td>
-              <td>
-                x-xss-protection
               </td>
               <td>
                 X-XSS-Protection header not implemented
               </td>
+              <td>
+                <a
+                  href="https://developer.mozilla.org/fr/docs/Web/HTTP/Headers/X-XSS-Protection"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Doc header X-XSS-Protection
+                </a>
+                .
+              </td>
             </tr>
             <tr>
               <td>
                 <span
                   className="w-100 badge badge-success"
                 >
-                  5
+                  -5
                 </span>
               </td>
               <td>
-                x-content-type-options
+                X-Content-Type-Options header not implemented
               </td>
               <td>
-                X-Content-Type-Options header not implemented
+                <a
+                  href="https://developer.mozilla.org/fr/docs/Web/HTTP/Headers/X-Content-Type-Options"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Doc header X-Content-Type-Options
+                </a>
+                .
               </td>
             </tr>
           </tbody>
