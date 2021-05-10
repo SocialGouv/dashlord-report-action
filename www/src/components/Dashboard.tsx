@@ -11,6 +11,7 @@ import { Grade } from "./Grade";
 import { smallUrl, isToolEnabled, letterGradeValue } from "../utils";
 import { getPerformanceScore } from "../lib/lighthouse/getPerformanceScore";
 import { AccessibilityWarnings } from "../lib/lighthouse/AccessibilityWarnings";
+import { apdexToGrade } from "./UpdownIo";
 
 import "react-base-table/styles.css";
 import "rc-tooltip/assets/bootstrap.css";
@@ -285,10 +286,7 @@ const DependabotBadge: React.FC<BadgeProps> = ({ report }) => {
 };
 
 const getCodescanAlertGrade = (alerts: CodescanAlert[]) => {
-  return alerts.filter(
-    (a) =>
-      a.rule.severity === "ERROR"
-  ).length
+  return alerts.filter((a) => a.rule.severity === "ERROR").length
     ? "F"
     : alerts.length
     ? "B"
@@ -332,7 +330,7 @@ const CodescanBadge: React.FC<BadgeProps> = ({ report }) => {
   return <Grade small grade={codescanGrade} label={codescanCount} />;
 };
 
-const UpDownIoBadge: React.FC<BadgeProps> = ({ report }) => {
+const UpDownIoUptimeBadge: React.FC<BadgeProps> = ({ report }) => {
   if (!report.updownio) {
     return <IconUnknown />;
   }
@@ -341,6 +339,17 @@ const UpDownIoBadge: React.FC<BadgeProps> = ({ report }) => {
   return (
     <Grade small grade={updownioGrade} label={updownio.toFixed() + " %"} />
   );
+};
+
+const UpDownIoApDexBadge: React.FC<BadgeProps> = ({ report }) => {
+  const apdex =
+    report.updownio && report.updownio.metrics && report.updownio.metrics.apdex;
+  if (apdex === undefined || apdex === null) {
+    return <IconUnknown />;
+  }
+
+  const updownioGrade = apdexToGrade(apdex);
+  return <Grade small grade={updownioGrade} label={apdex} />;
 };
 
 type SortState = {
@@ -555,7 +564,31 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
                   />
                 )}
                 cellRenderer={({ rowData }) => (
-                  <UpDownIoBadge report={rowData as UrlReport} />
+                  <UpDownIoUptimeBadge report={rowData as UrlReport} />
+                )}
+              />
+            )}
+
+            {isToolEnabled("updownio") && (
+              <Column
+                {...defaultColumnProps}
+                key="updownio2"
+                dataGetter={({ rowData }) => {
+                  const report = rowData as UrlReport;
+                  return (
+                    report.updownio &&
+                    report.updownio.metrics &&
+                    report.updownio.metrics.apdex
+                  );
+                }}
+                headerRenderer={() => (
+                  <ColumnHeader
+                    title="apdex"
+                    info="Apdex: Application Performance Index : indice de satisfaction des attentes de performance (updown.io)"
+                  />
+                )}
+                cellRenderer={({ rowData }) => (
+                  <UpDownIoApDexBadge report={rowData as UrlReport} />
                 )}
               />
             )}
