@@ -89,8 +89,9 @@ export const LightHouse: React.FC<LighthouseProps> = ({ data, url }) => {
         </Col>
         {order.map((key, i: number) => {
           const category = data.categories[key as LighthouseReportCategoryKey];
+          const score = category.score as number;
           return (
-            (category.score && (
+            (!isNaN(score) && (
               <Col
                 key={category.title + i}
                 xs={12}
@@ -102,7 +103,7 @@ export const LightHouse: React.FC<LighthouseProps> = ({ data, url }) => {
                   <Gauge
                     width={100}
                     height={60}
-                    value={category.score * 100}
+                    value={score * 100}
                     minValue={0}
                     maxValue={100}
                     animationSpeed={32}
@@ -112,7 +113,7 @@ export const LightHouse: React.FC<LighthouseProps> = ({ data, url }) => {
                     <Card.Title
                       style={{ fontSize: "2rem", fontWeight: "bold" }}
                     >
-                      {(category.score * 100).toFixed() + "%"}
+                      {(score * 100).toFixed() + "%"}
                     </Card.Title>
                   </Card.Body>
                 </Card>
