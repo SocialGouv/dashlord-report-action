@@ -89,7 +89,7 @@ const helpDocs = {
       <a
         rel="noopener noreferrer"
         target="_blank"
-        href="https://developer.mozilla.org/fr/docs/Web/HTTP/Headers/X-XSS-Protection"
+        href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection"
       >
         Doc header X-XSS-Protection
       </a>
