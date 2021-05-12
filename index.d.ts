@@ -292,6 +292,7 @@ type UrlReport = UrlConfig & {
   updownio?: UpDownReport | null;
   dependabot?: DependabotReport | null;
   codescan?: CodescanReport | null;
+  screenshot?: boolean | null;
 }
 
 type DashLordReport = UrlReport[]
