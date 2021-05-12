@@ -210,6 +210,7 @@ const generateReport = () => {
         copyForWebsite("lhr.html");
         copyForWebsite("testssl.html");
         copyForWebsite("zap.html");
+        copyForWebsite("screenshot.png");
 
         return urlData;
       } else {
