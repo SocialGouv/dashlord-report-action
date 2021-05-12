@@ -136,8 +136,12 @@ const generateReport = () => {
           ...url,
           http: requireJson(path.join(latestFilesPath, "http.json")),
           updownio: requireJson(path.join(latestFilesPath, "updownio.json")),
-          dependabot: requireJson(path.join(latestFilesPath, "dependabotalerts.json")),
-          codescan: requireJson(path.join(latestFilesPath, "codescanalerts.json")),
+          dependabot: requireJson(
+            path.join(latestFilesPath, "dependabotalerts.json")
+          ),
+          codescan: requireJson(
+            path.join(latestFilesPath, "codescanalerts.json")
+          ),
           testssl: requireJson(path.join(latestFilesPath, "testssl.json")),
           thirdparties: requireJson(
             path.join(latestFilesPath, "thirdparties.json")
@@ -154,6 +158,9 @@ const generateReport = () => {
           ),
           lhr: cleanups.lhr(
             requireJson(path.join(latestFilesPath, "lhr.json"))
+          ),
+          screenshot: fs.existsSync(
+            path.join(latestFilesPath, "screenshot.png")
           ),
         };
 
@@ -182,9 +189,6 @@ const generateReport = () => {
           dashlordConfig = YAML.parse(
             readFile(path.join(DASHLORD_REPO_PATH, "dashlord.yml"))
           );
-        } else if (fs.existsSync(path.join(DASHLORD_REPO_PATH, "urls.txt"))) {
-          // smthg
-          dashlordConfig.urls = getUrls();
         }
 
         // copy dashlord config YAML as JSON for the report
