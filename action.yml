@@ -26,11 +26,13 @@ runs:
         cd ${{ github.action_path }}
         yarn
         # this create a report.json to build the website
-        # also copies html reports to www/public
         node src > www/src/report.json
         cd www
         yarn
         CI=false yarn build
+        # prevent gh-pages jekyll build
         touch build/.nojekyll
+        # save report in workspace for artifact
         cp src/report.json ${{ github.workspace }}/report.json
+        # save the build for gh-pages publication
         mv build ${{ github.workspace }}/build

@@ -161,7 +161,7 @@ const generateReport = () => {
             requireJson(path.join(latestFilesPath, "lhr.json"))
           ),
           screenshot: fs.existsSync(
-            path.join(latestFilesPath, "screenshot.png")
+            path.join(latestFilesPath, "screenshot.jpeg")
           ),
         };
 
@@ -215,7 +215,7 @@ const generateReport = () => {
         copyForWebsite("lhr.html");
         copyForWebsite("testssl.html");
         copyForWebsite("zap.html");
-        copyForWebsite("screenshot.png");
+        copyForWebsite("screenshot.jpeg");
 
         return urlData;
       } else {

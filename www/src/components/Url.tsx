@@ -81,7 +81,7 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
                 }}
                 src={`${process.env.PUBLIC_URL}/report/${window.btoa(
                   url
-                )}/screenshot.png`}
+                )}/screenshot.jpeg`}
               />
             </a>
           )}
