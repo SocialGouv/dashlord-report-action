@@ -62,7 +62,7 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
       {report.screenshot && (
         <div style={{ textAlign: "center", margin: "20px 0" }}>
           <img
-            style={{ maxWidth: "80%", border: "1px solid var(--dark)" }}
+            style={{ maxWidth: 800, border: "1px solid var(--dark)" }}
             src={`${process.env.PUBLIC_URL}/report/${window.btoa(
               url
             )}/screenshot.png`}
