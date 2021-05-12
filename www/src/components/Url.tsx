@@ -59,6 +59,16 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
           )}
         </p>
       </Jumbotron>
+      {report.screenshot && (
+        <div style={{ textAlign: "center", margin: "20px 0" }}>
+          <img
+            style={{ maxWidth: "80%", border: "1px solid var(--dark)" }}
+            src={`${process.env.PUBLIC_URL}/report/${window.btoa(
+              url
+            )}/screenshot.png`}
+          />
+        </div>
+      )}
       {(isToolEnabled("lighthouse") && report.lhr && (
         <React.Fragment>
           <LightHouse
