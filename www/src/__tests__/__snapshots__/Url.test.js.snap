@@ -13,6 +13,7 @@ Array [
       className="jumbotron"
       style={
         Object {
+          "display": "flex",
           "height": 100,
           "marginBottom": 10,
           "marginTop": 10,
@@ -20,109 +21,125 @@ Array [
         }
       }
     >
-      <h4>
-        <a
-          href="https://www.fabrique.social.gouv.fr"
-          rel="noreferrer noopener"
-          target="_blank"
-        >
-          https://www.fabrique.social.gouv.fr
-        </a>
-      </h4>
-      <p>
-        <a
-          href="/category/fabrique"
-          onClick={[Function]}
-        >
+      <div
+        style={
+          Object {
+            "flex": "1 0 auto",
+          }
+        }
+      >
+        <h4>
+          <a
+            href="https://www.fabrique.social.gouv.fr"
+            rel="noreferrer noopener"
+            target="_blank"
+          >
+            https://www.fabrique.social.gouv.fr
+          </a>
+        </h4>
+        <p>
+          <a
+            href="/category/fabrique"
+            onClick={[Function]}
+          >
+            <span
+              className="badge badge-success"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              fabrique
+            </span>
+          </a>
+          <a
+            href="/tag/social"
+            onClick={[Function]}
+          >
+            <span
+              className="badge badge-info"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              social
+            </span>
+          </a>
+          <a
+            href="/tag/sante"
+            onClick={[Function]}
+          >
+            <span
+              className="badge badge-info"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              sante
+            </span>
+          </a>
+          <a
+            href="/tag/travail"
+            onClick={[Function]}
+          >
+            <span
+              className="badge badge-info"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              travail
+            </span>
+          </a>
           <span
-            className="badge badge-success"
-            style={
-              Object {
-                "marginRight": 5,
-              }
-            }
+            title="2021-04-30T07:30:39.491Z"
           >
-            fabrique
+            <svg
+              fill="none"
+              height={12}
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+              viewBox="0 0 24 24"
+              width={12}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+              />
+              <polyline
+                points="12 6 12 12 16 14"
+              />
+            </svg>
+            Mise à jour il y a :
+             
+            24 jours
           </span>
-        </a>
-        <a
-          href="/tag/social"
-          onClick={[Function]}
-        >
-          <span
-            className="badge badge-info"
-            style={
-              Object {
-                "marginRight": 5,
-              }
-            }
-          >
-            social
-          </span>
-        </a>
-        <a
-          href="/tag/sante"
-          onClick={[Function]}
-        >
-          <span
-            className="badge badge-info"
-            style={
-              Object {
-                "marginRight": 5,
-              }
-            }
-          >
-            sante
-          </span>
-        </a>
-        <a
-          href="/tag/travail"
-          onClick={[Function]}
-        >
-          <span
-            className="badge badge-info"
-            style={
-              Object {
-                "marginRight": 5,
-              }
-            }
-          >
-            travail
-          </span>
-        </a>
-        <span
-          title="2021-04-30T07:30:39.491Z"
-        >
-          <svg
-            fill="none"
-            height={12}
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            style={
-              Object {
-                "marginRight": 5,
-              }
-            }
-            viewBox="0 0 24 24"
-            width={12}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="10"
-            />
-            <polyline
-              points="12 6 12 12 16 14"
-            />
-          </svg>
-          Mise à jour il y a :
-           
-          24 jours
-        </span>
-      </p>
+        </p>
+      </div>
+      <div
+        style={
+          Object {
+            "flex": "0 0 100px",
+            "marginTop": -10,
+          }
+        }
+      />
     </div>
     <div
       className="card"
@@ -2000,6 +2017,7 @@ Array [
       className="jumbotron"
       style={
         Object {
+          "display": "flex",
           "height": 100,
           "marginBottom": 10,
           "marginTop": 10,
@@ -2007,106 +2025,122 @@ Array [
         }
       }
     >
-      <h4>
-        <a
-          rel="noreferrer noopener"
-          target="_blank"
-        />
-      </h4>
-      <p>
-        <a
-          href="/category/fabrique"
-          onClick={[Function]}
-        >
+      <div
+        style={
+          Object {
+            "flex": "1 0 auto",
+          }
+        }
+      >
+        <h4>
+          <a
+            rel="noreferrer noopener"
+            target="_blank"
+          />
+        </h4>
+        <p>
+          <a
+            href="/category/fabrique"
+            onClick={[Function]}
+          >
+            <span
+              className="badge badge-success"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              fabrique
+            </span>
+          </a>
+          <a
+            href="/tag/social"
+            onClick={[Function]}
+          >
+            <span
+              className="badge badge-info"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              social
+            </span>
+          </a>
+          <a
+            href="/tag/sante"
+            onClick={[Function]}
+          >
+            <span
+              className="badge badge-info"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              sante
+            </span>
+          </a>
+          <a
+            href="/tag/travail"
+            onClick={[Function]}
+          >
+            <span
+              className="badge badge-info"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+            >
+              travail
+            </span>
+          </a>
           <span
-            className="badge badge-success"
-            style={
-              Object {
-                "marginRight": 5,
-              }
-            }
+            title="2021-04-30T07:30:39.491Z"
           >
-            fabrique
+            <svg
+              fill="none"
+              height={12}
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              style={
+                Object {
+                  "marginRight": 5,
+                }
+              }
+              viewBox="0 0 24 24"
+              width={12}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="10"
+              />
+              <polyline
+                points="12 6 12 12 16 14"
+              />
+            </svg>
+            Mise à jour il y a :
+             
+            24 jours
           </span>
-        </a>
-        <a
-          href="/tag/social"
-          onClick={[Function]}
-        >
-          <span
-            className="badge badge-info"
-            style={
-              Object {
-                "marginRight": 5,
-              }
-            }
-          >
-            social
-          </span>
-        </a>
-        <a
-          href="/tag/sante"
-          onClick={[Function]}
-        >
-          <span
-            className="badge badge-info"
-            style={
-              Object {
-                "marginRight": 5,
-              }
-            }
-          >
-            sante
-          </span>
-        </a>
-        <a
-          href="/tag/travail"
-          onClick={[Function]}
-        >
-          <span
-            className="badge badge-info"
-            style={
-              Object {
-                "marginRight": 5,
-              }
-            }
-          >
-            travail
-          </span>
-        </a>
-        <span
-          title="2021-04-30T07:30:39.491Z"
-        >
-          <svg
-            fill="none"
-            height={12}
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            style={
-              Object {
-                "marginRight": 5,
-              }
-            }
-            viewBox="0 0 24 24"
-            width={12}
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle
-              cx="12"
-              cy="12"
-              r="10"
-            />
-            <polyline
-              points="12 6 12 12 16 14"
-            />
-          </svg>
-          Mise à jour il y a :
-           
-          24 jours
-        </span>
-      </p>
+        </p>
+      </div>
+      <div
+        style={
+          Object {
+            "flex": "0 0 100px",
+            "marginTop": -10,
+          }
+        }
+      />
     </div>
     <div
       className="card"
