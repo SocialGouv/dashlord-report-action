@@ -11,6 +11,7 @@ type DashlordTool =
   | "lighthouse"
   | "nuclei"
   | "testssl"
+  | "nmap"
   | "thirdparties"
   | "updownio"
   | "wappalyzer"
@@ -187,6 +188,30 @@ type CodescanRepository = {
 
 type CodescanReport =  CodescanRepository[];
 
+type NmapVulnerability = {
+  is_exploit: boolean,
+  cvss: string,
+  id: string
+};
+
+type NmapService = {
+  id: string,
+  product: string,
+  name: string,
+  vulnerabilities: NmapVulnerability[]
+};
+
+type NmapOpenPort = {
+  service: NmapService
+};
+
+type NmapReport =  {
+  protocol: string,
+  host: string,
+  closed_ports: number,
+  open_ports: NmapOpenPort[]
+};
+
 type ThirdPartyTracker = {
   type: string
   url: string
@@ -284,6 +309,7 @@ type UpDownReport = {
 type UrlReport = UrlConfig & {
   lhr?: LighthouseReport | null;
   testssl?: SslTestReport | null;
+  nmap?: NmapReport | null;
   http?: HttpReport | null;
   nuclei?: NucleiReport | null;
   thirdparties?: ThirdPartiesReport | null;

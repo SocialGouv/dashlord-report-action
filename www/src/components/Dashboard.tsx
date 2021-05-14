@@ -193,6 +193,55 @@ const ThirdPartiesCookiesBadge: React.FC<BadgeProps> = ({ report }) => {
   return <Grade small grade={cookiesGrade} label={cookiesCount} />;
 };
 
+const getNmapOpenPortGrade = (vulnerabilities: NmapVulnerability[]) => {
+  return vulnerabilities.filter(
+    (a) =>
+      a.is_exploit &&
+      Number.parseFloat(a.cvss) > 7
+  ).length
+    ? "F"
+    : vulnerabilities.length
+    ? "B"
+    : "A";
+};
+
+const NmapBadge: React.FC<BadgeProps> = ({ report }) => {
+  if (!report.nmap) {
+    return <IconUnknown />;
+  }
+
+  // nmap
+  const nmapCount =
+    report.nmap &&
+    report.nmap.open_ports
+      .filter(Boolean)
+      .map((port) => port.service.vulnerabilities.length)
+      .reduce((prev, curr) => prev + curr, 0);
+  const maxGrade = (a: "F" | "B" | "A", b: "F" | "B" | "A") => {
+    const grades = new Map();
+    grades.set("F", 3);
+    grades.set("B", 2);
+    grades.set("A", 1);
+    const orders = new Map();
+    orders.set(3, "F");
+    orders.set(2, "B");
+    orders.set(1, "A");
+    return orders.get(Math.max(grades.get(a), grades.get(b)));
+  };
+  const grades =
+    report.nmap &&
+    report.nmap.open_ports
+      .filter(Boolean)
+      .map((port) => getNmapOpenPortGrade(port.service.vulnerabilities));
+
+  if (!grades.length) {
+    return <IconUnknown />;
+  }
+
+  const nmapGrade = grades.reduce(maxGrade);
+  return <Grade small grade={nmapGrade} label={nmapCount} />;
+};
+
 const DependabotBadge: React.FC<BadgeProps> = ({ report }) => {
   if (!report.dependabot) {
     return <IconUnknown />;
@@ -562,6 +611,33 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
                 )}
                 cellRenderer={({ rowData }) => (
                   <DependabotBadge report={rowData as UrlReport} />
+                )}
+              />
+            )}
+
+
+            {isToolEnabled("nmap") && (
+              <Column
+                {...defaultColumnProps}
+                key="nmap"
+                dataGetter={({ rowData }) => {
+                  const report = rowData as UrlReport;
+                  const nmapCount =
+                    report.nmap &&
+                    report.nmap.open_ports
+                      .filter(Boolean)
+                      .map((port) => port.service.vulnerabilities.length)
+                      .reduce((prev, curr) => prev + curr, 0);
+                  return nmapCount;
+                }}
+                headerRenderer={() => (
+                  <ColumnHeader
+                    title="Nmap"
+                    info="Vulnérabilités réseau detectées par Nmap"
+                  />
+                )}
+                cellRenderer={({ rowData }) => (
+                  <NmapBadge report={rowData as UrlReport} />
                 )}
               />
             )}

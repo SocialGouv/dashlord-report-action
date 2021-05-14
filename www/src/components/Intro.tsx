@@ -112,6 +112,21 @@ export const Intro: React.FC = () => {
         </Button>
       </Panel>}
 
+      {isToolEnabled("nmap") && <Panel title="Nmap">
+        Nmap scan les vulnérabilités d'une machine (IP) associée à un domaine
+        <br />
+        <br />
+        <li>Scan des ports ouverts avec vulnérabilités grâce au script vulners</li>
+        <br />
+        <Button variant="dark" href="https://nmap.org"
+          style={{ marginLeft: 5 }}>
+          Nmap
+        </Button>
+        <Button variant="dark" href="https://nmap.org/nsedoc/scripts/vulners.html">
+          NSE vulners
+        </Button>
+      </Panel>}
+
       {isToolEnabled("zap") && <Panel title="OWASP Zed Attack Proxy">
         Scan de vulnérabilités passif "baseline" qui permet de détecter des
         risques de sécurité.
