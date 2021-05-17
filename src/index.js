@@ -136,6 +136,7 @@ const generateReport = () => {
           ...url,
           http: requireJson(path.join(latestFilesPath, "http.json")),
           updownio: requireJson(path.join(latestFilesPath, "updownio.json")),
+          nmap: requireJson(path.join(latestFilesPath, "nmapvuln.json")),
           dependabot: requireJson(
             path.join(latestFilesPath, "dependabotalerts.json")
           ),
