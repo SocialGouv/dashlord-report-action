@@ -213,11 +213,11 @@ const NmapBadge: React.FC<BadgeProps> = ({ report }) => {
   // nmap
   const nmapCount =
     report.nmap &&
-    report.nmap.open_ports &&
+    report.nmap.open_ports ?
     report.nmap.open_ports
       .filter(Boolean)
       .map((port) => port.service.vulnerabilities.length)
-      .reduce((prev, curr) => prev + curr, 0);
+      .reduce((prev, curr) => prev + curr, 0) : 0;
   const maxGrade = (a: "F" | "B" | "A", b: "F" | "B" | "A") => {
     const grades = new Map();
     grades.set("F", 3);
@@ -231,10 +231,10 @@ const NmapBadge: React.FC<BadgeProps> = ({ report }) => {
   };
   const grades =
     report.nmap &&
-    report.nmap.open_ports &&
+    report.nmap.open_ports ?
     report.nmap.open_ports
       .filter(Boolean)
-      .map((port) => getNmapOpenPortGrade(port.service.vulnerabilities));
+      .map((port) => getNmapOpenPortGrade(port.service.vulnerabilities)) : [];
 
   if (!grades.length) {
     return <IconUnknown />;
