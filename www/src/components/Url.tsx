@@ -16,6 +16,7 @@ import { Wappalyzer } from "./Wappalyzer";
 import { UpdownIo } from "./UpdownIo";
 import { Dependabot } from "./Dependabot";
 import { Codescan } from "./Codescan";
+import { Nmap } from "./Nmap";
 
 type UrlDetailProps = { url: string; report: UrlReport };
 
@@ -135,6 +136,13 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
               url
             )}/testssl.html`}
           />
+          <br />
+        </React.Fragment>
+      )) ||
+        null}
+      {(isToolEnabled("nmap") && report.nmap && (
+        <React.Fragment>
+          <Nmap data={report.nmap} />
           <br />
         </React.Fragment>
       )) ||
