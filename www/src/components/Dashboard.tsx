@@ -213,6 +213,7 @@ const NmapBadge: React.FC<BadgeProps> = ({ report }) => {
   // nmap
   const nmapCount =
     report.nmap &&
+    report.nmap.open_ports &&
     report.nmap.open_ports
       .filter(Boolean)
       .map((port) => port.service.vulnerabilities.length)
@@ -230,6 +231,7 @@ const NmapBadge: React.FC<BadgeProps> = ({ report }) => {
   };
   const grades =
     report.nmap &&
+    report.nmap.open_ports &&
     report.nmap.open_ports
       .filter(Boolean)
       .map((port) => getNmapOpenPortGrade(port.service.vulnerabilities));
@@ -624,6 +626,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
                   const report = rowData as UrlReport;
                   const nmapCount =
                     report.nmap &&
+                    report.nmap.open_ports &&
                     report.nmap.open_ports
                       .filter(Boolean)
                       .map((port) => port.service.vulnerabilities.length)
