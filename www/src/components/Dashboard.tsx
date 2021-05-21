@@ -195,9 +195,7 @@ const ThirdPartiesCookiesBadge: React.FC<BadgeProps> = ({ report }) => {
 
 const getNmapOpenPortGrade = (vulnerabilities: NmapVulnerability[]) => {
   return vulnerabilities.filter(
-    (a) =>
-      a.is_exploit &&
-      Number.parseFloat(a.cvss) > 7
+    (a) => a.is_exploit && Number.parseFloat(a.cvss) > 7
   ).length
     ? "F"
     : vulnerabilities.length
@@ -212,12 +210,12 @@ const NmapBadge: React.FC<BadgeProps> = ({ report }) => {
 
   // nmap
   const nmapCount =
-    report.nmap &&
-    report.nmap.open_ports ?
-    report.nmap.open_ports
-      .filter(Boolean)
-      .map((port) => port.service.vulnerabilities.length)
-      .reduce((prev, curr) => prev + curr, 0) : 0;
+    report.nmap && report.nmap.open_ports
+      ? report.nmap.open_ports
+          .filter(Boolean)
+          .map((port) => port.service.vulnerabilities.length)
+          .reduce((prev, curr) => prev + curr, 0)
+      : 0;
   const maxGrade = (a: "F" | "B" | "A", b: "F" | "B" | "A") => {
     const grades = new Map();
     grades.set("F", 3);
@@ -230,11 +228,11 @@ const NmapBadge: React.FC<BadgeProps> = ({ report }) => {
     return orders.get(Math.max(grades.get(a), grades.get(b)));
   };
   const grades =
-    report.nmap &&
-    report.nmap.open_ports ?
-    report.nmap.open_ports
-      .filter(Boolean)
-      .map((port) => getNmapOpenPortGrade(port.service.vulnerabilities)) : [];
+    report.nmap && report.nmap.open_ports
+      ? report.nmap.open_ports
+          .filter(Boolean)
+          .map((port) => getNmapOpenPortGrade(port.service.vulnerabilities))
+      : [];
 
   if (!grades.length) {
     return <IconUnknown />;
@@ -617,7 +615,6 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
               />
             )}
 
-
             {isToolEnabled("nmap") && (
               <Column
                 {...defaultColumnProps}
@@ -680,7 +677,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
                 dataGetter={({ rowData }) => {
                   const report = rowData as UrlReport;
                   return (
-                    report.thirdparties && report.thirdparties.trackers.length
+                    (report.thirdparties &&
+                      report.thirdparties.trackers &&
+                      report.thirdparties.trackers.length) ||
+                    0
                   );
                 }}
                 headerRenderer={() => (
@@ -708,7 +708,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
                 dataGetter={({ rowData }) => {
                   const report = rowData as UrlReport;
                   return (
-                    report.thirdparties && report.thirdparties.cookies.length
+                    (report.thirdparties &&
+                      report.thirdparties.cookies &&
+                      report.thirdparties.cookies.length) ||
+                    0
                   );
                 }}
                 headerRenderer={() => (
