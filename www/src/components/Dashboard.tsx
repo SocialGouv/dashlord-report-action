@@ -199,6 +199,15 @@ const ThirdPartiesCookiesBadge: React.FC<BadgeProps> = ({ report }) => {
   return <Grade small grade={cookiesGrade} label={cookiesCount} />;
 };
 
+const getNmapOpenPortGrade = (vulnerabilities: NmapVulnerability[]) => {
+  return vulnerabilities.filter(
+    (a) => a.is_exploit && Number.parseFloat(a.cvss) > 7
+  ).length
+    ? "F"
+    : vulnerabilities.length
+    ? "B"
+    : "A";
+};
 const NmapBadge: React.FC<BadgeProps> = ({ report }) => {
   const value = report.nmap && report.nmap.grade;
   if (!value) {
@@ -666,7 +675,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
                 dataGetter={({ rowData }) => {
                   const report = rowData as UrlReport;
                   return (
-                    report.thirdparties && report.thirdparties.trackers.length
+                    (report.thirdparties &&
+                      report.thirdparties.trackers &&
+                      report.thirdparties.trackers.length) ||
+                    0
                   );
                 }}
                 headerRenderer={() => (
@@ -694,7 +706,10 @@ export const Dashboard: React.FC<DashboardProps> = ({ report }) => {
                 dataGetter={({ rowData }) => {
                   const report = rowData as UrlReport;
                   return (
-                    report.thirdparties && report.thirdparties.cookies.length
+                    (report.thirdparties &&
+                      report.thirdparties.cookies &&
+                      report.thirdparties.cookies.length) ||
+                    0
                   );
                 }}
                 headerRenderer={() => (
