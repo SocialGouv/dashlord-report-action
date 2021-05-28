@@ -144,7 +144,7 @@ export const Url: React.FC<UrlDetailProps> = ({ url, report, ...props }) => {
         <React.Fragment>
           <Nmap data={report.nmap} url={`${process.env.PUBLIC_URL}/report/${window.btoa(
               url
-            )}/nmapvuln.json`} />
+            )}/nmapvuln.html`} />
           <br />
         </React.Fragment>
       )) ||
