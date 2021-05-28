@@ -206,6 +206,7 @@ type NmapOpenPort = {
 };
 
 type NmapReport =  {
+  grade: string,
   protocol: string,
   host: string,
   closed_ports: number,

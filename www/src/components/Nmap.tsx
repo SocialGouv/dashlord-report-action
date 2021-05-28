@@ -3,6 +3,7 @@ import * as React from "react";
 import { Table, Badge } from "react-bootstrap";
 
 import { Panel } from "./Panel";
+import { Grade } from "./Grade";
 
 const sumCvss = (total: number, vulnerability: NmapVulnerability) => {
    return total + Number.parseFloat(vulnerability.cvss);
@@ -26,7 +27,7 @@ const NmapBadge = (open_port: NmapOpenPort) => {
         : "info";
   return (
     <Badge className="w-100" variant={variant}>
-      {open_port.service.vulnerabilities.length}
+      {variant}
     </Badge>
   );
 };
@@ -58,13 +59,17 @@ export const Nmap: React.FC<NmapProps> = ({ data, url }) => {
           </span>
         }
       >
+      <h3>
+        Scan Summary : <Grade small grade={data.grade} />
+      </h3>
+      <br />
         <Table striped bordered hover>
           <thead>
             <tr>
               <th style={{ width: 100 }} className="text-center">
                 Sévérité
               </th>
-              <th>Service vulnérable</th>
+              <th>Service à l'écoute</th>
               <th>Vulnérabilités</th>
             </tr>
           </thead>
