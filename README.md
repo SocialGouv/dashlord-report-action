@@ -1,3 +1,10 @@
+# deprecated
+
+## see https://github.com/SocialGouv/dashlord
+
+---
+
+
 # dashlord-report-action
 
 This GitHub action build a web report based on some [dashlord](https://github.com/socialgouv/dashlord) content.
